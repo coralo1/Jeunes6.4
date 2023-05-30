@@ -29,11 +29,26 @@ class Register
         $this->stored_users = json_decode(file_get_contents($this->storage), true);
         /* creates a new user */
         $this->new_user = [
+            "type" => "J",
             "email" => $this->email,
             "password" => $this->encrypted_password,
             "birthdate" => $this->birthdate,
             "firstname" => $this->firstname,
-            "lastname" => $this->lastname
+            "lastname" => $this->lastname,
+            "network" => "",
+            "engagement" => "",
+            "length" => "0",
+            "autonomie" => "0",
+            "analyse" => "0",
+            "ecoute" => "0",
+            "organise" => "0",
+            "passionne" => "0",
+            "fiable" => "0",
+            "patient" => "0",
+            "reflechi" => "0",
+            "responsable" => "0",
+            "sociable" => "0",
+            "optimiste" => "0"
         ];
         if ($this->checkFieldValues()) { /* je sais pas si ça va ici */
             $this->insertUser($email);

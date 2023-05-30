@@ -25,7 +25,7 @@ class LoginUser
         foreach ($this->stored_users as $user) { /* repeat for every user in data.json */
             if ($user['email'] == $this->email) { /* if the email matches */
                 if (password_verify($this->password, $user['password'])) { /* if the password matches */
-                    $this->success = array(1, $email);
+                    $this->success = array(1, $user['email'], $user['type'], $user['birthdate'], $user['firstname'], $user['lastname'], $user['network'], $user['engagement'], $user['length'], $user['autonomie'], $user['analyse'], $user['ecoute'], $user['organise'], $user['passionne'], $user['fiable'], $user['patient'], $user['reflechi'], $user['responsable'], $user['sociable'], $user['optimiste']);
                     return $this->success;
                 }
             }

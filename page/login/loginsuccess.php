@@ -1,7 +1,9 @@
 <?php
 session_start();
+if(!isset($_SESSION["userID"])){
+    header("Location:login.php");
+}
 echo $_SESSION["userID"];
-
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +12,7 @@ echo $_SESSION["userID"];
 <head>
     <link rel="stylesheet" href="../../../ressources/projet.css">
     <title>Connexion réussie</title>
-    <a href="../accueil/accueil2.html" id="forgot_password">Retour sur la page</a>
+    <a href="../jeune/jeune.php" id="forgot_password">Retour sur la page</a>
 </head>
 
 <body>
