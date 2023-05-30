@@ -1,0 +1,16 @@
+[
+    {
+        "email": "jeanpierre@test.fr",
+        "password": "$2y$10$Eh3wyXHpvbAFgS48IBVX.ePS.2rKxBT7tm5Gy8vErZaSCPwLeIwL.",
+        "birthdate": "2009-03-12",
+        "firstname": "Jean",
+        "lastname": "Pierre"
+    },
+    {
+        "email": "utilisateur@2.fr",
+        "password": "$2y$10$4sN16oH\/KNW.5ADqOG8RZua3weLyCazk5SSAW4k.EUBHCIcItJLiG",
+        "birthdate": "2222-02-22",
+        "firstname": "utilisateur",
+        "lastname": "deux"
+    }
+]
