@@ -1,12 +1,14 @@
 <?php require("login.class.php") ?>
 <?php
 session_start();
+echo var_dump($_SESSION);
+echo "<br>";
 if (isset($_SESSION["userID"])) { /* if user is already logged in, leave the page */
-    echo '<meta http-equiv="refresh" content="0;url=loginsuccess.php">';
+	echo '<meta http-equiv="refresh" content="0;url=loginsuccess.php">';
 }
 
 if (isset($_POST['submit'])) { /* on button click */
-    $user = new LoginUser($_POST['email'], $_POST['password']); /* call for login */
+	$user = new LoginUser($_POST['email'], $_POST['password']); /* call for login */
 }
 ?>
 
@@ -16,8 +18,8 @@ if (isset($_POST['submit'])) { /* on button click */
 <html>
 
 <head>
-    <link rel="stylesheet" href="../../../ressources/projet.css">
-    <title>Connexion Jeunes 6.4</title>
+	<link rel="stylesheet" href="../../../ressources/projet.css">
+	<title>Connexion Jeunes 6.4</title>
 
 </head>
 
@@ -27,80 +29,62 @@ if (isset($_POST['submit'])) { /* on button click */
 
 
 
-    <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
-        <table id="register_table">
-            <tr>
-                <td>Se connecter à Jeunes 6.4</td>
-            </tr>
-            <tr>
-                <td>
-                    <label>email<br></label>
-                    <input type="email" name="email">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>Mot de passe<br></label>
-                    <input type="password" name="password">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <button id="register_button" type="submit" name="submit">Connexion</button>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    pas encore inscrit ? <br>
-                    <a id="forgot_password" href="../register/register.php">S'inscrire</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a id="forgot_password" href="forgotten_password.html">Mot de passe oublié</a>
-                </td>
-            </tr>
+	<form action="" method="post" enctype="multipart/form-data" autocomplete="off">
+		<table id="register_table">
+			<tr>
+				<td>Se connecter à Jeunes 6.4</td>
+			</tr>
+			<tr>
+				<td>
+					<label>email<br></label>
+					<input type="email" name="email">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label>Mot de passe<br></label>
+					<input type="password" name="password">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<button id="register_button" type="submit" name="submit">Connexion</button>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					pas encore inscrit ? <br>
+					<a id="forgot_password" href="../register/register.php">S'inscrire</a>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a id="forgot_password" href="forgotten_password.html">Mot de passe oublié</a>
+				</td>
+			</tr>
 
 
-        </table>
-
-
-
+		</table>
 
 
 
+		<p class="error">
+			<?php echo @$user->error ?>
+		</p>
+		<p class="success">
+			<?php
+			if (@$user->success[0] == 1) {
+				/* if login was succesful, fill session data and leave the page*/
+				$_SESSION = @$user->success[1];
+				$_SESSION["userID"] = $_SESSION["email"];
+				echo '<meta http-equiv="refresh" content="0;url=loginsuccess.php">';
+			}
 
-        <p class="error">
-            <?php echo @$user->error ?>
-        </p>
-        <p class="success">
-            <?php
-            if (@$user->success[0] == 1) {
-                $_SESSION["userID"] = @$user->success[1]; /* if login was succesful, leave the page */
-                $_SESSION["email"] = @$user->success[1];
-                $_SESSION["type"] = @$user->success[2];
-                $_SESSION["birthdate"] = @$user->success[3];
-                $_SESSION["firstname"] = @$user->success[4];
-                $_SESSION["lastname"] = @$user->success[5];
-                $_SESSION["network"] = @$user->success[6];
-                $_SESSION["engagement"] = @$user->success[7];
-                $_SESSION["length"] = @$user->success[8];
-                $_SESSION["autonomie"] = @$user->success[9];
-                $_SESSION["analyse"] = @$user->success[10];
-                $_SESSION["ecoute"] = @$user->success[11];
-                $_SESSION["organise"] = @$user->success[12];
-                $_SESSION["passionne"] = @$user->success[13];
-                $_SESSION["fiable"] = @$user->success[14];
-                $_SESSION["patient"] = @$user->success[15];
-                $_SESSION["reflechi"] = @$user->success[16];
-                $_SESSION["responsable"] = @$user->success[17];
-                $_SESSION["sociable"] = @$user->success[18];
-                $_SESSION["optimiste"] = @$user->success[19];
-                echo '<meta http-equiv="refresh" content="0;url=loginsuccess.php">';
-            }
-            ?>
-        </p>
-    </form>
+			//var_dump($_SESSION)
+
+			?>
+		</p>
+	</form>
 </body>
 
 </html>

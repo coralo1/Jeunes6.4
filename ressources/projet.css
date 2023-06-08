@@ -23,81 +23,81 @@ tbody tr:nth-child(even){color:blueviolet}
 /*background for welcome screen*/
 
 @font-face {
-  font-family: 'square721_btroman';
-  src: url('font/square721_bt_roman-webfont.woff2') format('woff2'),
-    url('font/square721_bt_roman-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
+	font-family: 'square721_btroman';
+	src: url('font/square721_bt_roman-webfont.woff2') format('woff2'),
+		url('font/square721_bt_roman-webfont.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
 
 }
 
 /*font*/
 html {
-  font-family: 'square721_btroman', Arial, sans-serif;
+	font-family: 'square721_btroman', Arial, sans-serif;
 }
 
 div#bg1 {
-  height: calc(90vh);
-  margin: auto;
-  position: relative;
+	height: calc(90vh);
+	margin: auto;
+	position: relative;
 
 
-  background: linear-gradient(45deg, rgba(249, 249, 249, 1) 0%, rgba(210, 209, 209, 1) 100%);
+	background: linear-gradient(45deg, rgba(249, 249, 249, 1) 0%, rgba(210, 209, 209, 1) 100%);
 }
 
 div#bot_welcome {
-  color: #A7A7AC;
-  text-align: center;
-  font-size: 12px;
-  margin: auto 32% auto 32%;
+	color: #A7A7AC;
+	text-align: center;
+	font-size: 12px;
+	margin: auto 32% auto 32%;
 }
 
 table#table1 {
-  height: calc(90vh - 2em);
-  margin: 25px auto 25px auto;
-  position: relative;
-  /*border: 1px solid black;*/
+	height: calc(90vh - 2em);
+	margin: 25px auto 25px auto;
+	position: relative;
+	/*border: 1px solid black;*/
 
 }
 
 td#table1 {
-  /*border: 1px solid black;*/
-  margin: 25px auto 25px auto;
+	/*border: 1px solid black;*/
+	margin: 25px auto 25px auto;
 }
 
 
 /*welcome screen title*/
 div#title1 {
-  font-weight: bold;
-  text-align: center;
-  font-size: 36px;
-  margin-left: 20%;
-  margin-right: 20%;
-  color: #232671;
+	font-weight: bold;
+	text-align: center;
+	font-size: 36px;
+	margin-left: 20%;
+	margin-right: 20%;
+	color: #232671;
 }
 
 /*welcome screen image*/
 img#welcome_img {
 
-  width: 800px;
-  height: 370px;
-  object-position: 0% 35%;
-  object-fit: cover;
-  text-align: center;
+	width: 800px;
+	height: 370px;
+	object-position: 0% 35%;
+	object-fit: cover;
+	text-align: center;
 
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 
 /*enter button*/
 div#enter_button {
-  position: absolute;
-  bottom: 0;
-  left: 45%;
-  text-align: center;
-  font-size: 26px;
+	position: absolute;
+	bottom: 0;
+	left: 45%;
+	text-align: center;
+	font-size: 26px;
 }
 
 a#enter_link,
@@ -105,8 +105,8 @@ a#enter_link:link,
 a#enter_link:visited,
 a#enter_link:hover,
 a#enter_link:active {
-  text-decoration: none;
-  color: #D72C27;
+	text-decoration: none;
+	color: #D72C27;
 }
 
 
@@ -114,34 +114,34 @@ a#enter_link:active {
 
 /* table for register page */
 table#register_table {
-  margin: auto;
-  margin-top: 4%;
-  align-self: center;
+	margin: auto;
+	margin-top: 4%;
+	align-self: center;
 }
 
 /* each element of the table */
 table#register_table>tbody>tr {
-  text-align: center;
-  margin: 3px 3px 3px 3px;
+	text-align: center;
+	margin: 3px 3px 3px 3px;
 }
 
 table#register_table>tbody>tr>td {
-  padding: 5px;
+	padding: 5px;
 }
 
 /* align field to the right (looks weird otherwise) */
 table#register_table>tbody>tr:not(:first-child):not(:last-child)>td {
-  text-align: center;
-  /*does nothing but i used it in the past*/
+	text-align: center;
+	/*does nothing but i used it in the past*/
 }
 
 /* buttons */
 button#register_button {
-  background-color: rgba(255, 255, 255, 0);
-  border: none;
-  font-family: 'square721_btroman', Arial, sans-serif;
-  font-size: medium;
-  color: rgb(55, 55, 167);
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+	font-family: 'square721_btroman', Arial, sans-serif;
+	font-size: medium;
+	color: rgb(55, 55, 167);
 
 }
 
@@ -151,6 +151,6 @@ a#forgot_password:link,
 a#forgot_password:visited,
 a#forgot_password:hover,
 a#forgot_password:active {
-  text-decoration: none;
-  color: rgb(55, 55, 167);
+	text-decoration: none;
+	color: rgb(55, 55, 167);
 }
