@@ -4,6 +4,19 @@ if (!isset($_SESSION["userID"])) {
 	header("Location:login.php");
 }
 echo $_SESSION["userID"];
+
+switch ($_SESSION["usertype"]) {
+	case "J":
+		$link = "../jeune/jeune.php";
+		break;
+	case "R":
+		$link = "../referent/referent.php";
+		break;
+	case "C";
+		$link = "../consultant/consultant.php";
+		break;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +25,7 @@ echo $_SESSION["userID"];
 <head>
 	<link rel="stylesheet" href="../../../ressources/projet.css">
 	<title>Connexion réussie</title>
-	<a href="../jeune/jeune.php" id="forgot_password">Retour sur la page</a>
+	<a href="<?php echo $link ;?>" id="forgot_password">Retour sur la page</a>
 </head>
 
 <body>

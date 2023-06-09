@@ -1,3 +1,4 @@
+<?php require("jeune.class.php") ?>
 <?php
 /*
 require('../../PHPMailer/src/Exception.php');
@@ -227,9 +228,9 @@ if (isset($_POST["submit"])) {
 		$savoirs["optimiste"] = 0;
 	}
 
-	$data = array("user" => $_SESSION["userID"], "type" => $_POST["type"], "engagement" => $_POST["engagement"], "length" => $_POST["length"], "firstname" => $_POST["ref_firstname"], "lastname" => $_POST["ref_lastname"], "mail" => $_POST["ref_mail"], "savoirs" => $savoirs);
+	$data = array("user" => $_SESSION["userID"], "type" => $_POST["type"], "engagement" => $_POST["engagement"], "length" => $_POST["length"], "user_firstname" => $_SESSION["firstname"], "user_lastname" => $_SESSION["lastname"], "firstname" => $_POST["ref_firstname"], "lastname" => $_POST["ref_lastname"], "mail" => $_POST["ref_mail"], "savoirs" => $savoirs);
 
-	$update = new updateRef($data);
+	$update = new createRef($data);
 
 
 
@@ -275,6 +276,7 @@ if (isset($_POST["submit"])) {
 
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
 	<link rel="stylesheet" href="../../ressources/style_jeune.css">
 	<script src="../../js/jquery-3.7.0.min.js"></script>
 	<script src="../../js/jeune.js" async></script>
@@ -284,32 +286,26 @@ if (isset($_POST["submit"])) {
 <body>
 
 	<header>
-		<img src="../../ressources/img/logo_jeunes6.4.jpg" alt="Logo Jeunes6.4">
+		<img src="../../ressources/img/LOGOS_JEUNES_6_4.svg" alt="Logo Jeunes6.4">
 		<h1>JEUNE</h1>
-		<h2>Je donne de la valeur à mon engagement</h2>
+		<p>Je donne de la valeur à mon engagement</p>
 	</header>
 
-	<nav>
-		<div class="nav_container">
-			<h4><a href="../jeune/jeune.php">JEUNE</a></h4>
-			<h4><a href="../referent/referent.php">RÉFÉRENT</a></h4>
-			<h4><a href="../consultant/consultant.php">CONSULTANT</a></h4>
-			<h4><a href="../partenaires/partenaires.php">PARTENAIRES</a></h4>
-		</div>
+	<nav id="nav-container">
+		<a href="../jeune/jeune.php" class="nav-element">JEUNE</a>
+		<a href="../referent/login.php" class="nav-element">RÉFÉRENT</a>
+		<a href="../consultant/login.php" class="nav-element">CONSULTANT</a>
+		<a href="../partenaires/partenaires.php" class="nav-element">PARTENAIRES</a>
 	</nav>
 
-	<section>
-		<p>Décrivez votre expérience et mettez en avant ce que vous en avez retiré.</p>
-	</section>
+	<p id="description-page">Décrivez votre expérience et mettez en avant ce que vous en avez retiré.</p>
 
 
+	<div id="elements-container">
 
-
-
-	<section>
-		<section id="infos jeunes">
+		<section id="informations-container">
 			<fieldset>
-				<legend>Vos informations</legend>
+				<legend>Vos informations : </legend> <br>
 				<label for="lastname">Nom :</label>
 				<input type="text" name="lastname" id="lastname" value="<?php echo $_SESSION["lastname"] ?>" readonly> <br>
 
@@ -320,100 +316,105 @@ if (isset($_POST["submit"])) {
 				<input type="date" name="birthdate" id="birthdate" value="<?php echo $_SESSION["birthdate"] ?>" readonly>
 				<br>
 
-				<label for="email">Mail : </label>
-				<input type="email" name="email" id="email" value="<?php echo $_SESSION["email"] ?>" readonly> <br>
+				<label for="mail">Mail : </label>
+				<input type="email" name="mail" id="mail" value="<?php echo $_SESSION["mail"] ?>" readonly> <br>
 			</fieldset>
 		</section>
 
 
-		<form action="" method="post">
-			<section id="formu_jeune">
-				<fieldset>
-					<legend>Demande de référence :</legend>
-					<label for="type">Milieu de l'engagement :</label>
-					<input type="text" name="type" id="type" placeholder="association, club de sport, etc."> <br>
+		<section id="demande-formulaire">
 
-					<label for="engagement">Mon engamement :</label>
-					<textarea name="engagement" id="engagement" cols="30" rows="10" placeholder="Décrivez votre engagement"></textarea> <br>
+			<!-- <fieldset> -->
+			<form action="" method="post">
 
-					<label for="length">Durée de l'engagement :</label>
-					<input type="text" name="length" id="length"><br>
+				<!-- ------------------------- Début du premier form ------------------------- -->
 
-					<label for="ref_lastname">Nom du référent :</label>
-					<input type="text" name="ref_lastname" id="ref_lastname"><br>
+				<section id="demande_ref-container">
 
-					<label for="ref_firstname">Prénom du référent :</label>
-					<input type="text" name="ref_firstname" id="ref_firstname"><br>
+					<fieldset>
+						<legend>Demande de référence :</legend> <br>
 
-					<label for="ref_mail">email du référent :</label>
-					<input type="email" name="ref_mail" id="ref_mail"><br> <br>
+						<label for="type">Milieu de l'engagement :</label>
+						<input type="text" name="type" id="type" placeholder="association, club de sport, etc."> <br>
+
+						<label for="engagement">Mon engamement :</label>
+						<textarea name="engagement" id="engagement" cols="30" rows="10" placeholder="Décrivez votre engagement"></textarea> <br>
+
+						<label for="length">Durée de l'engagement :</label>
+						<input type="text" name="length" id="length"> <br>
+
+						<label for="ref_lastname">Nom du référent :</label>
+						<input type="text" name="ref_lastname" id="ref_lastname"> <br>
+
+						<label for="ref_firstname">Prénom du référent :</label>
+						<input type="text" name="ref_firstname" id="ref_firstname"> <br>
+
+						<label for="ref_mail">E-mail du référent :</label>
+						<input type="email" name="ref_mail" id="ref_mail"> <br>
+
+					</fieldset>
+
+				</section>
+
+				<!-- ------------------------- Fin du premier form ------------------------- -->
 
 
-					<section id="questions_etre">
-						<table border="2">
-							<legend>Mes savoirs-être :</legend>
+				<!-- ------------------------- Début du deuxième form ------------------------- -->
+
+				<section id="checkbox-container">
+					<table id="table-checkbox">
+						<legend><strong>Mes savoirs-être</strong></legend>
+						<thead>
 							<tr>
 								<td>Je suis... (4 choix maximum)</td>
 							</tr>
+						</thead>
+						<tbody>
 							<tr>
 								<td>
-									<table>
-										<td>
-											<tr>
-												<input type="checkbox" name="autonomie" value="1">Autonome <br>
-											</tr>
-											<tr>
-												<input type="checkbox" name="analyse" value="1">Capable d'analyse et de synthèse <br>
-											</tr>
-											<tr>
-												<input type="checkbox" name="ecoute" value="1">A l'écoute <br>
-											</tr>
-											<tr>
-												<input type="checkbox" name="organise" value="1">Organisé <br>
-											</tr>
-											<tr>
-												<input type="checkbox" name="passionne" value="1">Passionné <br>
-											</tr>
-											<tr>
-												<input type="checkbox" name="fiable" value="1">Fiable <br>
-											</tr>
-											<tr>
-												<input type="checkbox" name="patient" value="1">Patient <br>
-											</tr>
-											<tr>
-												<input type="checkbox" name="reflechi" value="1">Réfléchi <br>
-											</tr>
-											<tr>
-												<input type="checkbox" name="responsable" value="1">Responable<br>
-											</tr>
-											<tr>
-												<input type="checkbox" name="sociable" value="1">Sociable <br>
-											</tr>
-											<tr>
-												<input type="checkbox" name="optimiste" value="1">Optimiste <br>
-											</tr>
-									</table>
+									<input type="checkbox" name="autonomie" value="1">Autonome <br>
+									<input type="checkbox" name="analyse" value="1">Capable d'analyse et de synthèse <br>
+									<input type="checkbox" name="ecoute" value="1">A l'écoute <br>
+									<input type="checkbox" name="organise" value="1">Organisé <br>
+									<input type="checkbox" name="passionne" value="1">Passionné <br>
+									<input type="checkbox" name="fiable" value="1">Fiable <br>
+									<input type="checkbox" name="patient" value="1">Patient <br>
+									<input type="checkbox" name="reflechi" value="1">Réfléchi <br>
+									<input type="checkbox" name="responsable" value="1">Responable<br>
+									<input type="checkbox" name="sociable" value="1">Sociable <br>
+									<input type="checkbox" name="optimiste" value="1">Optimiste <br>
 								</td>
 							</tr>
-						</table>
-						<p class="error">
-							<?php echo @$error; ?>
-						</p>
-						<p class="success">
-							<?php echo @$success; ?>
-						</p>
-					</section>
-					<br>
-					<br>
-					<input type="submit" name="submit" value="Envoyer une demande"><br>
-				</fieldset>
-			</section>
-		</form>
-	</section>
-	<br>
-	<br>
-	<!-- logout button -->
-	<a href="../logout.php" id="forgot_password">Déconnexion</a>
+						</tbody>
+					</table>
+					<p id="description-checkbox"><strong>*Faire 4 choix maximum</strong></p>
+				</section>
+
+				<!-- ------------------------- Fin du deuxième form ------------------------- -->
+
+				<!-- Messages -->
+				<p class="error">
+					<?php echo @$error; ?>
+				</p>
+
+				<p class="success">
+					<?php echo @$success; ?>
+				</p>
+				<!-- Fin messages  -->
+
+				<!-- Bouton "envoyer une demande" -->
+				<input type="submit" name="submit" value="Envoyer une demande"> <br>
+
+			</form>
+			<!-- </fieldset> -->
+
+		</section>
+
+		<!-- Logout button -->
+		<a href="../logout.php" id="forgot_password">Déconnexion</a>
+
+	</div>
+
 </body>
 
 </html>

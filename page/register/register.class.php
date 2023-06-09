@@ -2,7 +2,7 @@
 /*session_start();*/
 class Register
 {
-	private $email;
+	private $mail;
 	private $raw_password;
 	private $encrypted_password;
 	private $birthdate;
@@ -16,10 +16,10 @@ class Register
 	private $new_user; /* array with the new user */
 
 
-	public function __construct($email, $password, $birthdate, $firstname, $lastname)
+	public function __construct($mail, $password, $birthdate, $firstname, $lastname)
 	{
 		/* cleans email and password */
-		$this->email = htmlspecialchars(trim($email));
+		$this->mail = htmlspecialchars(trim($mail));
 		$this->raw_password = htmlspecialchars(trim($password));
 		$this->birthdate = $birthdate;
 		$this->firstname = htmlspecialchars(trim($firstname));
@@ -29,8 +29,8 @@ class Register
 		$this->stored_users = json_decode(file_get_contents($this->storage), true);
 		/* creates a new user */
 		$this->new_user = [
-			"type" => "J",
-			"email" => $this->email,
+			"usertype" => "J",
+			"mail" => $this->mail,
 			"password" => $this->encrypted_password,
 			"birthdate" => $this->birthdate,
 			"firstname" => $this->firstname,
@@ -51,7 +51,7 @@ class Register
 			"optimiste" => "0"
 		];
 		if ($this->checkFieldValues()) { /* je sais pas si ça va ici */
-			$this->insertUser($email);
+			$this->insertUser($mail);
 		}
 	}
 
@@ -60,7 +60,7 @@ class Register
 	/* checks if any field was not left empty when submitting */
 	private function checkFieldValues()
 	{
-		if (empty($this->email) || empty($this->raw_password) || empty($this->birthdate) || empty($this->firstname) || empty($this->lastname)) {
+		if (empty($this->mail) || empty($this->raw_password) || empty($this->birthdate) || empty($this->firstname) || empty($this->lastname)) {
 			$this->error = "Tous les champs sont obligatoires.";
 			return false;
 		} else {
@@ -69,10 +69,10 @@ class Register
 	}
 
 	/* checks if the email already exists */
-	private function emailExists()
+	private function mailExists()
 	{
 		foreach ($this->stored_users as $user) {
-			if ($this->email == $user['email']) {
+			if ($this->mail == $user['mail']) {
 				$this->error = "Cet email est déjà utilisé.";
 				return true;
 			}
@@ -80,12 +80,12 @@ class Register
 	}
 
 	/* adds user to the data.json file */
-	private function insertUser($email)
+	private function insertUser($mail)
 	{
-		if ($this->emailExists() == FALSE) {
+		if ($this->mailExists() == FALSE) {
 			array_push($this->stored_users, $this->new_user);
 			if (file_put_contents($this->storage, json_encode($this->stored_users, JSON_PRETTY_PRINT))) {
-				$this->success = array(1, $email);
+				$this->success = array(1, $mail);
 				return $this->success;
 
 			} else {

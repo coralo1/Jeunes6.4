@@ -4,6 +4,10 @@ session_start();
 if (isset($_SESSION["userID"])) { /* if user is already logged in, leave the page */
 	echo '<meta http-equiv="refresh" content="0;url=loginsuccess.php">';
 }
+
+if (isset($_POST['submit'])) { /* on button click */
+	$user = new LoginRef($_POST['password']); /* call for login */
+}
 ?>
 
 <!-- this is the login page -->
@@ -25,22 +29,19 @@ if (isset($_SESSION["userID"])) { /* if user is already logged in, leave the pag
 
 	<form action="" method="post" enctype="multipart/form-data" autocomplete="off">
 		<table id="register_table">
-			<tr>
-				<td>Se connecter à Jeunes 6.4<br> Je suis :</td>
-			</tr>
+			<td>
+				<h3>Se connecter à Jeunes 6.4</h3>
+				<h4>Référent</h4>
+			</td>
 			<tr>
 				<td>
-					<a href="login_jeunes.php" id="forgot_password">Un jeune</a>
+					<label>Identifiant de connexion :<br></label>
+					<input type="password" name="password">
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<a href="login_referent.php" id="forgot_password">Un référent</a>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<a href="login_consultant.php" id="forgot_password">Un consultant</a>
+					<button id="register_button" type="submit" name="submit">Connexion</button>
 				</td>
 			</tr>
 			<tr>
@@ -59,7 +60,28 @@ if (isset($_SESSION["userID"])) { /* if user is already logged in, leave the pag
 					<a id="forgot_password" href="javascript:history.back()">Retour</a>
 				</td>
 			</tr>
+
+
 		</table>
+
+
+
+		<p class="error">
+			<?php echo @$user->error ?>
+		</p>
+		<p class="success">
+			<?php
+			if (@$user->success[0] == 1) {
+				/* if login was succesful, fill session data and leave the page*/
+				$_SESSION = @$user->success[1];
+				$_SESSION["userID"] = $_SESSION["mail"];
+				echo '<meta http-equiv="refresh" content="0;url=loginsuccess.php">';
+			}
+
+			//var_dump($_SESSION)
+
+			?>
+		</p>
 	</form>
 </body>
 
