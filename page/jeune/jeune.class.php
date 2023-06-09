@@ -10,7 +10,7 @@ class updateRef
 	private $engagement;
 	private $length;
 	private $savoirs;
-
+	private $new_ref;
 	public $error;
 	public $success;
 	private $storage = "../../data/referent.json";
@@ -27,13 +27,33 @@ class updateRef
 		$this->engagement = htmlspecialchars(trim($data["engagement"]));
 		$this->length = htmlspecialchars(trim($data["length"]));
 		$this->savoirs = $data["savoirs"];
+		echo var_dump($this->savoirs);
 		/* load pre-existing referents */
 		$this->stored_refs = json_decode(file_get_contents($this->storage), true);
+		/* create a new referent */
+		$this->new_ref = [
+			"usertype" => "R",
+			"mail" => $this->mail,
+			"firstname" => $this->firstname,
+			"lastname" => $this->lastname,
+			"user" => $this->user,
+			"type" => $this->type,
+			"engagement" => $this->engagement,
+			"length" => $this->length,
+			"autonomie" => $this->savoirs["autonomie"],
+			"analyse" => $this->savoirs["analyse"],
+			"ecoute" => $this->savoirs["ecoute"],
+			"organise" => $this->savoirs["organise"],
+			"passionne" => $this->savoirs["passionne"],
+			"fiable" => $this->savoirs["fiable"],
+			"patient" => $this->savoirs["patient"],
+			"reflechi" => $this->savoirs["reflechi"],
+			"responsable" => $this->savoirs["responsable"],
+			"sociable" => $this->savoirs["sociable"],
+			"optimiste" => $this->savoirs["optimiste"]
+		];
 
 
-
-
-		/* assign a random connection ID to the referent */
 	}
 
 
@@ -78,6 +98,18 @@ class updateRef
 			return false;
 		} else {
 			return true;
+		}
+	}
+
+	private function insertRef()
+	{
+		if ($this->resquestExists() == FALSE) {
+			array_push($this->stored_refs, $this->new_ref);
+			if (file_put_contents($this->storage, json_encode($this->stored_refs,JSON_PRETTY_PRINT))){ 
+				return $this->success = "demande effectuée avec succès";
+			} else {
+				return $this-> error = "une erreur est survenue, veuillez rééssayer";
+			}
 		}
 	}
 }

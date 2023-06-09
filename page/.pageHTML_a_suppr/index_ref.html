@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="style_ref.css">
+        <title>Page référent</title>
+    </head>
+
+    <body>
+
+        <header>
+            <img src="Images/LOGOS_JEUNES_6_4.svg" alt="Logo Jeunes6.4">
+            <h1>RÉFÉRENT</h1>
+            <p>Je confirme la valeur de ton engagement</p>
+        </header>
+    
+        <nav id="nav-container">
+            <a href="jeune.html" class="nav-element">JEUNE</a>
+            <a href="referent.html" class="nav-element">RÉFÉRENT</a>
+            <a href="consultant.html" class="nav-element">CONSULTANT</a>
+            <a href="partenaires.html" class="nav-element">PARTENAIRES</a>
+        </nav> 
+
+        <p id="description-page">Confirmez cette expérience et ce que vous avez pu constater au contact de ce jeune.</p>
+
+
+        <div id="elements-container">
+            <section id="formulaire-container">
+                <!-- <fieldset> -->
+                    <form action="page.php" method="post">
+                        <label for="fnom">Nom :</label>
+                        <input type="text" name="fnom" id="fnom"> <br>
+
+                        <label for="fprenom">Prénom :</label>
+                        <input type="text" name="fprenom" id="fprenom"> <br>
+
+                        <label for="fdate">Date de naissance :</label>
+                        <input type="date" name="fdate" id="fdate"> <br>
+
+                        <label for="ftel">Portable :</label>
+                        <input type="tel" name="ftel" id="ftel"> <br>
+
+                        <label for="fmail">Mail : </label>
+                        <input type="email" name="femail" id="femail"> <br>
+
+                        <label for="freseau">Réseau social :</label>
+                        <input type="text" name="freseau" id="freseau"> <br><br>
+
+                        <label for="fpresentation">Présentation :</label>
+                        <textarea name="fpresentation" id="fpresentation" cols="30" rows="10"></textarea> <br>
+
+                        <label for="fduree">Durée :</label>
+                        <input type="text" name="fduree" id="fduree">
+                    </form>
+                <!-- </fieldset> -->
+            </section>
+        
+
+        
+        
+            <section>
+                <textarea name="fcomment" id="fcomment" cols="30" rows="10">COMMENTAIRES</textarea>
+            </section>
+
+            <section id="checkbox-container">
+
+                <table id="table-checkbox">
+                    <legend>Ses savoirs-être</legend>
+                    <tr>
+                        <td>Je confirme sa (son)*</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <form action="page.php" method="post">
+                                <input type="checkbox" name="confirm" value="ponctualite">Ponctualité <br>
+                                <input type="checkbox" name="confirm" value="confiance">Confiance <br>
+                                <input type="checkbox" name="confirm" value="serieux">Sérieux <br>
+                                <input type="checkbox" name="confirm" value="honnetete">Honnêteté <br>
+                                <input type="checkbox" name="confirm" value="tolerance">Tolérance <br>
+                                <input type="checkbox" name="confirm" value="bienveillance">Bienveillance <br>
+                                <input type="checkbox" name="confirm" value="Respect">Respect <br>
+                                <input type="checkbox" name="confirm" value="juste">Juste <br>
+                                <input type="checkbox" name="confirm" value="impartial">Impartial <br>
+                                <input type="checkbox" name="confirm" value="travail">Travail <br>
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+                <p id="description-checkbox"><strong>*Faire 4 choix maximum</strong></p>
+            </section>
+        </div>
+    
+    </body>
+</html>

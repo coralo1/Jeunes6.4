@@ -29,7 +29,7 @@ class Register
 		$this->stored_users = json_decode(file_get_contents($this->storage), true);
 		/* creates a new user */
 		$this->new_user = [
-			"type" => "J",
+			"usertype" => "J",
 			"email" => $this->email,
 			"password" => $this->encrypted_password,
 			"birthdate" => $this->birthdate,
