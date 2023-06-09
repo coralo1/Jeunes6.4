@@ -1,43 +1,195 @@
-/* .paragraphes {
-    vertical-align: top;
-    border: 1px solid whitesmoke;
-    background-color: whitesmoke;
-    width: 500px;
-    text-align: center;
+/* Ajoutons la font-family */
+@font-face {
+    font-family: 'square721_btroman';
+    src: url('Font/square721_bt_roman-webfont.woff2') format('woff2'),
+         url('Font/square721_bt_roman-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html {
+    font-family: 'square721_btroman';
 }
 
 body {
-    vertical-align: middle;
+    margin: 0;
+    /* background-image: url(Images/LOGOS_JEUNES_6_4.svg);
+    background-repeat: no-repeat; */
 }
 
-.nav_container {
-    width: 5000px;
-    border: 5px solid grey;
-    background: grey;
-    border-radius: .5em;
-}    
-
-.nav_item {
-    display: inline-block;
-    vertical-align: middle;
-    padding: 30px;
+header {
+    /* border: 1px solid green; */
+    background-color: #bdbec1;
+    height: 220px; width: auto;
+    display: flex;
 }
 
-.paragraphes {
-    width: 500px;
-    border: 5px solid whitesmoke;
-    background-color: whitesmoke;
-    padding: 10px;
+/* Résoudre problème texte quand je change d'affichage */
+header > p {
+    /* border: 1px solid red; */
+    width: 50%;
+    margin: auto;
+    margin-left: 23%; margin-top: 11%;
+    position: absolute;
+    font-size: 27px;
+    letter-spacing: 5px;
+    color: white;
+}
+
+header > img {
+    /* border: 1px solid red; */
+    width: 550px; height: auto;
+    position: relative;
+    object-position: 0px 0px;
+    object-fit: cover;
+    text-align: center;
+    /* background: radial-gradient(circle at 0%,white,#bdbec1)        */
+    background: radial-gradient(white 0%,#bdbec1 70%);
+}
+
+#nav-container {
+    /* border: 1px solid red; */
+    background-image: radial-gradient(farthest-corner at 225px 30px, #e1e2e3 0%, #c5c5c6 50%);
+    width: 50%; height: 50px;
+    margin: auto;
+    display: flex;
+}
+
+.nav-element {
+    /* border: 1px solid red; */
+    text-decoration: none;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    flex: 1; /* flex: 1; flex va prendre tout l'espace disponible (pas besoin de calculer) */
+
+    /* transition: all 0.5; Effet esthétique à coupler avec le ":hover"
+    /* border-top: 2px solid grey; */ /* On met un border-top par défaut pour éviter de faire bouger
+                                    notre texte lorsque nous passons le curseur dessus */
+
+}
+
+/* .nav-element:hover {             ":hover" = Ajoute un effet lorsque nous passons le pointeur dessus utilisation
+                                    première page pour effet esthétique?
+    border-top: 3px solid red;
+}
+*/
+
+/* Utilisation des :nth-child() ? */
+.nav-element:nth-child(1) {
+    color: #e7319d;
+}
+
+.nav-element:nth-child(2) {
+    color: #4bbc6c;
+}
+
+.nav-element:nth-child(3) {
+    color: #46b2e0;
+}
+
+.nav-element:nth-child(4) {
+    color: #808183;
+}
+
+/* Ou sinon avec les #id
+EXEMPLE : 
+#bouton-jeune {
+    color: red;
+} 
+*/
+
+
+/* ------------------------ TEXTE ------------------------ */
+
+#texte_table-container {
+    border: 2px solid green;
+    width: 70%;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 25px;
+}
+
+#texte-container {
+    border: 1px solid red;
+    width: 60%;
+    margin: auto;
+    padding: 5px;
+    text-align: justify;
+    background: transparent;
+}
+
+
+/* ------------------------ TABLEAUX ETAPES ------------------------ */
+
+#table-container {
+    /* border: 2px solid blue; */
+    display: flex;
+    width: auto; height: 275px;
+    margin-top: 30px;
+}
+
+.table-etapes {
+    /* border: 1px solid red; */
+    margin: auto;
+    width: 250px; height: 225px;
+}
+
+thead {
+    font-size: 25px;
+    color: white;
+    height: 50%;
     text-align: center;
 }
 
-.bloc1, .bloc2 {
+tbody {
     text-align: justify;
+    font-size: 16px;
+    /* vertical-align: text-top; */
 }
 
-.etapes_item {
-    display: inline-block;
-    width: 200px;
-    height: 150px;
-    text-align: justify;
-} */
+/* Premier tableau étape */
+table:nth-child(1) {
+    border: 5px solid #ec028d;
+    /* background-color: #ec028d; */
+    border-collapse: collapse;
+
+}
+
+table:nth-child(1) > thead {
+    background: linear-gradient(to left, #ec028d, #f496bf 100%);
+}
+
+table:nth-child(1) > tbody {
+    background-color: #fbe2ed;
+}
+
+/* Deuxième tableau étape */
+table:nth-child(2) {
+    border: 5px solid #bed745;
+    /* background-color: #bed745; */
+    border-collapse: collapse;
+}
+
+table:nth-child(2) > thead {
+    background: linear-gradient(to left, #23b14a, #d7e598 100%);
+}
+
+table:nth-child(2) > tbody {
+    background-color: #d7e598;
+}
+
+/* Troisème tableau étape */
+table:nth-child(3) {
+    border: 5px solid #00adee;
+    /* background-color: #00adee; */
+    border-collapse: collapse;
+}
+
+table:nth-child(3) > thead {
+    background: linear-gradient(to left, #00adee, #7fd4f7 100%);
+}
+
+table:nth-child(3) > tbody {
+    background-color: #c4eafb;
+}
