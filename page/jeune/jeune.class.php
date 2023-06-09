@@ -1,4 +1,91 @@
 <?php
+
+class updateRef
+{
+	private $mail;
+	private $firstname;
+	private $lastname;
+	private $user;
+	private $type;
+	private $engagement;
+	private $length;
+	private $savoirs;
+
+	public $error;
+	public $success;
+	private $storage = "../../data/referent.json";
+	private $stored_refs;
+
+	public function __construct($data)
+	{
+		/* assign default values */
+		$this->mail = htmlspecialchars(trim($data["mail"]));
+		$this->firstname = htmlspecialchars(trim($data["firstname"]));
+		$this->lastname = htmlspecialchars(trim($data["lastname"]));
+		$this->user = htmlspecialchars(trim($data["user"]));
+		$this->type = htmlspecialchars(trim($data["type"]));
+		$this->engagement = htmlspecialchars(trim($data["engagement"]));
+		$this->length = htmlspecialchars(trim($data["length"]));
+		$this->savoirs = $data["savoirs"];
+		/* load pre-existing referents */
+		$this->stored_refs = json_decode(file_get_contents($this->storage), true);
+
+
+
+
+		/* assign a random connection ID to the referent */
+	}
+
+
+	private function createLogin()
+	{
+		/* create a table of characters */
+		$characters = "0123456789";
+		$characters .= $this->mail;
+		$characters .= $this->user;
+
+		$password = "";
+
+		/* create a 8 letters password based on the table of characters */
+		$n = 8;
+		for ($i = 0; $i < $n; $i++) {
+			$index = rand(0, strlen($characters) - 1);
+			$password .= $characters[$index];
+		}
+		return $password;
+	}
+
+
+	/* check if user has already made a request for this referent */
+	private function resquestExists()
+	{
+		foreach ($this->stored_refs as $referent) {
+			if ($this->mail == $referent["email"] && $this->user == $referent["user"]) {
+				$this->error = "Vous avez déjà envoyé une demande à ce référent.";
+				return true;
+			}
+		}
+	}
+
+	/* verifies no field was left empty */
+	private function checkFieldValues()
+	{
+		if (empty($this->mail) || empty($this->firstname) || empty($this->lastname) || empty($this->type) || empty($this->engagement) || empty($this->length)) {
+			$this->error = "Tous les champs sont obligatoires.";
+			return false;
+		} elseif (empty($this->user) || empty($this->savoirs)) {
+			$this->error = "erreur innatendue (utilisateur non connecté ou erreur de savoirs-êtres";
+			return false;
+		} else {
+			return true;
+		}
+	}
+}
+
+
+
+
+
 class updateUser
 {
 
@@ -77,14 +164,10 @@ class updateUser
 		if (file_put_contents($this->storage, $this->encoded_data)) {
 			$success = "profil mis à jour";
 			return $success;
-
 		} else {
 			return $error = "Une erreur est survenue, veuillez rééssayer";
 		}
-
-
 	}
-
 }
 
 if (isset($_POST['submit'])) {
@@ -108,7 +191,4 @@ if (isset($_POST['submit'])) {
 				"sociable" => $_POST['sociable'],
 				"optimiste" => $_POST['optimiste'],
 		);*/
-
-
-
 }

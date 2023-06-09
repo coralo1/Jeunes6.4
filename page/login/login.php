@@ -1,8 +1,6 @@
 <?php require("login.class.php") ?>
 <?php
 session_start();
-echo var_dump($_SESSION);
-echo "<br>";
 if (isset($_SESSION["userID"])) { /* if user is already logged in, leave the page */
 	echo '<meta http-equiv="refresh" content="0;url=loginsuccess.php">';
 }

@@ -24,7 +24,7 @@ class Register
 		$this->birthdate = $birthdate;
 		$this->firstname = htmlspecialchars(trim($firstname));
 		$this->lastname = htmlspecialchars(trim($lastname));
-		/* encrypts password -> is it really secure ? */
+		/* encrypts password */
 		$this->encrypted_password = password_hash($password, PASSWORD_DEFAULT);
 		$this->stored_users = json_decode(file_get_contents($this->storage), true);
 		/* creates a new user */
@@ -57,7 +57,7 @@ class Register
 
 
 
-	/* checks if either field was not left empty when submitting */
+	/* checks if any field was not left empty when submitting */
 	private function checkFieldValues()
 	{
 		if (empty($this->email) || empty($this->raw_password) || empty($this->birthdate) || empty($this->firstname) || empty($this->lastname)) {
