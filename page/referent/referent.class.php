@@ -88,6 +88,8 @@ class confirmRef
 	private $length;
 	private $user;
 	private $comment;
+	public $error;
+	public $success;
 
 public function __construct($data){
 	$this->mail=$data["mail"];

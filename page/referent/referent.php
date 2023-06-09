@@ -9,7 +9,7 @@ if (!isset($_SESSION["userID"])) { /* auto redirect if user not logged in */
 /* update referent information */
 if (isset($_POST["update"])) {
 	$update_data = array("mail" => $_POST["mail"], "lastname" => $_POST["lastname"], "firstname" => $_POST["firstname"], "phone" => $_POST["phone"], "birthdate" => $_POST["birthdate"], "user" => $_SESSION["user"]);
-	new updateRef($update_data);
+	$baba = new updateRef($update_data);
 }
 
 if (isset($_POST["confirm"])) {
@@ -85,7 +85,7 @@ if (isset($_POST["confirm"])) {
 	$confirm_data = array("mail" => $_POST["mail"], "lastname" => $_POST["lastname"], "firstname" => $_POST["firstname"], "phone" => $_POST["phone"], "birthdate" => $_POST["birthdate"], "user" => $_SESSION["user"], "type" => $_POST["type"], "engagement" => $_POST["engagement"], "length" => $_POST["length"], "comment" => $_POST["comment"], $confirm_savoirs);
 
 
-	new confirmRef($confirm_data);
+	$baba = new confirmRef($confirm_data);
 }
 
 ?>
@@ -102,9 +102,11 @@ if (isset($_POST["confirm"])) {
 
 <body>
 	<p class="error">
-		<?php echo @$user->error ?>
+		<?php echo @$baba->error ?>
 	</p>
 	<p class="success">
+		<?php echo @$baba->success ?>
+	</p>
 	<header>
 		<img src="../../ressources/img/logo_jeunes6.4.jpg" alt="Logo Jeunes6.4">
 		<h1>RÉFÉRENT</h1>
