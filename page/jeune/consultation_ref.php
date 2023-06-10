@@ -17,7 +17,7 @@ $refs = new loadRefs($data);
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<link rel="stylesheet" href="../../ressources/styles_jeune.css">
+	<link rel="stylesheet" href="../../ressources/style_jeune.css">
 	<script src="../../js/jquery-3.7.0.min.js"></script>
 	<script src="../../js/jeune.js" async></script>
 	<title>Page jeune</title>

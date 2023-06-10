@@ -13,8 +13,8 @@ class createRef
 	private $length;
 	private $savoirs;
 	private $new_ref;
-	private $password;
-	private $encrypted_password;
+	private $login;
+	private $encrypted_login;
 	public $error;
 	public $success;
 	private $storage = "../../data/referent.json";
@@ -35,15 +35,15 @@ class createRef
 		$this->savoirs = $data["savoirs"];
 		/* load pre-existing referents */
 		$this->stored_refs = json_decode(file_get_contents($this->storage), true);
-		/* creates a password for the referent */
-		$this->password = $this->createLogin();
-		$this->encrypted_password = password_hash($this->password, PASSWORD_DEFAULT);
+		/* creates a login for the referent */
+		$this->login = $this->createLogin();
+		$this->encrypted_login = password_hash($this->login, PASSWORD_DEFAULT);
 
 		/* create a new referent */
 		$this->new_ref = [
 			"usertype" => "R",
 			"mail" => $this->mail,
-			"password" => $this->encrypted_password,
+			"login" => $this->encrypted_login,
 			"firstname" => $this->firstname,
 			"lastname" => $this->lastname,
 			"user_firstname" => $this->user_firstname,
@@ -70,7 +70,6 @@ class createRef
 		/* adds ref to json file */
 		if ($this->checkFieldValues()) {
 			$this->insertRef();
-			$this->send_mail();
 		}
 	}
 
@@ -81,21 +80,21 @@ class createRef
 		$characters .= $this->mail;
 		$characters .= $this->user;
 
-		$password = "";
+		$login = "";
 
-		/* create a 8 letters password based on the table of characters */
+		/* create a 8 letters login based on the table of characters */
 		$n = 8;
 		for ($i = 0; $i < $n; $i++) {
 			$index = rand(0, strlen($characters) - 1);
-			$password .= $characters[$index];
+			$login .= $characters[$index];
 		}
-		/*make sure it's not a password that already exists */
+		/*make sure it's not a login that already exists */
 		foreach ($this->stored_refs as $referent) {
-			if (password_verify($password, $referent['password'])) {
-				$password = $this->createlogin();
+			if (password_verify($login, $referent['login'])) {
+				$login = $this->createlogin();
 			}
 		}
-		return $password;
+		return $login;
 	}
 
 
@@ -127,13 +126,13 @@ class createRef
 	/* writes the mail in a file under data/mail/ for now */
 	private function send_mail()
 	{
-		$filename = "../../data/mail/mail" . $this->mail . $this->user . ".html";
+		$filename = "../../data/mail/mail_ref/mail" . $this->mail . $this->user . ".html";
 		$file = fopen($filename, "w");
 		$text = '<html><body>';
 		$text .= 'Bonjour, <br><br>';
 		$text .= $this->user_firstname . " " . $this->user_lastname . ' vous a envoyé une demande de référencement sur la plateforme jeunes 6.4.<br>';
-		$text .= '<a href="http://localhost:8080/page/referent/referent.php">Cliquez ici pour y accéder</a>, et connectez vous à l' . "'" . "aide du mot de passe suivant : <br>";
-		$text .= $this->password;
+		$text .= '<a href="http://localhost:8080/page/referent/referent.php">Cliquez ici pour y accéder</a>, et connectez vous à l' . "'" . "aide du login suivant: <br>";
+		$text .= $this->login;
 		$text .= '</body></html>';
 		fwrite($file, $text);
 	}
@@ -155,24 +154,13 @@ class createRef
 
 class loadRefs
 {
-	private $firstname;
-	private $lastname;
 	private $user;
-	private $mail;
-	private $phone;
-	private $type;
-	private $engagement;
-	private $length;
-	private $comment;
-	private $savoirs;
 	private $storage1 = "../../data/referent.json";
 	private $storage2 = "../../data/references.json";
 	private $load_pending_refs;
 	private $load_confirmed_refs;
 	private $pending_refs;
 	private $confirmed_refs;
-	
-	private $all_refs;
 
 
 	public function __construct($data)
@@ -206,19 +194,17 @@ class loadRefs
 		return $refs;
 	}
 
-/* removes references that have been validated from the pending reference list */
+	/* removes references that have been validated from the pending reference list */
 	private function removedoubles()
 	{
 		foreach ($this->confirmed_refs as $confirmed) {
 			$i = -1; /* $i is the current position on the pending_refs list */
-			foreach ($this->pending_refs as $pending) { 
+			foreach ($this->pending_refs as $pending) {
 				$i++;
 				if ($confirmed["mail"] == $pending["mail"]) { /* compare every validated reference to every pending reference */
 
-					array_splice($this->pending_refs,$i,1);
+					array_splice($this->pending_refs, $i, 1);
 					/* remove the pending reference from the list */
-
-
 				}
 			}
 		}
@@ -229,7 +215,15 @@ class requestCons
 {
 	private $firstname;
 	private $lastname;
+	private $consultant;
+	private $to_keep;
+	private $login;
+	private $encrypted_login;
+	private $stored_cons;
 	private $user;
+
+	private $new_cons;
+	private $filtered_refs;
 	private $mail;
 	private $phone;
 	private $type;
@@ -237,63 +231,137 @@ class requestCons
 	private $length;
 	private $comment;
 	private $savoirs;
-	private $storage1 = "../../data/referent.json";
-	private $storage2 = "../../data/references.json";
+	private $storage_cons = "../../data/consultant.json";
+	private $storage_ref = "../../data/references.json";
 	private $load_pending_refs;
 	private $load_confirmed_refs;
 	private $pending_refs;
 	private $confirmed_refs;
-	
+
+	public $errorcons;
+	public $successcons;
+
 	private $all_refs;
 
 
 	public function __construct($data)
 	{
 
-		$this->load_pending_refs = json_decode(file_get_contents($this->storage1), true);
-		$this->load_confirmed_refs = json_decode(file_get_contents($this->storage2), true);
-		/* assign default values */
+		$this->firstname = $data["firstname"];
+		$this->lastname = $data["lastname"];
+		$this->confirmed_refs = $data["refs"];
+		$this->to_keep = $data["ref_array"];
+		$this->consultant = $data["mail_cons"];
 		$this->user = $data["user"];
 
-		$this->pending_refs = $this->searchRefs($this->load_pending_refs);
+		$this->stored_cons = json_decode(file_get_contents($this->storage_cons), true);
+		$this->login = $this->createLogin();
+		$this->encrypted_login = password_hash($this->login, PASSWORD_DEFAULT);
 
-		$this->confirmed_refs = $this->searchRefs($this->load_confirmed_refs);
+		/* keeps only selected references*/
+		$this->filtered_refs = $this->filter_ref();
 
-		$this->removedoubles();
+		$this->new_cons = [
+			"usertype" => "C",
+			"login" => $this->encrypted_login,
+			"user" => $this->user,
+			"mail" => $this->consultant,
+			"refs" => $this->filtered_refs
+		];
 
-		$_SESSION["pending"] = $this->pending_refs;
-		$_SESSION["confirmed"] = $this->confirmed_refs;
+		/* adds consultant to json file */
+		if ($this->checkFieldValues()){
+			$this->insertCons();
+		}
+
 	}
 
 
-	/* searches for reference requests made by the user */
-	private function searchRefs($list)
+	/* check if user has already made a request for this referent */
+	private function resquestExists()
 	{
-		$refs = array();
-		foreach ($list as $reference) { /* parse every confirmed reference */
-			if ($reference["user"] == $this->user) { /* if the reference has been sent by the user */
-				array_push($refs, $reference); /*add it to the list of refs */
+		foreach ($this->stored_cons as $consultant) {
+			if ($this->consultant == $consultant["mail"] && $this->user == $consultant["user"]) {
+				$this->errorcons = "Vous avez déjà envoyé une demande à ce consultant.";
+				return true;
 			}
 		}
-		return $refs;
 	}
 
-/* removes references that have been validated from the pending reference list */
-	private function removedoubles()
+
+
+	/* verifies no field was left empty */
+	private function checkFieldValues()
 	{
-		foreach ($this->confirmed_refs as $confirmed) {
-			$i = -1; /* $i is the current position on the pending_refs list */
-			foreach ($this->pending_refs as $pending) { 
-				$i++;
-				if ($confirmed["mail"] == $pending["mail"]) { /* compare every validated reference to every pending reference */
+		if (empty($this->consultant) || empty($this->to_keep) || empty($this->confirmed_refs)) {
+			$this->errorcons = "Tous les champs sont obligatoires, ou bien vous n'avez pas de références validées";
+			return false;
+		} else {
+			return true;
+		}
+	}
 
-					array_splice($this->pending_refs,$i,1);
-					/* remove the pending reference from the list */
+	/* same login as for referent */
+	private function createLogin()
+	{
+		/* create a table of characters */
+		$characters = "0123456789";
+		$characters .= $this->consultant;
+		$characters .= $this->user;
+
+		$login = "";
+
+		/* create a 8 letters login based on the table of characters */
+		$n = 8;
+		for ($i = 0; $i < $n; $i++) {
+			$index = rand(0, strlen($characters) - 1);
+			$login .= $characters[$index];
+		}
+		/*make sure it's not a login that already exists */
+		foreach ($this->stored_cons as $consultant) {
+			if (password_verify($login, $consultant['login'])) {
+				$login = $this->createlogin();
+			}
+		}
+		return $login;
+	}
+
+	/* creates a new empty array and puts the selected references into it*/
+	private function filter_ref()
+	{
+		$new_array = array();
+		foreach ($this->to_keep as $dunno) {
+			array_push($new_array, $this->confirmed_refs[($dunno+1)]);
+		}
+		return $new_array;
+	}
+
+	/* writes the mail in a file under data/mail/ for now */
+	private function send_mail()
+	{
+		$filename = "../../data/mail/mail_cons/mail" . $this->consultant . $this->user . ".html";
+		$file = fopen($filename, "w");
+		$text = '<html><body>';
+		$text .= 'Bonjour, <br><br>';
+		$text .= $this->firstname . " " . $this->lastname . ' vous a envoyé son profil et ses références sur la plateforme jeunes 6.4.<br>';
+		$text .= '<a href="http://localhost:8080/page/referent/referent.php">Cliquez ici pour y accéder</a>, et connectez vous à l' . "'" . "aide du login suivant: <br>";
+		$text .= $this->login;
+		$text .= '</body></html>';
+		fwrite($file, $text);
+	}
 
 
-				}
+	/* inserts in the file and sends the mail */
+	private function insertCons()
+	{
+		if ($this->resquestExists() == FALSE) {
+			array_push($this->stored_cons, $this->new_cons);
+			if (file_put_contents($this->storage_cons, json_encode($this->stored_cons, JSON_PRETTY_PRINT))) {
+				$this->send_mail();
+				return $this->successcons = "demande effectuée avec succès";
+			} else {
+				return $this->errorcons = "une erreur est survenue, veuillez rééssayer";
 			}
 		}
 	}
 }
-

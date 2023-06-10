@@ -1,3 +1,90 @@
 [
-
+    {
+        "usertype": "C",
+        "login": "$2y$10$upUaiS85yvyRlM2CxeV\/9.ZbxRpnO15\/qbMAjFfEeCPagAg3Kn9we",
+        "user": "test@maison.fr",
+        "mail": "test@haha.fr",
+        "refs": [
+            {
+                "usertype": "reference",
+                "mail": "danseur@fou.fr",
+                "firstname": "j&#039;aime les fraises",
+                "lastname": "haha",
+                "user": "test@maison.fr",
+                "phone": "0102030405",
+                "birthdate": "7654-09-08",
+                "type": "assiociation de danse",
+                "engagement": "je danse tr\u00e8s bien",
+                "length": "pendant 6 mois",
+                "comment": "je confirme qu'il danse tr\u00e8s bien",
+                "autonomie": 0,
+                "analyse": 0,
+                "ecoute": 0,
+                "organise": 0,
+                "passionne": 1,
+                "fiable": 0,
+                "patient": 0,
+                "reflechi": 0,
+                "responsable": 0,
+                "sociable": 0,
+                "optimiste": 0
+            },
+            {
+                "usertype": "reference",
+                "mail": "tennis@tennis.tennis",
+                "firstname": "g\u00e9rard",
+                "lastname": "pierre",
+                "user": "test@maison.fr",
+                "phone": "0101010101",
+                "birthdate": "0202-02-02",
+                "type": "tennis",
+                "engagement": "je fais du tennis",
+                "length": "1 an",
+                "comment": "oui il fait du tennis",
+                "autonomie": 1,
+                "analyse": 0,
+                "ecoute": 0,
+                "organise": 0,
+                "passionne": 0,
+                "fiable": 0,
+                "patient": 0,
+                "reflechi": 0,
+                "responsable": 0,
+                "sociable": 0,
+                "optimiste": 0
+            }
+        ]
+    },
+    {
+        "usertype": "C",
+        "login": "$2y$10$ArVbhQWOy9YKE1TG\/CBiquVWpn5cdAjFXIOwxvZrcR4Gvo\/TE4jaa",
+        "user": "test@maison.fr",
+        "mail": "test2@haha.fr",
+        "refs": [
+            {
+                "usertype": "reference",
+                "mail": "tennis@tennis.tennis",
+                "firstname": "g\u00e9rard",
+                "lastname": "pierre",
+                "user": "test@maison.fr",
+                "phone": "0101010101",
+                "birthdate": "0202-02-02",
+                "type": "tennis",
+                "engagement": "je fais du tennis",
+                "length": "1 an",
+                "comment": "oui il fait du tennis",
+                "autonomie": 1,
+                "analyse": 0,
+                "ecoute": 0,
+                "organise": 0,
+                "passionne": 0,
+                "fiable": 0,
+                "patient": 0,
+                "reflechi": 0,
+                "responsable": 0,
+                "sociable": 0,
+                "optimiste": 0
+            }
+        ]
+    }
 ]
