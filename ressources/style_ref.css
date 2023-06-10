@@ -23,23 +23,43 @@ header {
     display: flex;
 }
 
-/* Résoudre problème texte quand je change d'affichage */
-header > p {
-    /* border: 1px solid red; */
-    position: absolute;
-    font-size: 23px;
-    letter-spacing: 5px;
+/* ------------------- Résoudre problème texte quand je change d'affichage ------------------- */
+
+#haut_page-container {
+    /* border: 3px solid blue; */
+    margin: auto; margin-top: 0;
+    width: fit-content; height: fit-content;
+}
+
+#nom_page-container {
+    /* border: 5px solid red; */
+    color: #b8d433;
+    font-size: 3em;
+    margin: auto;
+    width: fit-content; height: fit-content;
+}
+
+#nom_page-container > h1 {
+    /* border: 5px solid green; */
+    margin: auto; margin-top: 7%; margin-left: 23%;
+}
+
+#texte_haut-container {
+    /* border: 5px solid red; */
     color: white;
-    margin-top: 11%; margin-left: 56%;
-
+    font-size: 1.4em; letter-spacing: 5px;
+    width: fit-content; height: fit-content;
+    margin: auto;
+    position: absolute;
 }
 
-header > h1 {
-    /* border: 1px solid red; */
-    font-size: 6em;
-    margin-left: 40%;
-    color: #ec028d;
+#texte_haut-container > p {
+    /* border: 1px solid black; */
+    margin: auto;
 }
+
+/* -------------------  ------------------- */
+
 
 header > img {
     /* border: 1px solid red; */
@@ -83,13 +103,13 @@ header > img {
 
 /* Utilisation des :nth-child() ? */
 .nav-element:nth-child(1) {
-    background-color: #e7319d;
-    color: white;
-    margin: 15px;
+    color: #e7319d;
 }
 
 .nav-element:nth-child(2) {
-    color: #4bbc6c;
+    background-color: #4bbc6c;
+    color: white;
+    margin: 13px;
 }
 
 .nav-element:nth-child(3) {
@@ -101,83 +121,97 @@ header > img {
 }
 
 
-/* ------------------------ ELEMENTS PAGE JEUNE ------------------------ */
-
 /* ------------------------ TEXTE SOUS LA NAV BARRE ------------------------ */
 
 #description-page {
     /* border: 1px solid red; */
-    color: #e7319d;
+    color: #b8d433;
     text-align: center;
     font-size: 20px;
-    letter-spacing: 1px;
+    letter-spacing: 1px; word-spacing: 3px;
+    margin: auto; margin-top: 7px; margin-bottom: 1%;
+    width: 45%; height: auto;
 }
 
-/* ------------------------ CONTAINER PRINCIPAL ------------------------ */
+
+/* --------------------- TEXTE ORIGINAIRE --------------------- */
+
+/* Voir si faire le même code couleur que pour les jeunes */
+#texte_demande {
+    border: 3px solid green;
+    margin-bottom: 5px;
+    width: fit-content; height: fit-content;
+    font-weight: bold; font-size: 1.15em;
+}
+
+/* --------------------- --------------------- */
+
 
 #elements-container {
-    /* border: 3px solid red; */
-    width: 70%; height: 150%;
-    margin: auto; margin-bottom: 2%;
+    border: 3px solid red;
+    margin: auto; margin-bottom: 1%;
+    width: 91%; height: 69em;
+    padding: 1%; padding-bottom: 0;
+    font-weight: bold; 
+    color: #bfd437; font-size: 17px;
 }
 
-/* ------------------------ FORMULAIRE ECRIT ------------------------ */
+/* --------------------- INFORMATIONS DU JEUNE --------------------- */
 
-input:focus, textarea:focus {
-    outline: none;
+#informations_jeune-container {
+    border: 3px solid green;
+    margin: auto;
+    width: 75%; height: 20%;
+    padding: 1%;
 }
 
-#formulaire-container > form > input, textarea {
-    border: none;
-    width: 100%;
-    border-bottom: 1px dotted #ec028d;
+#demande_ref-container {
+    border: 3px solid yellow;
 }
 
-#formulaire-container {
-    border: 2px solid #ec028d;
-    width: 70%;
-    margin: auto; margin-top: 10px;
-    padding: 15px;
-    color: #ec028d; font-size: 17px;
-    font-weight: bold; /* Effet "gras" */
+/* --------------------- ZONE COMMENTAIRE REFERENT --------------------- */
+
+#comment-container {
+    border: 3px solid violet;
 }
 
-/* ------------------------ CHECKBOX ------------------------ */
+#comment {
+    border: 5px solid red;
+}
+
+/* --------------------- CHECKBOX --------------------- */
 
 #checkbox-container {
-    /* border: 3px solid green; */
-    margin: auto; margin-left: 75%; margin-top: 5%;
-    width: 20%;
-    text-align: justify;
+    border: 3px solid green;
 }
 
 #table-checkbox {
-    background-color: #ec028d;
-    border-collapse: collapse;
-}
-
-#table-checkbox > thead {
-    background: linear-gradient(to left, #ec028d, #f496bf 100%);
-    text-align: right;
-    font-size: 20px; color: white;
-    height: 30px;
-}
-
-#table-checkbox > tbody {
-    background-color: #fbe2ed;
-    padding: 10%;
+    border: 4px solid green;
 }
 
 #checkbox-container > legend {
-    color: #e7319d;
-    text-align: right;
-    font-size: 19px;
+    border: 1px solid red;
 }
 
-#description-checkbox {
-    /* border: 1px solid red; */
-    margin: auto; margin-top: 5%;
-    color: #e7319d;
-    font-size: 12px;
-    text-align: center;
+
+/* --------------------- BOUTON CONFIRMER INFORMATIONS --------------------- */
+
+#confirm {
+    border: 1px solid red;
+}
+
+
+/* --------------------- BOUTON LOG-OUT --------------------- */
+
+#forgot_password {
+    border: 5px solid green;
+    /* border: 3px solid #e7319d;
+    background-color: #e7319d;
+    color: white;
+    font-size: 15px; font-weight: bold;
+    text-decoration: none;
+    margin: auto;
+    width: fit-content;
+    display: flex;
+    padding: 2px; */
 }

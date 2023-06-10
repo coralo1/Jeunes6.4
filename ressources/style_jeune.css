@@ -85,7 +85,7 @@ header > img {
 .nav-element:nth-child(1) {
     background-color: #e7319d;
     color: white;
-    margin: 15px;
+    margin: 13px;
 }
 
 .nav-element:nth-child(2) {
@@ -101,52 +101,91 @@ header > img {
 }
 
 
-/* ------------------------ ELEMENTS PAGE JEUNE ------------------------ */
-
-/* ------------------------ TEXTE SOUS LA NAV BARRE ------------------------ */
-
 #description-page {
     /* border: 1px solid red; */
     color: #e7319d;
     text-align: center;
     font-size: 20px;
-    letter-spacing: 1px;
+    /* letter-spacing: 1px; */ word-spacing: 6px;
 }
-
-/* ------------------------ CONTAINER PRINCIPAL ------------------------ */
-
-#elements-container {
-    /* border: 3px solid red; */
-    width: 70%; height: 150%;
-    margin: auto; margin-bottom: 2%;
-}
-
-/* ------------------------ FORMULAIRE ECRIT ------------------------ */
 
 input:focus, textarea:focus {
     outline: none;
 }
 
-#formulaire-container > form > input, textarea {
-    border: none;
-    width: 100%;
-    border-bottom: 1px dotted #ec028d;
+textarea {
+    resize: none;
 }
 
-#formulaire-container {
-    border: 2px solid #ec028d;
-    width: 70%;
-    margin: auto; margin-top: 10px;
-    padding: 15px;
+
+#elements-container {
+    border: 3px solid red;
+    margin: auto; margin-bottom: 1%;
+    width: 91%; height: 69em;
+    padding: 1%; padding-bottom: 0;
+    font-weight: bold; 
     color: #ec028d; font-size: 17px;
-    font-weight: bold; /* Effet "gras" */
 }
 
-/* ------------------------ CHECKBOX ------------------------ */
+/* --------------------- FORM JEUNE --------------------- */
+
+#informations-container {
+    border: 3px solid green;
+    margin: auto;
+    width: 75%; height: 20%;
+    padding: 1%;
+}
+
+#vos_infos-container {
+    border: 3px solid #ec028d;
+    margin: auto;
+    width: 70%; height: 90%;
+    padding: 1%;
+    line-height: 35px;
+}
+
+/* --------------------- PARTIES EN COMMUNS AUX DEUX SECTIONS --------------------- */
+
+#vos_infos-container > legend,
+#demande_ref-container > legend {
+    font-size: 25px;
+    line-height: normal;
+    border: 0.5px solid #ec028d;
+    width: fit-content;
+}
+
+#vos_infos-container > input,
+#demande_ref-container > input, #demande_ref-container > textarea {
+    border: none;
+    border-bottom: 1px dotted #ec028d;
+    width: 50%;
+}
+
+
+/* --------------------- SECTION REFERENT --------------------- */
+/* --------------------- FORM DEMANDE REF --------------------- */
+
+#demande-formulaire {
+    border: 3px solid yellow;
+    margin: auto; margin-top: 1%;
+    width: 75%; height: auto;    
+    padding: 1%;
+}
+
+#demande_ref-container {
+    border: 3px solid #ec028d;
+    margin: auto;
+    width: 90%; height: auto;
+    padding: 1%;
+    line-height: 35px;
+}
+
+
+/* --------------------- CHECKBOX --------------------- */
 
 #checkbox-container {
-    /* border: 3px solid green; */
-    margin: auto; margin-left: 75%; margin-top: 5%;
+    border: 3px solid blue;
+    margin: auto; margin-left: 90%; margin-top: 5%;
     width: 20%;
     text-align: justify;
 }
@@ -154,6 +193,7 @@ input:focus, textarea:focus {
 #table-checkbox {
     background-color: #ec028d;
     border-collapse: collapse;
+    font-weight: bold;
 }
 
 #table-checkbox > thead {
@@ -166,6 +206,7 @@ input:focus, textarea:focus {
 #table-checkbox > tbody {
     background-color: #fbe2ed;
     padding: 10%;
+    font-size: 15px;
 }
 
 #checkbox-container > legend {
@@ -175,9 +216,35 @@ input:focus, textarea:focus {
 }
 
 #description-checkbox {
-    /* border: 1px solid red; */
+    border: 1px solid red;
     margin: auto; margin-top: 5%;
     color: #e7319d;
     font-size: 12px;
     text-align: center;
+} 
+
+/* --------------------- BOUTON ENVOYER UNE DEMANDE --------------------- */
+
+#send_form {
+    border: 1px solid #e7319d;
+    color: white;
+    background-color: #e7319d;
+    font-size: 25px; font-weight: bold;
+    margin: auto;
+    display: flex;
+    padding: 1%;
+}
+
+/* --------------------- BOUTON LOG-OUT --------------------- */
+
+#forgot_password {
+    border: 3px solid #e7319d;
+    background-color: #e7319d;
+    color: white;
+    font-size: 15px; font-weight: bold;
+    text-decoration: none;
+    margin: auto;
+    width: fit-content;
+    display: flex;
+    padding: 2px;
 }

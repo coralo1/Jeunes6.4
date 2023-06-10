@@ -96,164 +96,190 @@ if (isset($_POST["confirm"])) {
 
 <head>
 	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
 	<link rel="stylesheet" href="../../ressources/style_ref.css">
 	<title>Page référent</title>
 </head>
 
 <body>
 	<header>
-		<img src="../../ressources/img/logo_jeunes6.4.jpg" alt="Logo Jeunes6.4">
-		<h1>RÉFÉRENT</h1>
-		<h2>Je confirme la valeur de ton engagement</h2>
-	</header>
+		<img src="../../ressources/img/LOGOS_JEUNES_6_4.svg" alt="Logo Jeunes6.4">
+        <div id="haut_page-container">
+            <span id="nom_page-container"><h1>RÉFÉRENT</h1></span>
+            <span id="texte_haut-container"><p>Je confirme la valeur de ton engagement</p></span>
+        </div>
+    </header>
 
-	<nav>
-		<div class="nav_container">
-			<h4><a href="../login/login.php">JEUNE</a></h4>
-			<h4><a href="../referent/referent.php">RÉFÉRENT</a></h4>
-			<h4><a href="../consultant/login.php">CONSULTANT</a></h4>
-			<h4><a href="../partenaires/partenaires.php">PARTENAIRES</a></h4>
-		</div>
+	<nav id="nav-container">
+		<a href="../login/login.php" class="nav-element">JEUNE</a>
+		<a href="../referent/referent.php" class="nav-element">RÉFÉRENT</a>
+		<a href="../consultant/login.php" class="nav-element">CONSULTANT</a>
+		<a href="../partenaires/partenaires.php" class="nav-element">PARTENAIRES</a>
 	</nav>
-	</header>
 
-	<section>
-		<p>Confirmez cette expérience et ce que vous avez pu constater au contact de ce jeune.</p>
-	</section>
+	<p id="description-page">Confirmez cette expérience et ce que vous avez pu constater au contact de ce jeune.</p>
 
-	<section>
-		<div>
-			originaire de la demande :
-			<br>
-			<?php echo $_SESSION["user_firstname"] . " " . $_SESSION["user_lastname"] . "<br>" . $_SESSION["user"]; ?>
-			<br> <br>
-		</div>
-	</section>
 
-	<section id="formu_ref">
-		<fieldset>
-			<form action="" method="post">
-				<label for="lastname">Nom :</label>
-				<input type="text" name="lastname" id="lastname" value="<?php echo $_SESSION["lastname"] ?>"> <br>
+    <div id="texte_demande">
+        Originaire de la demande :
+        <?php 
+            echo $_SESSION["user_firstname"] . " " . $_SESSION["user_lastname"] . "<br>" . $_SESSION["user"]; 
+        ?>
+        <br><br> <!-- A modifier dans le CSS par line-height -->
+    </div>
 
-				<label for="firstname">Prénom :</label>
-				<input type="text" name="firstname" id="firstname" value="<?php echo $_SESSION["firstname"] ?>"> <br>
 
-				<label for="birthdate">Date de naissance :</label>
-				<input type="date" name="birthdate" id="birthdate" value="<?php echo $_SESSION["birthdate"] ?>"> <br>
+    <div id="elements-container">
 
-				<label for="phone">Portable :</label>
-				<input type="tel" name="phone" id="phone" value="<?php echo $_SESSION["phone"] ?>"> <br>
 
-				<label for="mail">Mail : </label>
-				<input type="email" name="mail" id="mail" value="<?php echo $_SESSION["mail"] ?>" readonly> <br>
+        <section id="informations_jeune-container">
 
-				<input type="submit" name="update" id="update" value="mettre à jour les informations">
-			</form>
-		</fieldset>
-		<fieldset>
-			<legend>Détails de la demande de référence :</legend>
-			<form>
-				<label for="type">Type d'engagement :</label>
-				<input type="text" name="type" id="type" value="<?php echo $_SESSION["type"] ?>" readonly> <br><br>
+            <form action="" method="post">
 
-				<label for="engagement">Présentation de l'engagement :</label>
-				<textarea name="engagement" id="engagement" cols="30" rows="10" readonly><?php echo $_SESSION["engagement"] ?></textarea> <br>
+                <section id="informations_jeune">
+                <legend>INFORMATIONS DU JEUNE :</legend>
 
-				<label for="length">Durée de l'engagement :</label>
-				<input type="text" name="length" id="length" value="<?php echo $_SESSION["length"] ?>" readonly>
-			</form>
-		</fieldset>
-	</section>
+                <label for="lastname">Nom :</label>
+                <input type="text" name="lastname" id="lastname" value="<?php echo $_SESSION["lastname"] ?>"> <br>
 
-	<footer>
+                <label for="firstname">Prénom :</label>
+                <input type="text" name="firstname" id="firstname" value="<?php echo $_SESSION["firstname"] ?>"> <br>
+
+                <label for="birthdate">Date de naissance :</label>
+                <input type="date" name="birthdate" id="birthdate" value="<?php echo $_SESSION["birthdate"] ?>"> <br>
+
+                <label for="phone">Portable :</label>
+                <input type="tel" name="phone" id="phone" value="<?php echo $_SESSION["phone"] ?>"> <br>
+
+                <label for="mail">Mail : </label>
+                <input type="email" name="mail" id="mail" value="<?php echo $_SESSION["mail"] ?>" readonly> <br>
+
+                <input type="submit" name="update" id="update" value="Mettre à jour les informations">
+            
+                </section>
+            </form>
+
+        </section>
+
+
+        <section id="demande_ref-container">
+
+            <legend>Détails de la demande de référence :</legend>
+
+            <form>
+                <label for="type">Type d'engagement :</label>
+                <input type="text" name="type" id="type" value="<?php echo $_SESSION["type"] ?>" readonly> <br><br>
+
+                <label for="engagement">Présentation de l'engagement :</label>
+                <textarea name="engagement" id="engagement" cols="30" rows="10" readonly><?php echo $_SESSION["engagement"] ?></textarea> <br>
+
+                <label for="length">Durée de l'engagement :</label>
+                <input type="text" name="length" id="length" value="<?php echo $_SESSION["length"] ?>" readonly>
+            </form>
+
+        </section>
+
+
+
 		<form action="" method="post">
 
-
-			<section>
+            <section id="comment-container">
 				<textarea name="comment" id="comment" cols="30" rows="10" placeholder="Ajoutez des commentaires sur <?php echo $_SESSION["user_firstname"]; ?>"></textarea>
 			</section>
 
-			<section id="confirm_etre">
-				<table border="2">
-					<legend>Ses savoirs-être</legend>
-					<tr>
-						<td>Je confirme qu'il est</td>
-					</tr>
-					<tr>
-						<td>
-							<input type="checkbox" name="autonomie" value="1" <?php if ($_SESSION["autonomie"]) {
-																																	echo "checked";
-																																} else {
-																																	echo "disabled";
-																																}
-																																?>>Autonome <br>
-							<input type="checkbox" name="analyse" value="1" <?php if ($_SESSION["analyse"]) {
-																																echo "checked";
-																															} else {
-																																echo "disabled";
-																															}
-																															?>>Capable d'analyse et de synthèse <br>
-							<input type="checkbox" name="ecoute" value="1" readonly <?php if ($_SESSION["ecoute"]) {
-																																				echo "checked";
-																																			} else {
-																																				echo "disabled";
-																																			}
-																																			?>>A l'écoute <br>
-							<input type="checkbox" name="organise" value="1" <?php if ($_SESSION["organise"]) {
-																																	echo "checked";
-																																} else {
-																																	echo "disabled";
-																																}
-																																?>>Organisé <br>
-							<input type="checkbox" name="passionne" value="1" <?php if ($_SESSION["passionne"]) {
-																																	echo "checked";
-																																} else {
-																																	echo "disabled";
-																																}
-																																?>>Passionné <br>
-							<input type="checkbox" name="fiable" value="1" <?php if ($_SESSION["fiable"]) {
-																																echo "checked";
-																															} else {
-																																echo "disabled";
-																															}
-																															?>>Fiable <br>
-							<input type="checkbox" name="patient" value="1" <?php if ($_SESSION["patient"]) {
-																																echo "checked";
-																															} else {
-																																echo "disabled";
-																															}
-																															?>>Patient <br>
-							<input type="checkbox" name="reflechi" value="1" <?php if ($_SESSION["reflechi"]) {
-																																	echo "checked";
-																																} else {
-																																	echo "disabled";
-																																}
-																																?>>Réfléchi <br>
-							<input type="checkbox" name="responsable" value="1" <?php if ($_SESSION["responsable"]) {
-																																		echo "checked";
-																																	} else {
-																																		echo "disabled";
-																																	}
-																																	?>>Responable <br>
-							<input type="checkbox" name="sociable" value="1" <?php if ($_SESSION["sociable"]) {
-																																	echo "checked";
-																																} else {
-																																	echo "disabled";
-																																}
-																																?>>Sociable <br>
-							<input type="checkbox" name="optimiste" value="1" <?php if ($_SESSION["optimiste"]) {
-																																	echo "checked";
-																																} else {
-																																	echo "disabled";
-																																}
-																																?>>Optimiste <br>
+			<section id="checkbox-container">
 
-						</td>
-					</tr>
-				</table>
-				<input type="submit" name="confirm" id="confirm" value="Confirmer les informations">
-				<br>
+				<table id="table-checkbox">
+
+					<legend>Ses savoirs-être</legend>
+
+                    <thead>
+                        <tr>
+                            <td>Je confirme qu'il est</td>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="autonomie" value="1" <?php if ($_SESSION["autonomie"]) {
+                                                                                                                                        echo "checked";
+                                                                                                                                    } else {
+                                                                                                                                        echo "disabled";
+                                                                                                                                    }
+                                                                                                                                    ?>>Autonome <br>
+                                <input type="checkbox" name="analyse" value="1" <?php if ($_SESSION["analyse"]) {
+                                                                                                                                    echo "checked";
+                                                                                                                                } else {
+                                                                                                                                    echo "disabled";
+                                                                                                                                }
+                                                                                                                                ?>>Capable d'analyse et de synthèse <br>
+                                <input type="checkbox" name="ecoute" value="1" readonly <?php if ($_SESSION["ecoute"]) {
+                                                                                                                                                    echo "checked";
+                                                                                                                                                } else {
+                                                                                                                                                    echo "disabled";
+                                                                                                                                                }
+                                                                                                                                                ?>>A l'écoute <br>
+                                <input type="checkbox" name="organise" value="1" <?php if ($_SESSION["organise"]) {
+                                                                                                                                        echo "checked";
+                                                                                                                                    } else {
+                                                                                                                                        echo "disabled";
+                                                                                                                                    }
+                                                                                                                                    ?>>Organisé <br>
+                                <input type="checkbox" name="passionne" value="1" <?php if ($_SESSION["passionne"]) {
+                                                                                                                                        echo "checked";
+                                                                                                                                    } else {
+                                                                                                                                        echo "disabled";
+                                                                                                                                    }
+                                                                                                                                    ?>>Passionné <br>
+                                <input type="checkbox" name="fiable" value="1" <?php if ($_SESSION["fiable"]) {
+                                                                                                                                    echo "checked";
+                                                                                                                                } else {
+                                                                                                                                    echo "disabled";
+                                                                                                                                }
+                                                                                                                                ?>>Fiable <br>
+                                <input type="checkbox" name="patient" value="1" <?php if ($_SESSION["patient"]) {
+                                                                                                                                    echo "checked";
+                                                                                                                                } else {
+                                                                                                                                    echo "disabled";
+                                                                                                                                }
+                                                                                                                                ?>>Patient <br>
+                                <input type="checkbox" name="reflechi" value="1" <?php if ($_SESSION["reflechi"]) {
+                                                                                                                                        echo "checked";
+                                                                                                                                    } else {
+                                                                                                                                        echo "disabled";
+                                                                                                                                    }
+                                                                                                                                    ?>>Réfléchi <br>
+                                <input type="checkbox" name="responsable" value="1" <?php if ($_SESSION["responsable"]) {
+                                                                                                                                            echo "checked";
+                                                                                                                                        } else {
+                                                                                                                                            echo "disabled";
+                                                                                                                                        }
+                                                                                                                                        ?>>Responable <br>
+                                <input type="checkbox" name="sociable" value="1" <?php if ($_SESSION["sociable"]) {
+                                                                                                                                        echo "checked";
+                                                                                                                                    } else {
+                                                                                                                                        echo "disabled";
+                                                                                                                                    }
+                                                                                                                                    ?>>Sociable <br>
+                                <input type="checkbox" name="optimiste" value="1" <?php if ($_SESSION["optimiste"]) {
+                                                                                                                                        echo "checked";
+                                                                                                                                    } else {
+                                                                                                                                        echo "disabled";
+                                                                                                                                    }
+                                                                                                                                    ?>>Optimiste <br>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+
+                <!-- Bouton confirmation information -->
+				<input type="submit" name="confirm" id="confirm" value="Confirmation des informations du jeune">
+
+			</section>
+			<br>
 				<p class="error">
 					<?php echo @$baba->error ?>
 				</p>
@@ -262,13 +288,15 @@ if (isset($_POST["confirm"])) {
 				/* if reference was successful, leave the page and send a thanks message*/
 				echo '<meta http-equiv="refresh" content="0;url=success.php">';
 			?>
-					
-				</p>
-			</section>
 		</form>
-	</footer>
-	<!-- Logout button -->
-	<a href="../logout.php" id="forgot_password">Déconnexion</a>
+
+        <!-- Logout button -->
+        <a href="../logout.php" id="forgot_password">Déconnexion</a>
+
+
+    </div>
+
+
 </body>
 
 </html>

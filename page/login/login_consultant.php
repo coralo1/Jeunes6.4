@@ -6,7 +6,7 @@ if (isset($_SESSION["userID"])) { /* if user is already logged in, leave the pag
 }
 
 if (isset($_POST['submit'])) { /* on button click */
-	$user = new LoginCons($_POST['email'], $_POST['password']); /* call for login */
+	$user = new LoginCons($_POST['password']); /* call for login */
 }
 ?>
 
