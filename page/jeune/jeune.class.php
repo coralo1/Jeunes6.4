@@ -224,3 +224,76 @@ class loadRefs
 		}
 	}
 }
+
+class requestCons
+{
+	private $firstname;
+	private $lastname;
+	private $user;
+	private $mail;
+	private $phone;
+	private $type;
+	private $engagement;
+	private $length;
+	private $comment;
+	private $savoirs;
+	private $storage1 = "../../data/referent.json";
+	private $storage2 = "../../data/references.json";
+	private $load_pending_refs;
+	private $load_confirmed_refs;
+	private $pending_refs;
+	private $confirmed_refs;
+	
+	private $all_refs;
+
+
+	public function __construct($data)
+	{
+
+		$this->load_pending_refs = json_decode(file_get_contents($this->storage1), true);
+		$this->load_confirmed_refs = json_decode(file_get_contents($this->storage2), true);
+		/* assign default values */
+		$this->user = $data["user"];
+
+		$this->pending_refs = $this->searchRefs($this->load_pending_refs);
+
+		$this->confirmed_refs = $this->searchRefs($this->load_confirmed_refs);
+
+		$this->removedoubles();
+
+		$_SESSION["pending"] = $this->pending_refs;
+		$_SESSION["confirmed"] = $this->confirmed_refs;
+	}
+
+
+	/* searches for reference requests made by the user */
+	private function searchRefs($list)
+	{
+		$refs = array();
+		foreach ($list as $reference) { /* parse every confirmed reference */
+			if ($reference["user"] == $this->user) { /* if the reference has been sent by the user */
+				array_push($refs, $reference); /*add it to the list of refs */
+			}
+		}
+		return $refs;
+	}
+
+/* removes references that have been validated from the pending reference list */
+	private function removedoubles()
+	{
+		foreach ($this->confirmed_refs as $confirmed) {
+			$i = -1; /* $i is the current position on the pending_refs list */
+			foreach ($this->pending_refs as $pending) { 
+				$i++;
+				if ($confirmed["mail"] == $pending["mail"]) { /* compare every validated reference to every pending reference */
+
+					array_splice($this->pending_refs,$i,1);
+					/* remove the pending reference from the list */
+
+
+				}
+			}
+		}
+	}
+}
+
