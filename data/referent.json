@@ -50,5 +50,31 @@
         "responsable": 1,
         "sociable": 0,
         "optimiste": 1
+    },
+    {
+        "usertype": "R",
+        "mail": "tennis@tennis.tennis",
+        "password": "$2y$10$vp2iOOQUAUsxCnn5q298i.pZBb.lrrF9l4uUh51.\/PlknPhO79.uC",
+        "firstname": "g\u00e9rard",
+        "lastname": "pierre",
+        "user_firstname": "maison",
+        "user_lastname": "test",
+        "user": "test@maison.fr",
+        "phone": "0101010101",
+        "birthdate": "0202-02-02",
+        "type": "tennis",
+        "engagement": "je fais du tennis",
+        "length": "1 an",
+        "autonomie": 1,
+        "analyse": 1,
+        "ecoute": 1,
+        "organise": 1,
+        "passionne": 0,
+        "fiable": 0,
+        "patient": 0,
+        "reflechi": 0,
+        "responsable": 0,
+        "sociable": 0,
+        "optimiste": 0
     }
 ]

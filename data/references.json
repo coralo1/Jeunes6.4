@@ -22,5 +22,29 @@
         "responsable": 0,
         "sociable": 0,
         "optimiste": 0
+    },
+    {
+        "usertype": "reference",
+        "mail": "tennis@tennis.tennis",
+        "firstname": "g\u00e9rard",
+        "lastname": "pierre",
+        "user": "test@maison.fr",
+        "phone": "0101010101",
+        "birthdate": "0202-02-02",
+        "type": "tennis",
+        "engagement": "je fais du tennis",
+        "length": "1 an",
+        "comment": "oui il fait du tennis",
+        "autonomie": 1,
+        "analyse": 0,
+        "ecoute": 0,
+        "organise": 0,
+        "passionne": 0,
+        "fiable": 0,
+        "patient": 0,
+        "reflechi": 0,
+        "responsable": 0,
+        "sociable": 0,
+        "optimiste": 0
     }
 ]

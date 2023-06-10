@@ -8,8 +8,8 @@ class updateRef
 	private $phone;
 	private $birthdate;
 	private $user;
-	public $error;
-	public $success;
+	public $updateerror;
+	public $updatesuccess;
 	private $storage = "../../data/referent.json";
 	private $stored_refs;
 
@@ -69,9 +69,9 @@ class updateRef
 		}
 		/* put new array in the file */
 		if (file_put_contents($this->storage, json_encode($this->stored_refs, JSON_PRETTY_PRINT))) {
-			return $this->success = "information mises à jour";
+			return $this->updatesuccess = "information mises à jour";
 		} else {
-			return $this->error = "une erreur est survenue";
+			return $this->updateerror = "une erreur est survenue";
 		}
 	}
 }
