@@ -35,10 +35,10 @@ class updateRef
 	private function checkFieldValues()
 	{
 		if (empty($this->firstname) || empty($this->lastname) || empty($this->phone) || empty($this->birthdate)) {
-			$this->error = "Tous les champs sont obligatoires.";
+			$this->updateerror = "Tous les champs sont obligatoires.";
 			return false;
 		} elseif (empty($this->user)) {
-			$this->error = "erreur innatendue (pas d'utilisateur spécifié par la demande)";
+			$this->updateerror = "erreur innatendue (pas d'utilisateur spécifié par la demande)";
 			return false;
 		} else {
 			return true;

@@ -16,7 +16,7 @@ if (isset($_POST['submit'])) { /* on button click */
 <html>
 
 <head>
-	<link rel="stylesheet" href="../../../ressources/projet.css">
+	<link rel="stylesheet" href="../../../ressources/projet_accueil1.css">
 	<title>Connexion Jeunes 6.4</title>
 
 </head>

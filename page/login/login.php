@@ -12,7 +12,7 @@ if (isset($_SESSION["userID"])) { /* if user is already logged in, leave the pag
 <html>
 
 <head>
-	<link rel="stylesheet" href="../../../ressources/projet.css">
+	<link rel="stylesheet" href="../../../ressources/projet_accueil1.css">
 	<title>Connexion Jeunes 6.4</title>
 
 </head>
