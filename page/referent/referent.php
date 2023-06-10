@@ -82,7 +82,7 @@ if (isset($_POST["confirm"])) {
 	}
 
 
-	$confirm_data = array("mail" => $_POST["mail"], "lastname" => $_POST["lastname"], "firstname" => $_POST["firstname"], "phone" => $_POST["phone"], "birthdate" => $_POST["birthdate"], "user" => $_SESSION["user"], "type" => $_POST["type"], "engagement" => $_POST["engagement"], "length" => $_POST["length"], "comment" => $_POST["comment"], $confirm_savoirs);
+	$confirm_data = array("mail" => $_SESSION["mail"], "lastname" => $_SESSION["lastname"], "firstname" => $_SESSION["firstname"], "phone" => $_SESSION["phone"], "birthdate" => $_SESSION["birthdate"], "user" => $_SESSION["user"], "type" => $_SESSION["type"], "engagement" => $_SESSION["engagement"], "length" => $_SESSION["length"], "comment" => $_POST["comment"], "confirm_savoirs" => $confirm_savoirs);
 
 
 	$baba = new confirmRef($confirm_data);
@@ -101,12 +101,6 @@ if (isset($_POST["confirm"])) {
 </head>
 
 <body>
-	<p class="error">
-		<?php echo @$baba->error ?>
-	</p>
-	<p class="success">
-		<?php echo @$baba->success ?>
-	</p>
 	<header>
 		<img src="../../ressources/img/logo_jeunes6.4.jpg" alt="Logo Jeunes6.4">
 		<h1>RÉFÉRENT</h1>
@@ -260,6 +254,16 @@ if (isset($_POST["confirm"])) {
 				</table>
 				<input type="submit" name="confirm" id="confirm" value="Confirmer les informations">
 				<br>
+				<p class="error">
+					<?php echo @$baba->error ?>
+				</p>
+				<p class="success">
+					<?php echo @$baba->success;
+				/* if reference was successful, leave the page and send a thanks message*/
+				echo '<meta http-equiv="refresh" content="0;url=success.php">';
+			?>
+					
+				</p>
 			</section>
 		</form>
 	</footer>

@@ -1,0 +1,26 @@
+[
+    {
+        "usertype": "reference",
+        "mail": "danseur@fou.fr",
+        "firstname": "j&#039;aime les fraises",
+        "lastname": "haha",
+        "user": "test@maison.fr",
+        "phone": "0102030405",
+        "birthdate": "7654-09-08",
+        "type": "assiociation de danse",
+        "engagement": "je danse tr\u00e8s bien",
+        "length": "pendant 6 mois",
+        "comment": "je confirme qu'il danse tr\u00e8s bien",
+        "autonomie": 0,
+        "analyse": 0,
+        "ecoute": 0,
+        "organise": 0,
+        "passionne": 1,
+        "fiable": 0,
+        "patient": 0,
+        "reflechi": 0,
+        "responsable": 0,
+        "sociable": 0,
+        "optimiste": 0
+    }
+]
