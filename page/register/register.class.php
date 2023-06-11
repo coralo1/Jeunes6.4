@@ -34,21 +34,7 @@ class Register
 			"password" => $this->encrypted_password,
 			"birthdate" => $this->birthdate,
 			"firstname" => $this->firstname,
-			"lastname" => $this->lastname,
-			"network" => "",
-			"engagement" => "",
-			"length" => "0",
-			"autonomie" => "0",
-			"analyse" => "0",
-			"ecoute" => "0",
-			"organise" => "0",
-			"passionne" => "0",
-			"fiable" => "0",
-			"patient" => "0",
-			"reflechi" => "0",
-			"responsable" => "0",
-			"sociable" => "0",
-			"optimiste" => "0"
+			"lastname" => $this->lastname
 		];
 		if ($this->checkFieldValues()) { /* je sais pas si ça va ici */
 			$this->insertUser($mail);
@@ -85,7 +71,8 @@ class Register
 		if ($this->mailExists() == FALSE) {
 			array_push($this->stored_users, $this->new_user);
 			if (file_put_contents($this->storage, json_encode($this->stored_users, JSON_PRETTY_PRINT))) {
-				$this->success = array(1, $mail);
+				var_dump($this->new_user);
+				$this->success = array(1);
 				return $this->success;
 
 			} else {

@@ -4,7 +4,6 @@ session_start();
 if (!isset($_SESSION["userID"])) {
 	header("Location:login.php");
 }
-echo $_SESSION["userID"];
 
 switch ($_SESSION["usertype"]) {
 	case "J":
