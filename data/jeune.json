@@ -64,7 +64,20 @@
         "responsable": 0,
         "sociable": 0,
         "optimiste": 0,
-        "type": "piscine"
+        "type": "piscine",
+        "savoirs": {
+            "autonomie": 1,
+            "analyse": 1,
+            "ecoute": 0,
+            "organise": 0,
+            "passionne": 0,
+            "fiable": 0,
+            "patient": 0,
+            "reflechi": 0,
+            "responsable": 0,
+            "sociable": 1,
+            "optimiste": 1
+        }
     },
     {
         "usertype": "J",

@@ -102,5 +102,17 @@
         "responsable": 0,
         "sociable": 0,
         "optimiste": 0
+    },
+    {
+        "usertype": "R",
+        "mail": "ref@maj.hi",
+        "login": "$2y$10$u3eVRkU2opeeDl6zJyArj.KqWk8dNY0Wsgh7ZeToPMso93\/8v8KIe",
+        "firstname": "maj_ref",
+        "lastname": "ref_maj",
+        "user_firstname": "truc",
+        "user_lastname": "blabla",
+        "user": "test@maison.fr",
+        "phone": "g que un fixe",
+        "birthdate": "8080-08-08"
     }
 ]

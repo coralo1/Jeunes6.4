@@ -123,7 +123,8 @@ if (isset($_POST['update'])) {
 			} else {
 				$savoirs["optimiste"] = 0;
 			}
-			$user["savoirs"];
+			$user["savoirs"] = $savoirs;
+			$_SESSION["savoirs"]= $savoirs;
 
 			$replacement = array($i => $user); /*creates an array with only the user in his position in the json file */
 		}
@@ -147,7 +148,7 @@ if (isset($_POST["submit"])) {
 
 
 
-	$data = array("user" => $_SESSION["userID"], "type" => $_POST["type"], "engagement" => $_POST["engagement"], "length" => $_POST["length"], "user_firstname" => $_SESSION["firstname"], "user_lastname" => $_SESSION["lastname"], "firstname" => $_POST["ref_firstname"], "lastname" => $_POST["ref_lastname"], "mail" => $_POST["ref_mail"], "savoirs" => $savoirs);
+	$data = array("user" => $_SESSION["userID"], "type" => $_POST["type"], "engagement" => $_POST["engagement"], "length" => $_POST["length"], "user_firstname" => $_SESSION["firstname"], "user_lastname" => $_SESSION["lastname"], "firstname" => $_POST["ref_firstname"], "lastname" => $_POST["ref_lastname"], "mail" => $_POST["ref_mail"]);
 
 	$update = new createRef($data);
 
@@ -310,17 +311,50 @@ if (isset($_POST["submit"])) {
 							<tbody>
 								<tr>
 									<td>
-										<input type="checkbox" name="autonomie" value="1">Autonome <br>
-										<input type="checkbox" name="analyse" value="1">Capable d'analyse et de synthèse <br>
-										<input type="checkbox" name="ecoute" value="1">A l'écoute <br>
-										<input type="checkbox" name="organise" value="1">Organisé <br>
-										<input type="checkbox" name="passionne" value="1">Passionné <br>
-										<input type="checkbox" name="fiable" value="1">Fiable <br>
-										<input type="checkbox" name="patient" value="1">Patient <br>
-										<input type="checkbox" name="reflechi" value="1">Réfléchi <br>
-										<input type="checkbox" name="responsable" value="1">Responable<br>
-										<input type="checkbox" name="sociable" value="1">Sociable <br>
-										<input type="checkbox" name="optimiste" value="1">Optimiste <br>
+										<input type="checkbox" name="autonomie" value="1" <?php
+																																							if ($_SESSION["savoirs"]["autonomie"]) {
+																																								echo "checked";
+																																							}; ?>>Autonome <br>
+										<input type="checkbox" name="analyse" value="1" <?php
+																																							if ($_SESSION["savoirs"]["analyse"]) {
+																																								echo "checked";
+																																							}; ?>>Capable d'analyse et de synthèse <br>
+										<input type="checkbox" name="ecoute" value="1" <?php
+																																							if ($_SESSION["savoirs"]["ecoute"]) {
+																																								echo "checked";
+																																							}; ?>>A l'écoute <br>
+										<input type="checkbox" name="organise" value="1" <?php
+																																							if ($_SESSION["savoirs"]["organise"]) {
+																																								echo "checked";
+																																							}; ?>>Organisé <br>
+										<input type="checkbox" name="passionne" value="1" <?php
+																																							if ($_SESSION["savoirs"]["passionne"]) {
+																																								echo "checked";
+																																							}; ?>>Passionné <br>
+										<input type="checkbox" name="fiable" value="1" <?php
+																																							if ($_SESSION["savoirs"]["fiable"]) {
+																																								echo "checked";
+																																							}; ?>>Fiable <br>
+										<input type="checkbox" name="patient" value="1" <?php
+																																							if ($_SESSION["savoirs"]["patient"]) {
+																																								echo "checked";
+																																							}; ?>>Patient <br>
+										<input type="checkbox" name="reflechi" value="1" <?php
+																																							if ($_SESSION["savoirs"]["reflechi"]) {
+																																								echo "checked";
+																																							}; ?>>Réfléchi <br>
+										<input type="checkbox" name="responsable" value="1" <?php
+																																							if ($_SESSION["savoirs"]["responsable"]) {
+																																								echo "checked";
+																																							}; ?>>Responable<br>
+										<input type="checkbox" name="sociable" value="1" <?php
+																																							if ($_SESSION["savoirs"]["sociable"]) {
+																																								echo "checked";
+																																							}; ?>>Sociable <br>
+										<input type="checkbox" name="optimiste" value="1" <?php
+																																							if ($_SESSION["savoirs"]["optimiste"]) {
+																																								echo "checked";
+																																							}; ?>>Optimiste <br>
 									</td>
 								</tr>
 							</tbody>
@@ -333,12 +367,11 @@ if (isset($_POST["submit"])) {
 
 
 					<!-- Messages -->
-					<p class="error">
-						<?php echo @$status; ?>
-					</p>
-
-					<p class="success">
-						<?php echo @$status; ?>
+					<p class="status">
+						<?php echo @$status; 
+						echo @$update->status;
+						?>
+						
 					</p>
 					<!-- Fin messages  -->
 

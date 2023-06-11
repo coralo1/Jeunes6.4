@@ -83,8 +83,7 @@ class confirmRef
 	private $firstname;
 	private $birthdate;
 	private $phone;
-	private $type;
-	private $engagement;
+	private $presentation;
 	private $length;
 	private $user;
 	private $comment;
@@ -102,8 +101,7 @@ class confirmRef
 		$this->firstname = $data["firstname"];
 		$this->birthdate = $data["birthdate"];
 		$this->phone = $data["phone"];
-		$this->type = $data["type"];
-		$this->engagement = $data["engagement"];
+		$this->presentation = $data["presentation"];
 		$this->length = $data["length"];
 		$this->user = $data["user"];
 		$this->comment = $data["comment"];
@@ -119,21 +117,10 @@ class confirmRef
 			"user" => $this->user,
 			"phone" => $this->phone,
 			"birthdate" => $this->birthdate,
-			"type" => $this->type,
-			"engagement" => $this->engagement,
+			"presentation" => $this->presentation,
 			"length" => $this->length,
 			"comment" => $this->comment,
-			"autonomie" => $this->savoirs["autonomie"],
-			"analyse" => $this->savoirs["analyse"],
-			"ecoute" => $this->savoirs["ecoute"],
-			"organise" => $this->savoirs["organise"],
-			"passionne" => $this->savoirs["passionne"],
-			"fiable" => $this->savoirs["fiable"],
-			"patient" => $this->savoirs["patient"],
-			"reflechi" => $this->savoirs["reflechi"],
-			"responsable" => $this->savoirs["responsable"],
-			"sociable" => $this->savoirs["sociable"],
-			"optimiste" => $this->savoirs["optimiste"]
+			"savoirs" => $this->savoirs
 		];
 
 		$this->createRef();

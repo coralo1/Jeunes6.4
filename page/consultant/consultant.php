@@ -88,48 +88,48 @@ new loadCons($data);
 						<td>
 							<form action="page.php" method="post">
 								<input type="checkbox" name="etre" value="autonome" disabled <?php
-																																							if ($_SESSION["Jeune"]["autonomie"]) {
+																																							if ($_SESSION["Jeune"]["savoirs"]["autonomie"]) {
 																																								echo "checked";
 																																							}; ?>>Autonome <br>
 								<input type="checkbox" name="etre" value="capable" disabled <?php
-																																						if ($_SESSION["Jeune"]["analyse"]) {
+																																						if ($_SESSION["Jeune"]["savoirs"]["analyse"]) {
 																																							echo "checked";
 																																						}; ?>>Capable d'analyse
 								et de synthèse <br>
 								<input type="checkbox" name="etre" value="ecoute" disabled <?php
-																																						if ($_SESSION["Jeune"]["autonomie"]) {
+																																						if ($_SESSION["Jeune"]["savoirs"]["ecoute"]) {
 																																							echo "checked";
 																																						}; ?>>A l'écoute <br>
 								<input type="checkbox" name="etre" value="organise" disabled <?php
-																																							if ($_SESSION["Jeune"]["autonomie"]) {
+																																							if ($_SESSION["Jeune"]["savoirs"]["organise"]) {
 																																								echo "checked";
 																																							}; ?>>Organisé <br>
 								<input type="checkbox" name="etre" value="passionne" disabled <?php
-																																							if ($_SESSION["Jeune"]["autonomie"]) {
+																																							if ($_SESSION["Jeune"]["savoirs"]["passionne"]) {
 																																								echo "checked";
 																																							}; ?>>Passionné <br>
 								<input type="checkbox" name="etre" value="fiable" disabled <?php
-																																						if ($_SESSION["Jeune"]["autonomie"]) {
+																																						if ($_SESSION["Jeune"]["savoirs"]["fiable"]) {
 																																							echo "checked";
 																																						}; ?>>Fiable <br>
 								<input type="checkbox" name="etre" value="patient" disabled <?php
-																																						if ($_SESSION["Jeune"]["autonomie"]) {
+																																						if ($_SESSION["Jeune"]["savoirs"]["patient"]) {
 																																							echo "checked";
 																																						}; ?>>Patient <br>
 								<input type="checkbox" name="etre" value="reflechi" disabled <?php
-																																							if ($_SESSION["Jeune"]["autonomie"]) {
+																																							if ($_SESSION["Jeune"]["savoirs"]["reflechi"]) {
 																																								echo "checked";
 																																							}; ?>>Réfléchi <br>
 								<input type="checkbox" name="etre" value="responsable" disabled <?php
-																																								if ($_SESSION["Jeune"]["autonomie"]) {
+																																								if ($_SESSION["Jeune"]["savoirs"]["responsable"]) {
 																																									echo "checked";
 																																								}; ?>>Responable <br>
 								<input type="checkbox" name="etre" value="sociable" disabled <?php
-																																							if ($_SESSION["Jeune"]["autonomie"]) {
+																																							if ($_SESSION["Jeune"]["savoirs"]["sociable"]) {
 																																								echo "checked";
 																																							}; ?>>Sociable <br>
 								<input type="checkbox" name="etre" value="optimiste" disabled <?php
-																																							if ($_SESSION["Jeune"]["autonomie"]) {
+																																							if ($_SESSION["Jeune"]["savoirs"]["optimiste"]) {
 																																								echo "checked";
 																																							}; ?>>Optimiste <br>
 							</form>

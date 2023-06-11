@@ -11,12 +11,10 @@ class createRef
 	private $type;
 	private $engagement;
 	private $length;
-	private $savoirs;
 	private $new_ref;
 	private $login;
 	private $encrypted_login;
-	public $error;
-	public $success;
+	public $status;
 	private $storage = "../../data/referent.json";
 	private $stored_refs;
 
@@ -32,7 +30,6 @@ class createRef
 		$this->type = htmlspecialchars(trim($data["type"]));
 		$this->engagement = htmlspecialchars(trim($data["engagement"]));
 		$this->length = htmlspecialchars(trim($data["length"]));
-		$this->savoirs = $data["savoirs"];
 		/* load pre-existing referents */
 		$this->stored_refs = json_decode(file_get_contents($this->storage), true);
 		/* creates a login for the referent */
@@ -51,20 +48,6 @@ class createRef
 			"user" => $this->user,
 			"phone" => "",
 			"birthdate" => "",
-			"type" => $this->type,
-			"engagement" => $this->engagement,
-			"length" => $this->length,
-			"autonomie" => $this->savoirs["autonomie"],
-			"analyse" => $this->savoirs["analyse"],
-			"ecoute" => $this->savoirs["ecoute"],
-			"organise" => $this->savoirs["organise"],
-			"passionne" => $this->savoirs["passionne"],
-			"fiable" => $this->savoirs["fiable"],
-			"patient" => $this->savoirs["patient"],
-			"reflechi" => $this->savoirs["reflechi"],
-			"responsable" => $this->savoirs["responsable"],
-			"sociable" => $this->savoirs["sociable"],
-			"optimiste" => $this->savoirs["optimiste"]
 		];
 
 		/* adds ref to json file */
@@ -103,7 +86,7 @@ class createRef
 	{
 		foreach ($this->stored_refs as $referent) {
 			if ($this->mail == $referent["mail"] && $this->user == $referent["user"]) {
-				$this->error = "Vous avez déjà envoyé une demande à ce référent.";
+				$this->status = "Vous avez déjà envoyé une demande à ce référent.";
 				return true;
 			}
 		}
@@ -113,10 +96,10 @@ class createRef
 	private function checkFieldValues()
 	{
 		if (empty($this->mail) || empty($this->firstname) || empty($this->lastname) || empty($this->type) || empty($this->engagement) || empty($this->length)) {
-			$this->error = "Tous les champs sont obligatoires.";
+			$this->status = "Tous les champs sont obligatoires.";
 			return false;
-		} elseif (empty($this->user) || empty($this->savoirs)) {
-			$this->error = "erreur innatendue (utilisateur non connecté ou erreur de savoirs-êtres";
+		} elseif (empty($this->user)) {
+			$this->status = "erreur innatendue (utilisateur non connecté ou erreur de savoirs-êtres";
 			return false;
 		} else {
 			return true;
@@ -144,9 +127,9 @@ class createRef
 			array_push($this->stored_refs, $this->new_ref);
 			if (file_put_contents($this->storage, json_encode($this->stored_refs, JSON_PRETTY_PRINT))) {
 				$this->send_mail();
-				return $this->success = "demande effectuée avec succès";
+				return $this->status = "demande effectuée avec succès";
 			} else {
-				return $this->error = "une erreur est survenue, veuillez rééssayer";
+				return $this->status = "une erreur est survenue, veuillez rééssayer";
 			}
 		}
 	}
