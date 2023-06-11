@@ -221,27 +221,15 @@ class requestCons
 	private $encrypted_login;
 	private $stored_cons;
 	private $user;
-
 	private $new_cons;
 	private $filtered_refs;
-	private $mail;
-	private $phone;
-	private $type;
-	private $engagement;
-	private $length;
-	private $comment;
-	private $savoirs;
 	private $storage_cons = "../../data/consultant.json";
-	private $storage_ref = "../../data/references.json";
-	private $load_pending_refs;
-	private $load_confirmed_refs;
-	private $pending_refs;
+	
 	private $confirmed_refs;
 
 	public $errorcons;
 	public $successcons;
 
-	private $all_refs;
 
 
 	public function __construct($data)

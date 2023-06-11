@@ -11,7 +11,9 @@ $data = array("user" => $_SESSION["userID"]);
 $refs = new loadRefs($data);
 
 
-if (isset($_POST["submit"])) {
+if (isset($_POST["submit"]) && !isset($_POST["ref_select"])) {
+	$errorcons = "Veuillez sélectionner au moins une référence";
+} elseif (isset($_POST["submit"]) && isset($_POST["ref_select"])) {
 
 	$data = array("user" => $_SESSION["userID"], "mail_cons" => $_POST["mail_cons"], "ref_array" => $_POST["ref_select"], "refs" => $_SESSION["confirmed"], "firstname" => $_SESSION["firstname"], "lastname" => $_SESSION["lastname"]);
 	$request = new requestCons($data);
@@ -72,12 +74,8 @@ if (isset($_POST["submit"])) {
 				<input type="date" name="birthdate" id="birthdate" value="<?php echo $_SESSION["confirmed"][$i]["birthdate"] ?>" readonly> <br>
 				<label for="mail">Mail : </label>
 				<input type="email" name="mail" id="mail" value="<?php echo $_SESSION["confirmed"][$i]["mail"] ?>" readonly> <br>
-				<label for="type">Type d'engagement : </label>
-				<input type="text" name="type" id="type" value="<?php echo $_SESSION["confirmed"][$i]["type"] ?>" readonly> <br>
-				<label for="engagement">Description de l'engagement : </label>
-				<textarea name="engagement" id="engagement" cols="30" rows="10" readonly><?php echo  $_SESSION["confirmed"][$i]["engagement"] ?></textarea> <br>
-				<label for="length">Durée de l'engagement : </label>
-				<input type="text" name="length" id="length" value="<?php echo $_SESSION["confirmed"][$i]["length"] ?>" readonly> <br>
+				<label for="comment">Commentaires du référent : </label>
+				<textarea name="comment" id="comment" cols="30" rows="10" readonly><?php echo  $_SESSION["confirmed"][$i]["comment"] ?></textarea> <br>
 				<section id="checkbox-container">
 					<table id="table-checkbox" border="1px black">
 						<legend><strong>Savoirs-être</strong></legend>

@@ -1,3 +1,18 @@
+<?php require("consultant.class.php") ?>
+<?php
+/*makes sure the user is Consultant */
+session_start();
+if ($_SESSION["usertype"] != "C") {
+	header("Location:../login/login.php");
+}
+
+//echo var_dump($_SESSION);
+$refs = $_SESSION["refs"];
+$data = array("user" => $_SESSION["user"], "refs" => $refs);
+new loadCons($data);
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -27,69 +42,69 @@
 		<a href="../referent/referent.php" class="nav-element">RÉFÉRENT</a>
 		<a href="../consultant/consultant.php" class="nav-element">CONSULTANT</a>
 		<a href="../partenaires/partenaires.html" class="nav-element">PARTENAIRES</a>
-    </nav> 
+	</nav>
 
 	<p id="description-page">Validez cet engagement en prenant en compte sa valeur.</p>
 
 	<div id="section_jeune-container">
 		<!-- <fieldset> -->
-			<section id="form_jeune-container">
-				<legend>JEUNE</legend>
+		<section id="form_jeune-container">
+			<legend>JEUNE</legend>
 
-				<form action="page.php" method="post">
-					<label for="fnom">Nom :</label>
-					<input type="text" name="fnom" id="fnom"> <br>
+			<form action="page.php" method="post">
+				<label for="fnom">Nom :</label>
+				<input type="text" name="fnom" id="fnom"> <br>
 
-					<label for="fprenom">Prénom :</label>
-					<input type="text" name="fprenom" id="fprenom"> <br>
+				<label for="fprenom">Prénom :</label>
+				<input type="text" name="fprenom" id="fprenom"> <br>
 
-					<label for="fdate">Date de naissance :</label>
-					<input type="date" name="fdate" id="fdate"> <br>
+				<label for="fdate">Date de naissance :</label>
+				<input type="date" name="fdate" id="fdate"> <br>
 
-					<label for="fmail">Mail : </label>
-					<input type="email" name="femail" id="femail"> <br>
+				<label for="fmail">Mail : </label>
+				<input type="email" name="femail" id="femail"> <br>
 
-					<label for="freseau">Réseau social :</label>
-					<input type="text" name="freseau" id="freseau"> <br>
+				<label for="freseau">Réseau social :</label>
+				<input type="text" name="freseau" id="freseau"> <br>
 
-					<label for="fengagement">Mon engamement :</label>
-					<textarea name="fengagement" id="fengagement" cols="1" rows="2"></textarea> <br>
+				<label for="fengagement">Mon engamement :</label>
+				<textarea name="fengagement" id="fengagement" cols="1" rows="2"></textarea> <br>
 
-					<label for="fduree">Durée :</label>
-					<input type="text" name="fduree" id="fduree">
-				</form>
+				<label for="fduree">Durée :</label>
+				<input type="text" name="fduree" id="fduree">
+			</form>
 
-			</section>
+		</section>
 
-			<section id="checkbox_jeune-container">
-				<table id="checkbox_jeune">
-					<thead>
-						<tr>
-							<td>Je suis</td>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>
-								<form action="page.php" method="post">
-									<input type="checkbox" name="etre" value="autonome">Autonome <br>
-									<input type="checkbox" name="etre" value="capable">Capable d'analyse
-									et de synthèse <br>
-									<input type="checkbox" name="etre" value="ecoute">A l'écoute <br>
-									<input type="checkbox" name="etre" value="organise">Organisé <br>
-									<input type="checkbox" name="etre" value="passionne">Passionné <br>
-									<input type="checkbox" name="etre" value="fiable">Fiable <br>
-									<input type="checkbox" name="etre" value="patient">Patient <br>
-									<input type="checkbox" name="etre" value="reflechi">Réfléchi <br>
-									<input type="checkbox" name="etre" value="responsable">Responable <br>
-									<input type="checkbox" name="etre" value="sociable">Sociable <br>
-									<input type="checkbox" name="etre" value="optimiste">Optimiste <br>
-								</form>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</section>
+		<section id="checkbox_jeune-container">
+			<table id="checkbox_jeune">
+				<thead>
+					<tr>
+						<td>Je suis</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<form action="page.php" method="post">
+								<input type="checkbox" name="etre" value="autonome">Autonome <br>
+								<input type="checkbox" name="etre" value="capable">Capable d'analyse
+								et de synthèse <br>
+								<input type="checkbox" name="etre" value="ecoute">A l'écoute <br>
+								<input type="checkbox" name="etre" value="organise">Organisé <br>
+								<input type="checkbox" name="etre" value="passionne">Passionné <br>
+								<input type="checkbox" name="etre" value="fiable">Fiable <br>
+								<input type="checkbox" name="etre" value="patient">Patient <br>
+								<input type="checkbox" name="etre" value="reflechi">Réfléchi <br>
+								<input type="checkbox" name="etre" value="responsable">Responable <br>
+								<input type="checkbox" name="etre" value="sociable">Sociable <br>
+								<input type="checkbox" name="etre" value="optimiste">Optimiste <br>
+							</form>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
 		<!-- </fieldset> -->
 	</div>
 
@@ -98,33 +113,38 @@
 
 	<div id="section_referent-container">
 		<!-- <fieldset> -->
+
+		<?php
+		$i = -1;
+		foreach ($_SESSION["refs"] as $refs) {
+			$i++; ?>
 			<section id="form_referent-container">
 				<legend>RÉFÉRENT</legend>
 
 				<form action="page.php" method="post">
 					<label for="fnom">Nom :</label>
-					<input type="text" name="fnom" id="fnom"> <br>
+					<input type="text" name="fnom" id="fnom" readonly value="<?php echo $_SESSION["refs"]["$i"]["lastname"] ?>"> <br>
 
 					<label for="fprenom">Prénom :</label>
-					<input type="text" name="fprenom" id="fprenom"> <br>
+					<input type="text" name="fprenom" id="fprenom" readonly value="<?php echo $_SESSION["refs"]["$i"]["firstname"] ?>"> <br>
 
 					<label for="fdate">Date de naissance :</label>
-					<input type="date" name="fdate" id="fdate"> <br>
+					<input type="date" name="fdate" id="fdate" readonly value="<?php echo $_SESSION["refs"]["$i"]["birthdate"] ?>"> <br>
 
 					<label for="ftel">Portable :</label>
-					<input type="tel" name="ftel" id="ftel"> <br>
+					<input type="tel" name="ftel" id="ftel" readonly value="<?php echo $_SESSION["refs"]["$i"]["phone"] ?>"> <br>
 
 					<label for="fmail">Mail : </label>
-					<input type="email" name="femail" id="femail"> <br>
+					<input type="email" name="femail" id="femail" readonly value="<?php echo $_SESSION["refs"]["$i"]["mail"] ?>"> <br>
 
 					<label for="freseau">Réseau social :</label>
-					<input type="text" name="freseau" id="freseau"> <br>
+					<input type="text" name="freseau" id="freseau" readonly value="<?php echo $_SESSION["refs"]["$i"]["type"] ?>"> <br>
 
 					<label for="fpresentation">Présentation :</label>
-					<textarea name="fpresentation" id="fpresentation" cols="1" rows="2"></textarea> <br>
+					<textarea name="fpresentation" id="fpresentation" cols="1" rows="2"><?php echo $_SESSION["refs"]["$i"]["comment"] ?></textarea> <br>
 
 					<label for="fduree">Durée :</label>
-					<input type="text" name="fduree" id="fduree">
+					<input type="text" name="fduree" id="fduree" readonly value="<?php echo $_SESSION["refs"]["$i"]["length"] ?>">
 				</form>
 
 			</section>
@@ -140,16 +160,46 @@
 						<tr>
 							<td>
 								<form action="page.php" method="post">
-									<input type="checkbox" name="confirm" value="ponctualite">Ponctualité <br>
-									<input type="checkbox" name="confirm" value="confiance">Confiance <br>
-									<input type="checkbox" name="confirm" value="serieux">Sérieux <br>
-									<input type="checkbox" name="confirm" value="honnetete">Honnêteté <br>
-									<input type="checkbox" name="confirm" value="tolerance">Tolérance <br>
-									<input type="checkbox" name="confirm" value="bienveillance">Bienveillance <br>
-									<input type="checkbox" name="confirm" value="Respect">Respect <br>
-									<input type="checkbox" name="confirm" value="juste">Juste <br>
-									<input type="checkbox" name="confirm" value="impartial">Impartial <br>
-									<input type="checkbox" name="confirm" value="travail">Travail <br>
+									<input type="checkbox" name="confirm" value="ponctualite" disabled <?php
+																																											if ($_SESSION["refs"]["$i"]["autonomie"]) {
+																																												echo "checked";
+																																											}; ?>>Ponctualité <br>
+									<input type="checkbox" name="confirm" value="confiance" disabled <?php
+																																										if ($_SESSION["refs"][$i]["analyse"]) {
+																																											echo "checked";
+																																										}; ?>>Confiance <br>
+									<input type="checkbox" name="confirm" value="serieux" disabled <?php
+																																									if ($_SESSION["refs"][$i]["ecoute"]) {
+																																										echo "checked";
+																																									}; ?>>Sérieux <br>
+									<input type="checkbox" name="confirm" value="honnetete" disabled <?php
+																																										if ($_SESSION["refs"][$i]["organise"]) {
+																																											echo "checked";
+																																										}; ?>>Honnêteté <br>
+									<input type="checkbox" name="confirm" value="tolerance" disabled <?php
+																																										if ($_SESSION["refs"][$i]["passionne"]) {
+																																											echo "checked";
+																																										}; ?>>Tolérance <br>
+									<input type="checkbox" name="confirm" value="bienveillance" disabled <?php
+																																												if ($_SESSION["refs"][$i]["fiable"]) {
+																																													echo "checked";
+																																												}; ?>>Bienveillance <br>
+									<input type="checkbox" name="confirm" value="Respect" disabled <?php
+																																									if ($_SESSION["refs"][$i]["patient"]) {
+																																										echo "checked";
+																																									}; ?>>Respect <br>
+									<input type="checkbox" name="confirm" value="juste" disabled <?php
+																																								if ($_SESSION["refs"][$i]["reflechi"]) {
+																																									echo "checked";
+																																								}; ?>>Juste <br>
+									<input type="checkbox" name="confirm" value="impartial" disabled <?php
+																																										if ($_SESSION["refs"][$i]["responsable"]) {
+																																											echo "checked";
+																																										}; ?>>Impartial <br>
+									<input type="checkbox" name="confirm" value="travail" disabled <?php
+																																									if ($_SESSION["refs"][$i]["sociable"]) {
+																																										echo "checked";
+																																									}; ?>>Travail <br>
 								</form>
 							</td>
 						</tr>
@@ -157,6 +207,7 @@
 
 				</table>
 			</section>
+		<?php } ?>
 
 		<!-- </fieldset> -->
 	</div>

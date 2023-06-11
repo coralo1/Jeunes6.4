@@ -1,4 +1,5 @@
 <?php require("jeune.class.php") ?>
+<?php require("jeune_update.php") ?>
 <?php
 /*
 require('../../PHPMailer/src/Exception.php');
@@ -22,19 +23,21 @@ $phpmailer->Password = '3a2618cd283dce';
 */
 session_start();
 /*makes sure the user is Jeune */
-if ($_SESSION["usertype"] != "J"){
+if ($_SESSION["usertype"] != "J") {
 	header("Location:../login/login.php");
 }
 
-/* update function  // turns out this is useless
+/*update your data */
 if (isset($_POST['update'])) {
 	$storage = "../../data/jeune.json";
-	$users = json_decode(file_get_contents($storage), true); /* loads users *//*
+	$users = json_decode(file_get_contents($storage), true); /* loads users */
+	var_dump($_POST);
+	echo "<br><br>";
 	$i = -1;
-	foreach ($users as $user) { /* parses user array until it matches *//*
+	foreach ($users as $user) { /* parses user array until it matches */
 		$i++;
 
-		if ($user["email"] == $_POST["email"]) { /* then updates the user info with what was filled, along with session info *//*
+		if ($user["mail"] == $_SESSION["mail"]) { /* then updates the user info with what was filled, along with session info */
 
 			$user["lastname"] = $_POST['lastname'];
 			$_SESSION["lastname"] = $_POST['lastname'];
@@ -45,8 +48,8 @@ if (isset($_POST['update'])) {
 			$user["birthdate"] = $_POST['birthdate'];
 			$_SESSION["birthdate"] = $_POST['birthdate'];
 
-			$user["network"] = $_POST['network'];
-			$_SESSION["network"] = $_POST['network'];
+			$user["type"] = $_POST['type'];
+			$_SESSION["type"] = $_POST['type'];
 
 			$user["engagement"] = $_POST['engagement'];
 			$_SESSION["engagement"] = $_POST['engagement'];
@@ -142,19 +145,21 @@ if (isset($_POST['update'])) {
 				$_SESSION['optimiste'] = 0;
 			}
 
-			$replacement = array($i => $user); /*creates an array with only the user in his position in the json file *//*
+			$replacement = array($i => $user); /*creates an array with only the user in his position in the json file */
 		}
 	}
 
-	$updated_users = array_replace($users, $replacement); /*replaces the array containing all users with the previous array *//*
-	$encoded_data = json_encode($updated_users, JSON_PRETTY_PRINT); /* puts everything back into the json *//*
+	$updated_users = array_replace($users, $replacement); /*replaces the array containing all users with the previous array */
+	$encoded_data = json_encode($updated_users, JSON_PRETTY_PRINT); /* puts everything back into the json */
 	if (file_put_contents($storage, $encoded_data)) {
 		$status = "profil mis à jour";
+
 	} else {
 		$status = "Une erreur est survenue, veuillez rééssayer";
 	}
 }
-*/
+
+
 
 
 /* referent function */
@@ -288,20 +293,31 @@ if (isset($_POST["submit"])) {
 
 	<header>
 		<img src="../../ressources/img/LOGOS_JEUNES_6_4.svg" alt="Logo Jeunes6.4">
+		<div id="haut_page-container">
+			<span id="nom_page-container">
 		<h1>JEUNE</h1>
+		</span>
+			<span id="texte_haut-container">
 		<p>Je donne de la valeur à mon engagement</p>
+		</span>
+		</div>
 	</header>
 
-	<nav id="nav-container">
-		<a href="../jeune/jeune.php" class="nav-element">JEUNE</a>
-		<a href="../login/login.php" class="nav-element">RÉFÉRENT</a>
-		<a href="../login/login.php" class="nav-element">CONSULTANT</a>
-		<a href="../partenaires/partenaires.html" class="nav-element">PARTENAIRES</a>
+
+	<!-- Nav barre principale -->
+	<nav id="nav_p-container">
+		<a href="../jeune/jeune.php" class="nav_p-element">JEUNE</a>
+		<a href="../login/login.php" class="nav_p-element">RÉFÉRENT</a>
+		<a href="../login/login.php" class="nav_p-element">CONSULTANT</a>
+		<a href="../partenaires/partenaires.html" class="nav_p-element">PARTENAIRES</a>
 	</nav>
-	<nav id="nav-container">
-		<a href="jeune.php" class="nav-element">Demande de référence</a>
-		<a href="consultation_ref.php" class="nav-element">Mes références</a>
-		<a href="demande_consultant.php" class="nav-element">Demande de consultation</a>
+
+
+	<!-- Nav barre du jeune -->
+	<nav id="nav_s-container">
+		<a href="jeune.php" class="nav_s-element">Demande de référence</a>
+		<a href="consultation_ref.php" class="nav_s-element">Mes références</a>
+		<a href="demande_consultant.php" class="nav_s-element">Demande de consultation</a>
 	</nav>
 
 	<p id="description-page">Décrivez votre expérience et mettez en avant ce que vous en avez retiré.</p>
@@ -309,42 +325,46 @@ if (isset($_POST["submit"])) {
 
 	<div id="elements-container">
 
-		<section id="informations-container">
-			<fieldset>
-				<legend>Vos informations : </legend> <br>
+	<section id="informations-container">
+
+			<section id="vos_informations">	
+
+				<legend>VOS INFORMATIONS : </legend>
+
 				<label for="lastname">Nom :</label>
-				<input type="text" name="lastname" id="lastname" value="<?php echo $_SESSION["lastname"] ?>" readonly> <br>
+				<input type="text" name="lastname" id="lastname" value="<?php echo $_SESSION["lastname"] ?>" > <br>
 
 				<label for="firstname">Prénom :</label>
-				<input type="text" name="firstname" id="firstname" value="<?php echo $_SESSION["firstname"] ?>" readonly> <br>
+				<input type="text" name="firstname" id="firstname" value="<?php echo $_SESSION["firstname"] ?>" > <br>
 
 				<label for="birthdate">Date de naissance :</label>
-				<input type="date" name="birthdate" id="birthdate" value="<?php echo $_SESSION["birthdate"] ?>" readonly>
+				<input type="date" name="birthdate" id="birthdate" value="<?php echo $_SESSION["birthdate"] ?>" >
 				<br>
 
 				<label for="mail">Mail : </label>
 				<input type="email" name="mail" id="mail" value="<?php echo $_SESSION["mail"] ?>" readonly> <br>
-			</fieldset>
+
+		</section>
+
 		</section>
 
 
-		<section id="demande-formulaire">
+		<section id="demande_formulaire">
 
-			<!-- <fieldset> -->
 			<form action="" method="post">
 
-				<!-- ------------------------- Début du premier form ------------------------- -->
 
 				<section id="demande_ref-container">
 
-					<fieldset>
-						<legend>Demande de référence :</legend> <br>
+				<section id="demande_ref">
+
+						<legend>DEMANDE DE RÉFÉRENCE :</legend>
 
 						<label for="type">Milieu de l'engagement :</label>
-						<input type="text" name="type" id="type" placeholder="association, club de sport, etc."> <br>
+						<input type="text" name="type" id="type"> <br>
 
 						<label for="engagement">Mon engamement :</label>
-						<textarea name="engagement" id="engagement" cols="30" rows="10" placeholder="Décrivez votre engagement"></textarea> <br>
+						<textarea name="engagement" id="engagement" cols="1" rows="3"></textarea> <br>
 
 						<label for="length">Durée de l'engagement :</label>
 						<input type="text" name="length" id="length"> <br>
@@ -358,23 +378,22 @@ if (isset($_POST["submit"])) {
 						<label for="ref_mail">E-mail du référent :</label>
 						<input type="email" name="ref_mail" id="ref_mail"> <br>
 
-					</fieldset>
+				</section>
 
 				</section>
 
-				<!-- ------------------------- Fin du premier form ------------------------- -->
-
-
-				<!-- ------------------------- Début du deuxième form ------------------------- -->
 
 				<section id="checkbox-container">
 					<table id="table-checkbox">
-						<legend><strong>Mes savoirs-être</strong></legend>
+
+						<legend>Mes savoirs-être</legend>
+
 						<thead>
 							<tr>
-								<td>Je suis... (4 choix maximum)</td>
+								<td>Je suis*</td>
 							</tr>
 						</thead>
+
 						<tbody>
 							<tr>
 								<td>
@@ -392,24 +411,27 @@ if (isset($_POST["submit"])) {
 								</td>
 							</tr>
 						</tbody>
+
 					</table>
-					<p id="description-checkbox"><strong>*Faire 4 choix maximum</strong></p>
+
+					<p id="description-checkbox">*Faire 4 choix maximum</p>
+
 				</section>
 
-				<!-- ------------------------- Fin du deuxième form ------------------------- -->
 
 				<!-- Messages -->
 				<p class="error">
-					<?php echo @$error; ?>
+					<?php echo @$status; ?>
 				</p>
 
 				<p class="success">
-					<?php echo @$success; ?>
+					<?php echo @$status; ?>
 				</p>
 				<!-- Fin messages  -->
 
 				<!-- Bouton "envoyer une demande" -->
-				<input type="submit" name="submit" value="Envoyer une demande"> <br>
+				<input type="submit" name="update" id="send_form" value="Mettre à jour mes informations"> <br>
+				<input type="submit" name="submit" id="send_form" value="Envoyer une demande"> <br>
 
 			</form>
 			<!-- </fieldset> -->

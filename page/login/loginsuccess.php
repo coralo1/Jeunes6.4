@@ -1,4 +1,5 @@
 <?php
+/* the whole purpose of this page is for the user to be to redirected here, and then to an appropriate place in case he gets somewhere he's not supposed to */
 session_start();
 if (!isset($_SESSION["userID"])) {
 	header("Location:login.php");
@@ -25,7 +26,7 @@ switch ($_SESSION["usertype"]) {
 <head>
 	<link rel="stylesheet" href="../../../ressources/projet.css">
 	<title>Connexion réussie</title>
-	<a href="<?php echo $link ;?>" id="forgot_password">Retour sur la page</a>
+	<a href="<?php echo $link; ?>" id="forgot_password">Retour sur la page</a>
 </head>
 
 <body>

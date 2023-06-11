@@ -1,6 +1,6 @@
 <?php
-session_start();
-if (!isset($_SESSION["userID"])) { /* auto redirect if user not logged in */
+/*makes sure the user is Referent */
+if ($_SESSION["usertype"] != "R"){
 	header("Location:../login/login.php");
 }
 
