@@ -274,9 +274,15 @@ new loadCons($data);
 			</section>
 
 
-			<!-- </fieldset> -->
+
 		</div>
+
+			
 	<?php } ?>
+
+			<!-- Logout button -->
+			<a href="../logout.php" id="forgot_password">Déconnexion</a>
+			
 </body>
 
 </html>

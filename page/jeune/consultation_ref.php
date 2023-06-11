@@ -57,8 +57,6 @@ $refs = new loadRefs($data);
 	</nav>
 
 	<p id="description-page">Décrivez votre expérience et mettez en avant ce que vous en avez retiré.</p>
-	<!-- Logout button -->
-	<a href="../logout.php" id="forgot_password">Déconnexion</a>
 
 
 	<div id="elements-container">
@@ -216,16 +214,18 @@ $refs = new loadRefs($data);
 
 
 					</section>
-				<?php
-				}
-				?>
 
 
 			</form>
 
 		</section>
+
+		<?php
+				}
+		?>
 		
-		
+		<!-- Logout button -->
+		<a href="../logout.php" id="forgot_password">Déconnexion</a>
 
 	</div>
 	

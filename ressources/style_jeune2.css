@@ -10,6 +10,14 @@ html {
     font-family: 'square721_btroman';
 }
 
+input {
+    font-family: 'square721_btroman';
+}
+
+input:focus, textarea:focus {
+    outline: none;
+}
+
 body {
     margin: 0;
     /* background-image: url(Images/LOGOS_JEUNES_6_4.svg);
@@ -90,7 +98,7 @@ header > img {
     align-items: center; 
     justify-content: center;
     flex: 1; /* flex: 1; flex va prendre tout l'espace disponible (pas besoin de calculer) */
-    transition: all 0.5; /* Effet esthétique à coupler avec le ":hover" */
+    transition: 0.3s; /* Effet esthétique à coupler avec le ":hover" */
 }
 
 .nav_p-element:nth-child(1) {
@@ -111,6 +119,39 @@ header > img {
     color: #808183;
 }
 
+.nav_p-element:nth-child(5) {
+    color: black;
+}
+
+.nav_p-element:nth-child(1):hover {
+    background-color: #e7319d;
+    color: white;
+    margin: 13px;
+}
+
+.nav_p-element:nth-child(2):hover {
+    background-color: #4bbc6c;
+    color: white;
+    margin: 13px;
+}
+
+.nav_p-element:nth-child(3):hover {
+    background-color: #46b2e0;
+    color: white;
+    margin: 13px;
+}
+
+.nav_p-element:nth-child(4):hover {
+    background-color: #808183;
+    color: white;
+    margin: 13px;
+}
+
+.nav_p-element:nth-child(5):hover {
+    background-color: black;
+    color: white;
+    margin: 13px;
+}
 
 /* ------------------- ------------------- */
 
@@ -190,7 +231,7 @@ header > img {
 #elements-container {
      /* border: 10px solid black;  */
     margin: auto;
-    width: 75%; height: auto; margin-bottom: 2%;
+    width: 75%; height: auto; margin-bottom: 0%;
     /* padding: 1%; */
 }
 
@@ -338,7 +379,7 @@ textarea {
 	color: white;
 	font-size: 15px; font-weight: bold;
 	text-decoration: none;
-	margin: auto;
+	margin: auto; margin-bottom: 0; margin-top: 3%;
 	width: fit-content;
 	display: flex;
 	padding: 2px;

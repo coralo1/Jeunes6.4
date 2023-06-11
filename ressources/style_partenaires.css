@@ -10,6 +10,10 @@ html {
     font-family: 'square721_btroman';
 }
 
+input {
+    font-family: "square721_btroman";
+  }
+
 body {
     margin: 0;
     /* background-image: url(Images/LOGOS_JEUNES_6_4.svg);
@@ -88,7 +92,7 @@ header > img {
     justify-content: center;
     flex: 1; /* flex: 1; flex va prendre tout l'espace disponible (pas besoin de calculer) */
 
-    /* transition: all 0.5; Effet esthétique à coupler avec le ":hover"
+    transition: 0.3s; /* Effet esthétique à coupler avec le ":hover" */
     /* border-top: 2px solid grey; */ /* On met un border-top par défaut pour éviter de faire bouger
                                     notre texte lorsque nous passons le curseur dessus */
 
@@ -118,6 +122,41 @@ header > img {
     color: white;
     margin: 13px;
 }
+
+.nav-element:nth-child(5) {
+    color: black;
+}
+
+.nav-element:nth-child(1):hover {
+    background-color: #e7319d;
+    color: white;
+    margin: 13px;
+}
+
+.nav-element:nth-child(2):hover {
+    background-color: #4bbc6c;
+    color: white;
+    margin: 13px;
+}
+
+.nav-element:nth-child(3):hover {
+    background-color: #46b2e0;
+    color: white;
+    margin: 13px;
+}
+
+.nav-element:nth-child(4):hover {
+    background-color: #808183;
+    color: white;
+    margin: 13px;
+}
+
+.nav-element:nth-child(5):hover {
+    background-color: black;
+    color: white;
+    margin: 13px;
+}
+
 
 #elements-container {
     /* border: 1px solid red; */
