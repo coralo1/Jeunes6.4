@@ -1,13 +1,13 @@
 <?php require("consultant.class.php") ?>
 <?php
-/*makes sure the user is Consultant */
 session_start();
+/*makes sure the user is Consultant */
 if ($_SESSION["usertype"] != "C") {
 	header("Location:../login/login.php");
 }
 
-$refs = $_SESSION["refs"];
-$data = array("user" => $_SESSION["user"], "refs" => $refs);
+$refs = $_SESSION["refs"]; /* loads session refs (refs in references.json) into a variable */
+$data = array("user" => $_SESSION["user"], "refs" => $refs); /* creates an array to send to the class file */
 new loadCons($data);
 
 ?>
@@ -52,12 +52,12 @@ new loadCons($data);
 
 			<form action="page.php" method="post">
 				<label for="fnom">Nom :</label>
-				<input type="text" name="fnom" id="fnom" readonly value="<?php echo $_SESSION["Jeune"]["lastname"] ?>">
+				<input type="text" name="fnom" id="fnom" readonly value="<?php echo $_SESSION["Jeune"]["lastname"] ?>"> <!-- not much to say here, it just loads data from session. Same thing for the rest of the file-->
 				<br>
 
 				<label for="fprenom">Prénom :</label>
 				<input type="text" name="fprenom" id="fprenom" readonly
-					value="<?php echo $_SESSION["Jeune"]["firstname"] ?>"> <br>
+					value="<?php echo $_SESSION["Jeune"]["firstname"] ?>"> <br> 
 
 				<label for="fdate">Date de naissance :</label>
 				<input type="date" name="fdate" id="fdate" readonly
@@ -163,7 +163,7 @@ new loadCons($data);
 	<br>
 	<?php
 	$i = -1;
-	foreach ($_SESSION["refs"] as $refs) {
+	foreach ($_SESSION["refs"] as $refs) { /* this thing is to display every selected reference */
 		$i++; ?>
 
 		<div id="section_referent-container">

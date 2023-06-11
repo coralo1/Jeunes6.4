@@ -11,11 +11,10 @@ $data = array("user" => $_SESSION["userID"]);
 $refs = new loadRefs($data);
 
 
-if (isset($_POST["submit"]) && !isset($_POST["ref_select"])) {
+if (isset($_POST["submit"]) && !isset($_POST["ref_select"])) { /* if you  submit without selecting a single reference */
 	$errorcons = "Veuillez sélectionner au moins une référence";
-} elseif (isset($_POST["submit"]) && isset($_POST["ref_select"])) {
-
-	$data = array("user" => $_SESSION["userID"], "mail_cons" => $_POST["mail_cons"], "ref_array" => $_POST["ref_select"], "refs" => $_SESSION["confirmed"], "firstname" => $_SESSION["firstname"], "lastname" => $_SESSION["lastname"]);
+} elseif (isset($_POST["submit"]) && isset($_POST["ref_select"])) { /*submit with atleast one reference */
+	$data = array("user" => $_SESSION["userID"], "mail_cons" => $_POST["mail_cons"], "ref_array" => $_POST["ref_select"], "refs" => $_SESSION["confirmed"], "firstname" => $_SESSION["firstname"], "lastname" => $_SESSION["lastname"]); /* data array for the class function */
 	$request = new requestCons($data);
 }
 
@@ -27,67 +26,104 @@ if (isset($_POST["submit"]) && !isset($_POST["ref_select"])) {
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<link rel="stylesheet" href="../../ressources/style_jeune.css">
+	<link rel="stylesheet" href="../../ressources/style_jeune3.css">
 	<!-- <script src="../../js/jquery-3.7.0.min.js"></script>
 	<script src="../../js/jeune.js" async></script> -->
-	<title>Page jeune</title>
+	<title>Demande de consultation</title>
 </head>
 
 <body>
 
 	<header>
 		<img src="../../ressources/img/LOGOS_JEUNES_6_4.svg" alt="Logo Jeunes6.4">
+		<div id="haut_page-container">
+			<span id="nom_page-container">
 		<h1>JEUNE</h1>
+			</span>
+			<span id="texte_haut-container">
 		<p>Je donne de la valeur à mon engagement</p>
+			</span>
+		</div>
 	</header>
 
-	<nav id="nav-container">
-		<a href="../jeune/jeune.php" class="nav-element">JEUNE</a>
-		<a href="../login/login.php" class="nav-element">RÉFÉRENT</a>
-		<a href="../login/login.php" class="nav-element">CONSULTANT</a>
-		<a href="../partenaires/partenaires.html" class="nav-element">PARTENAIRES</a>
-	</nav>
-	<nav id="nav-container">
-		<a href="jeune.php" class="nav-element">Demande de référence</a>
-		<a href="consultation_ref.php" class="nav-element">Mes références</a>
-		<a href="demande_consultant.php" class="nav-element">Demande de consultation</a>
+	<!-- Nav barre principale -->
+	<nav id="nav_p-container">
+		<a href="../jeune/jeune.php" class="nav_p-element">JEUNE</a>
+		<a href="../login/login.php" class="nav_p-element">RÉFÉRENT</a>
+		<a href="../login/login.php" class="nav_p-element">CONSULTANT</a>
+		<a href="../partenaires/partenaires.html" class="nav_p-element">PARTENAIRES</a>
 	</nav>
 
-	<p id="description-page">Je crée une demande de consultation</p>
+
+	<!-- Nav barre du jeune -->
+	<nav id="nav_s-container">
+		<a href="jeune.php" class="nav_s-element">Demande de référence</a>
+		<a href="consultation_ref.php" class="nav_s-element">Mes références</a>
+		<a href="demande_consultant.php" class="nav_s-element">Demande de consultation</a>
+	</nav>
+
+	<p id="description-page">Décrivez votre expérience et mettez en avant ce que vous en avez retiré.</p>
+
+
+
+	<div id="elements-container">
 
 	<form action="" method="post">
-		1 : Je sélectionne mes références
-		<br>
-		<?php
+
+
+			<p id="selection_ref-texte">1 : Je sélectionne mes références</p>
+			<?php
 		$i = -1;
-		foreach ($_SESSION["confirmed"] as $confirmed) {
+		foreach ($_SESSION["confirmed"] as $confirmed) { /* displays multiple time for each reference */
 			$i++;
 		?>
+			<section id="form_checkbox-container">
+			
+				
+				<section id="selection_ref">
 
-			<fieldset>
-			<legend><input type="checkbox" id="ref<?php echo ($i + 1) ?>" name="ref_select[]" value="<?php echo ($i - 1) ?>"><?php echo ($i + 1) ?>: </legend> <br>
+		
+
+					
+					<!-- <legend><input type="checkbox" id="ref<?php echo ($i + 1) ?>" name="ref_select[]" value="<?php echo ($i - 1) ?>"><?php echo ($i + 1) ?>: </legend> -->
+					<legend>TEST</legend>
+
 							<label for="lastname">Nom :</label>
 							<input type="text" name="lastname" id="lastname" value="<?php echo $_SESSION["confirmed"][$i]["lastname"] ?>" readonly> <br>
+					
 							<label for="firstname">Prénom :</label>
 							<input type="text" name="firstname" id="firstname" value="<?php echo $_SESSION["confirmed"][$i]["firstname"] ?>" readonly> <br>
+					
 							<label for="birthdate">Date de naissance :</label>
 							<input type="date" name="birthdate" id="birthdate" value="<?php echo $_SESSION["confirmed"][$i]["birthdate"] ?>" readonly> <br>
+					
 							<label for="mail">Mail : </label>
 							<input type="email" name="mail" id="mail" value="<?php echo $_SESSION["confirmed"][$i]["mail"] ?>" readonly> <br>
+					
 							<label for="comment">Présentation : </label>
-							<textarea name="comment" id="comment" cols="30" rows="10" readonly><?php echo  $_SESSION["confirmed"][$i]["presentation"] ?></textarea> <br>
+					<textarea name="comment" id="comment" cols="1" rows="3" readonly><?php echo  $_SESSION["confirmed"][$i]["presentation"] ?></textarea> <br>
+					
 							<label for="comment">Commentaires du référent : </label>
-							<textarea name="comment" id="comment" cols="30" rows="10" readonly><?php echo  $_SESSION["confirmed"][$i]["comment"] ?></textarea> <br>
+					<textarea name="comment" id="comment" cols="1" rows="3" readonly><?php echo  $_SESSION["confirmed"][$i]["comment"] ?></textarea> <br>
+					
 							<label for="length">Durée :</label>
 							<input type="text" name="length" id="length" value="<?php echo $_SESSION["confirmed"][$i]["length"] ?>" readonly> <br>
+
+				</section>
+								
+
 							<section id="checkbox-container">
-								<table id="table-checkbox" border="1px black">
-									<legend><strong>Savoirs-être</strong></legend>
+
+					<table id="table-checkbox">
+
+						<legend>Ses savoirs-être</legend>
+
 									<thead>
 										<tr>
 											<td>Je confirme sa/son...</td>
 										</tr>
 									</thead>
+
 									<tbody>
 										<tr>
 											<td>
@@ -141,27 +177,37 @@ if (isset($_POST["submit"]) && !isset($_POST["ref_select"])) {
 																																										echo "checked";
 																																									} ?>>
 												Travail <br>
-
 											</td>
 										</tr>
 									</tbody>
+
 								</table>
+
 							</section>
-			</fieldset>
+
+			</section>
+
 		<?php
 		}
 		?>
 
-		<br>
-		<br>
-		2 : Je les envoie
-		<br>
-		<br>
-		<label for="mail_cons">E-mail du consultant : </label>
-		<input type="email" name="mail_cons" id="mail_cons"> <br> <br>
+			<section id="mail_consultant-container">
+				<p id="send-texte">2 : Je les envoie</p>
 
-		<input type="submit" name="submit" value="Envoyer une demande au consultant"> <br> <br>
+				<section id="selection_ref">
+
+		<label for="mail_cons">E-mail du consultant : </label>
+					<input type="email" name="mail_cons" id="mail_cons">
+
+				</section>
+
+			</section>
+
+			<!-- Bouton envoie demande consultant -->
+			<input type="submit" name="submit" id="send_form" value="Envoyer une demande au consultant">
+
 	</form>
+		 <!-- prints error or success messages -->
 	<p class="error">
 		<?php echo @$errorcons; ?>
 	</p>
@@ -172,9 +218,11 @@ if (isset($_POST["submit"]) && !isset($_POST["ref_select"])) {
 
 
 
+		<!-- Logout bouton -->
 	<a href="../logout.php" id="forgot_password">Déconnexion</a>
 
 
+	</div>
 
 
 </body>

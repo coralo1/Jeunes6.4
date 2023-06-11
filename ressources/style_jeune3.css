@@ -186,117 +186,63 @@ header > img {
     /* letter-spacing: 1px; */ word-spacing: 6px;
 }
 
-
 #elements-container {
-    /* border: 10px solid black; */
+    /* border: 5px solid red; */
     margin: auto;
-    width: 75%; height: auto; margin-bottom: 2%;
-    /* padding: 1%; */
+    width: 80%; height: 50em;
 }
 
-/* ------------------- BLOC REF EN ATTENTE ------------------- */
-
-#infos_attente-container {
-    /* border: 3px solid black; */
-    margin: auto; margin-top: 3%; margin-bottom: 1%;
-}
-
-#ref_attente-texte {
+#selection_ref-texte {
     /* border: 1px solid green; */
-    font-weight: bold; font-size: 20px;
-    color: #e7319d;
-    margin-bottom: 0.5%;
-}
-
-/* ------------------- FORM EN ATTENTE ------------------- */
-
-
-#vos-informations-container {
-    border: 3px solid #e7319d;
-    margin: auto;
-    display: flex; padding: 1%;
-}
-
-#infos_jeune {
-    border: 3px solid #e7319d;
-    margin: auto; padding: 1%;
-    width: 60%; height: 15em;
-    color: #e7319d;
-    font-weight: bold; font-size: 17px;
-    line-height: 3em; 
-}
-
-#infos_jeune > input {
-    border: none;
-    border-bottom: 1px dotted #e7319d;
-    width: 60%;
-}
-
-#infos_jeune > legend {
-    font-size: 30px;
-    border: 0.5px solid #e7319d;
-    width: fit-content;
-    line-height: normal;
-}
-
-/* ------------------- SECTION REFERENCES VALIDEES ------------------- */
-
-#ref_validees-container {
-    /* border: 10px solid red; */
-    margin: auto; margin-top: 3%; margin-bottom: 3%;
-    width: auto; height: 29em;
-}
-
-#ref_validee-texte {
-    /* border: 3px solid green; */
     font-weight: bold; font-size: 20px;
     color: #c8dd61;
     margin-bottom: 0.5%;
 }
 
-#demande_ref-container {
+#form_checkbox-container {
     border: 3px solid #c8dd61;
-    display: flex; padding: 1%;
-    margin: auto; margin-bottom: 5%;
+    margin: auto;
+    width: auto; height: 33em;
+    display: flex;
 }
 
-#demande_validee > legend {
+#selection_ref {
+    border: 3px solid #c8dd61;
+    margin: auto; padding: 1%;
+    width: 60%; height: 85%;
+    color: #c8dd61;
+    line-height: 50px; font-weight: bold;
+}
+
+#selection_ref > input {
+    border: none;
+    border-bottom: 1px dotted #c8dd61;
+    width: 60%;
+}
+
+#selection_ref > textarea {
+    border: none;
+    border-bottom: 1px dotted #c8dd61;
+    width: 60%;
+}
+
+#selection_ref > legend {
     font-size: 30px;
     border: 0.5px solid #c8dd61;
     width: fit-content;
     line-height: normal;
 }
 
-#demande_validee > input {
-    border: none;
-    border-bottom: 1px dotted #c8dd61;
-    width: 60%;
-}
-
-#demande_validee > textarea {
-    border: none;
-    border-bottom: 1px dotted #c8dd61;
-    width: 60%;
-}
-
 textarea {
     resize: none;
 }
 
-#demande_validee {
-    border: 3px solid #c8dd61;
-    margin: auto; padding: 1%;
-    width: 70%; height: 100%;
-    line-height: 32px;
-    color: #c8dd61; font-weight: bold;
-}
-
-/* ------------------- CHECKBOX VALIDEE ------------------- */
+/* ------------------- CHECKBOX ------------------- */
 
 #checkbox-container {
     /* border: 3px solid yellow; */
-    margin: auto; margin-bottom: 1%;
-    width: auto; height: 22em;
+    margin: auto; margin-top: 3%;
+    width: auto; height: 50%;
     text-align: justify;
 }
 
@@ -309,7 +255,7 @@ textarea {
 #table-checkbox {
     /* border: 3px solid pink; */
     margin: auto;
-    width: 100%; height: 93%;
+    width: 100%; height: 100%;
     /* background-color: #ec028d; */
     border-collapse: collapse;
     font-weight: bold;
@@ -326,20 +272,55 @@ textarea {
 #table-checkbox > tbody {
     background-color: #e1ebaf;
     font-size: 15px; font-weight: bold;
-    line-height: 29px;
+    line-height: 40px;
 }
 
+/* -------------------  ------------------- */
+
+#mail_consultant-container {
+    /* border: 10px solid green; */
+    margin: auto; margin-top: 4%;
+}
+
+#send-texte {
+    /* border: 1px solid black; */
+    font-weight: bold; font-size: 20px;
+    color: #c8dd61;
+    margin-bottom: 0.5%;
+}
+
+#envoie_mail-container {
+    border: 3px solid #c8dd61;
+    margin: auto; margin-left: 0;
+    width: fit-content;
+    padding: 1%;
+    color: #c8dd61;
+    font-weight: bold;
+}
+
+
 /* --------------------- BOUTOUNS FIN DE PAGE --------------------- */
+
+#send_form {
+    border: 1px solid #c8dd61;
+    color: white;
+    background-color: #c8dd61;
+    font-size: 25px; font-weight: bold;
+    margin: auto; margin-bottom: 5%; margin-top: 3%;
+    display: flex;
+    padding: 1%;
+}
+
 #forgot_password {
-	border: 3px solid #e7319d;
-	background-color: #e7319d;
-	color: white;
-	font-size: 15px; font-weight: bold;
-	text-decoration: none;
-	margin: auto;
-	width: fit-content;
-	display: flex;
-	padding: 2px;
+    border: 3px solid #e7319d;
+    background-color: #e7319d;
+    color: white;
+    font-size: 15px; font-weight: bold;
+    text-decoration: none;
+    margin: auto;
+    width: fit-content;
+    display: flex;
+    padding: 2px;
 } 
 
 /* ---------------------  --------------------- */

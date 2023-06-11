@@ -1,6 +1,6 @@
 <?php require("jeune.class.php") ?>
 <?php
-/*
+/* not implemented
 require('../../PHPMailer/src/Exception.php');
 require('../../PHPMailer/src/PHPMailer.php');
 require('../../PHPMailer/src/SMTP.php');
@@ -8,7 +8,7 @@ require('../../PHPMailer/src/SMTP.php');
 ?>
 
 <?php
-/*
+/* not implemented
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 

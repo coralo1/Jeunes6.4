@@ -1,10 +1,12 @@
 <?php require("jeune.class.php") ?>
 <?php
 session_start();
+/*make sure the user is authorized here */
 if ($_SESSION["usertype"] != "J") {
 	header("Location:../login/login.php");
 }
 
+/* load data for class file */
 $data = array("user" => $_SESSION["userID"]);
 
 $refs = new loadRefs($data);
@@ -64,7 +66,7 @@ $refs = new loadRefs($data);
 
 			<?php
 			$i = -1;
-			foreach ($_SESSION["pending"] as $pending) {
+			foreach ($_SESSION["pending"] as $pending) { /*cause you may have to display more than one */
 				$i++;
 			?>
 
@@ -85,7 +87,7 @@ $refs = new loadRefs($data);
 						<input type="email" name="mail" id="mail" value="<?php echo $_SESSION["pending"][$i]["mail"] ?>" readonly> <br>
 
 					</section>
-					
+
 				</section>
 
 			<?php
@@ -95,115 +97,133 @@ $refs = new loadRefs($data);
 		</section>
 
 
-		<section id="demande-formulaire">
+		<section id="ref_validees-container">
 
 			<form action="" method="post">
 
-				<section id="demande_ref-container">
-					Références validées :
-					<?php
-					$i = -1;
-					foreach ($_SESSION["confirmed"] as $confirmed) {
-						$i++;
-					?>
+				<p id="ref_validee-texte">Références validées :</p>
+				<?php
+				$i = -1;
+				foreach ($_SESSION["confirmed"] as $confirmed) {
+					$i++;
+				?>
+					<section id="demande_ref-container">
 
-						<fieldset>
-							<legend><?php echo ($i + 1) ?>: </legend> <br>
+
+
+
+
+						<section id="demande_validee">
+							<!-- <legend><?php echo ($i + 1) ?>: </legend> -->
+							<legend>TEST</legend>
+
 							<label for="lastname">Nom :</label>
 							<input type="text" name="lastname" id="lastname" value="<?php echo $_SESSION["confirmed"][$i]["lastname"] ?>" readonly> <br>
+
 							<label for="firstname">Prénom :</label>
 							<input type="text" name="firstname" id="firstname" value="<?php echo $_SESSION["confirmed"][$i]["firstname"] ?>" readonly> <br>
+
 							<label for="birthdate">Date de naissance :</label>
 							<input type="date" name="birthdate" id="birthdate" value="<?php echo $_SESSION["confirmed"][$i]["birthdate"] ?>" readonly> <br>
+
 							<label for="mail">Mail : </label>
 							<input type="email" name="mail" id="mail" value="<?php echo $_SESSION["confirmed"][$i]["mail"] ?>" readonly> <br>
+
 							<label for="comment">Présentation : </label>
-							<textarea name="comment" id="comment" cols="30" rows="10" readonly><?php echo  $_SESSION["confirmed"][$i]["presentation"] ?></textarea> <br>
+							<textarea name="comment" id="comment" cols="1" rows="3" readonly><?php echo  $_SESSION["confirmed"][$i]["presentation"] ?></textarea> <br>
+
 							<label for="comment">Commentaires du référent : </label>
-							<textarea name="comment" id="comment" cols="30" rows="10" readonly><?php echo  $_SESSION["confirmed"][$i]["comment"] ?></textarea> <br>
+							<textarea name="comment" id="comment" cols="1" rows="3" readonly><?php echo  $_SESSION["confirmed"][$i]["comment"] ?></textarea> <br>
+
 							<label for="length">Durée :</label>
 							<input type="text" name="length" id="length" value="<?php echo $_SESSION["confirmed"][$i]["length"] ?>" readonly> <br>
-							<section id="checkbox-container">
-								<table id="table-checkbox" border="1px black">
-									<legend><strong>Savoirs-être</strong></legend>
-									<thead>
-										<tr>
-											<td>Je confirme sa/son...</td>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>
-												<input type="checkbox" name="ponctuel" value="1" disabled <?php
-																																									if ($_SESSION["confirmed"][$i]["savoirs"]["ponctuel"]) {
-																																										echo "checked";
-																																									}; ?>>
-												Ponctualité <br>
-												<input type="checkbox" name="confiant" value="1" disabled <?php
-																																									if ($_SESSION["confirmed"][$i]["savoirs"]["confiant"]) {
-																																										echo "checked";
-																																									} ?>>
-												Confiance <br>
-												<input type="checkbox" name="serieux" value="1" disabled <?php
-																																									if ($_SESSION["confirmed"][$i]["savoirs"]["serieux"]) {
-																																										echo "checked";
-																																									} ?>>
-												Sérieux<br>
-												<input type="checkbox" name="honnete" value="1" disabled <?php
-																																									if ($_SESSION["confirmed"][$i]["savoirs"]["honnete"]) {
-																																										echo "checked";
-																																									} ?>>
-												Honnêteté <br>
-												<input type="checkbox" name="tolerant" value="1" disabled <?php
-																																									if ($_SESSION["confirmed"][$i]["savoirs"]["tolerant"]) {
-																																										echo "checked";
-																																									} ?>>
-												Tolérance <br>
-												<input type="checkbox" name="bienveillant" value="1" disabled <?php
-																																											if ($_SESSION["confirmed"][$i]["savoirs"]["bienveillant"]) {
-																																												echo "checked";
-																																											} ?>>
-												Bienveillance <br>
-												<input type="checkbox" name="respect" value="1" disabled <?php
-																																									if ($_SESSION["confirmed"][$i]["savoirs"]["respect"]) {
-																																										echo "checked";
-																																									} ?>>
-												Respect <br>
-												<input type="checkbox" name="juste" value="1" disabled <?php
-																																								if ($_SESSION["confirmed"][$i]["savoirs"]["juste"]) {
+
+						</section>
+
+						<section id="checkbox-container">
+
+							<table id="table-checkbox">
+
+								<legend>Ses savoirs-être</legend>
+
+								<thead>
+									<tr>
+										<td>Je confirme sa/son</td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<input type="checkbox" name="ponctuel" value="1" disabled <?php
+																																								if ($_SESSION["confirmed"][$i]["savoirs"]["ponctuel"]) {
+																																									echo "checked";
+																																								}; ?>>
+											Ponctualité <br>
+											<input type="checkbox" name="confiant" value="1" disabled <?php
+																																								if ($_SESSION["confirmed"][$i]["savoirs"]["confiant"]) {
 																																									echo "checked";
 																																								} ?>>
-												Juste <br>
-												<input type="checkbox" name="impartial" value="1" disabled <?php
-																																										if ($_SESSION["confirmed"][$i]["savoirs"]["impartial"]) {
+											Confiance <br>
+											<input type="checkbox" name="serieux" value="1" disabled <?php
+																																								if ($_SESSION["confirmed"][$i]["savoirs"]["serieux"]) {
+																																									echo "checked";
+																																								} ?>>
+											Sérieux<br>
+											<input type="checkbox" name="honnete" value="1" disabled <?php
+																																								if ($_SESSION["confirmed"][$i]["savoirs"]["honnete"]) {
+																																									echo "checked";
+																																								} ?>>
+											Honnêteté <br>
+											<input type="checkbox" name="tolerant" value="1" disabled <?php
+																																								if ($_SESSION["confirmed"][$i]["savoirs"]["tolerant"]) {
+																																									echo "checked";
+																																								} ?>>
+											Tolérance <br>
+											<input type="checkbox" name="bienveillant" value="1" disabled <?php
+																																										if ($_SESSION["confirmed"][$i]["savoirs"]["bienveillant"]) {
 																																											echo "checked";
 																																										} ?>>
-												Impartial<br>
-												<input type="checkbox" name="travail" value="1" disabled <?php
-																																									if ($_SESSION["confirmed"][$i]["savoirs"]["travail"]) {
+											Bienveillance <br>
+											<input type="checkbox" name="respect" value="1" disabled <?php
+																																								if ($_SESSION["confirmed"][$i]["savoirs"]["respect"]) {
+																																									echo "checked";
+																																								} ?>>
+											Respect <br>
+											<input type="checkbox" name="juste" value="1" disabled <?php
+																																							if ($_SESSION["confirmed"][$i]["savoirs"]["juste"]) {
+																																								echo "checked";
+																																							} ?>>
+											Juste <br>
+											<input type="checkbox" name="impartial" value="1" disabled <?php
+																																									if ($_SESSION["confirmed"][$i]["savoirs"]["impartial"]) {
 																																										echo "checked";
 																																									} ?>>
-												Travail <br>
+											Impartial<br>
+											<input type="checkbox" name="travail" value="1" disabled <?php
+																																								if ($_SESSION["confirmed"][$i]["savoirs"]["travail"]) {
+																																									echo "checked";
+																																								} ?>>
+											Travail <br>
+										</td>
+									</tr>
+								</tbody>
 
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</section>
+							</table>
 
-						</fieldset>
-					<?php
-					}
-					?>
+						</section>
 
-				</section>
 
+
+					</section>
+				<?php
+				}
+				?>
 
 
 			</form>
 
 		</section>
-
+		
 		<!-- Logout button -->
 		<a href="../logout.php" id="forgot_password">Déconnexion</a>
 

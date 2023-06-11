@@ -1,5 +1,6 @@
 <?php
 
+/*used in jeune.php when a user makes a reference request */
 class createRef
 {
 	private $mail;
@@ -20,7 +21,7 @@ class createRef
 
 	public function __construct($data)
 	{
-		/* assign default values */
+		/* assign values with given $data*/
 		$this->mail = htmlspecialchars(trim($data["mail"]));
 		$this->firstname = htmlspecialchars(trim($data["firstname"]));
 		$this->lastname = htmlspecialchars(trim($data["lastname"]));
@@ -36,7 +37,7 @@ class createRef
 		$this->login = $this->createLogin();
 		$this->encrypted_login = password_hash($this->login, PASSWORD_DEFAULT);
 
-		/* create a new referent */
+		/* create a new referent element */
 		$this->new_ref = [
 			"usertype" => "R",
 			"mail" => $this->mail,
@@ -56,6 +57,7 @@ class createRef
 		}
 	}
 
+	/*creates a random login based on Jeune and Referent emails. This is probably not secure, and kinda pointless */
 	private function createLogin()
 	{
 		/* create a table of characters */
@@ -84,8 +86,8 @@ class createRef
 	/* check if user has already made a request for this referent */
 	private function resquestExists()
 	{
-		foreach ($this->stored_refs as $referent) {
-			if ($this->mail == $referent["mail"] && $this->user == $referent["user"]) {
+		foreach ($this->stored_refs as $referent) { /*parse through referents */
+			if ($this->mail == $referent["mail"] && $this->user == $referent["user"]) { /* if referent and jeune matches */
 				$this->status = "Vous avez déjà envoyé une demande à ce référent.";
 				return true;
 			}
@@ -99,14 +101,14 @@ class createRef
 			$this->status = "Tous les champs sont obligatoires.";
 			return false;
 		} elseif (empty($this->user)) {
-			$this->status = "erreur innatendue (utilisateur non connecté ou erreur de savoirs-êtres";
+			$this->status = "erreur innatendue (utilisateur non connecté ou erreur de savoirs-êtres)";
 			return false;
 		} else {
 			return true;
 		}
 	}
 
-	/* writes the mail in a file under data/mail/ for now */
+	/* writes the mail in a file under data/mail/ for now. This is written as html*/
 	private function send_mail()
 	{
 		$filename = "../../data/mail/mail_ref/mail" . $this->mail . $this->user . ".html";
@@ -123,10 +125,10 @@ class createRef
 	/* inserts in the file and sends the mail */
 	private function insertRef()
 	{
-		if ($this->resquestExists() == FALSE) {
-			array_push($this->stored_refs, $this->new_ref);
-			if (file_put_contents($this->storage, json_encode($this->stored_refs, JSON_PRETTY_PRINT))) {
-				$this->send_mail();
+		if ($this->resquestExists() == FALSE) { /* check that the Jeune hasn't already made a request to this Referent */
+			array_push($this->stored_refs, $this->new_ref); /*add the new referent to the list of referents */
+			if (file_put_contents($this->storage, json_encode($this->stored_refs, JSON_PRETTY_PRINT))) { /*replace the file with the new array*/
+				$this->send_mail(); /*send mail */
 				return $this->status = "demande effectuée avec succès";
 			} else {
 				return $this->status = "une erreur est survenue, veuillez rééssayer";
@@ -135,6 +137,7 @@ class createRef
 	}
 }
 
+/* this loads an array of referents */
 class loadRefs
 {
 	private $user;
@@ -148,18 +151,18 @@ class loadRefs
 
 	public function __construct($data)
 	{
-
+		/*loads pending and confirmed referents into arrays */
 		$this->load_pending_refs = json_decode(file_get_contents($this->storage1), true);
 		$this->load_confirmed_refs = json_decode(file_get_contents($this->storage2), true);
-		/* assign default values */
+
 		$this->user = $data["user"];
 
+		/*filter referents/references to keep only those made by the specified Jeune */
 		$this->pending_refs = $this->searchRefs($this->load_pending_refs);
-
 		$this->confirmed_refs = $this->searchRefs($this->load_confirmed_refs);
-
+		/*remove overlapping requests */
 		$this->removedoubles();
-
+		/* put stuff in session */
 		$_SESSION["pending"] = $this->pending_refs;
 		$_SESSION["confirmed"] = $this->confirmed_refs;
 	}
@@ -187,13 +190,14 @@ class loadRefs
 				if ($confirmed["mail"] == $pending["mail"]) { /* compare every validated reference to every pending reference */
 
 					array_splice($this->pending_refs, $i, 1);
-					/* remove the pending reference from the list */
+					/* remove the pending reference from the list if they match */
 				}
 			}
 		}
 	}
 }
 
+/* request from a Jeune to a Consultant */
 class requestCons
 {
 	private $firstname;
@@ -207,7 +211,7 @@ class requestCons
 	private $new_cons;
 	private $filtered_refs;
 	private $storage_cons = "../../data/consultant.json";
-	
+
 	private $confirmed_refs;
 
 	public $errorcons;
@@ -217,21 +221,26 @@ class requestCons
 
 	public function __construct($data)
 	{
-
+		/* load jeune data */
 		$this->firstname = $data["firstname"];
 		$this->lastname = $data["lastname"];
+		$this->user = $data["user"];
+		/* load references */
 		$this->confirmed_refs = $data["refs"];
 		$this->to_keep = $data["ref_array"];
+		/* load consultant mail */
 		$this->consultant = $data["mail_cons"];
-		$this->user = $data["user"];
-
+		
+		/* load existing consultants */
 		$this->stored_cons = json_decode(file_get_contents($this->storage_cons), true);
+		/* create a new login for the consultant */
 		$this->login = $this->createLogin();
 		$this->encrypted_login = password_hash($this->login, PASSWORD_DEFAULT);
 
 		/* keeps only selected references*/
 		$this->filtered_refs = $this->filter_ref();
 
+		/* create the consultant object for the json file */
 		$this->new_cons = [
 			"usertype" => "C",
 			"login" => $this->encrypted_login,
@@ -241,14 +250,13 @@ class requestCons
 		];
 
 		/* adds consultant to json file */
-		if ($this->checkFieldValues()){
+		if ($this->checkFieldValues()) {
 			$this->insertCons();
 		}
-
 	}
 
 
-	/* check if user has already made a request for this referent */
+	/* check if user has already made a request for this referent  (this is roughly the same as above) */
 	private function resquestExists()
 	{
 		foreach ($this->stored_cons as $consultant) {
@@ -261,7 +269,7 @@ class requestCons
 
 
 
-	/* verifies no field was left empty */
+	/* verifies no field was left empty (this is roughly the same as above) */
 	private function checkFieldValues()
 	{
 		if (empty($this->consultant) || empty($this->to_keep) || empty($this->confirmed_refs)) {
@@ -272,7 +280,7 @@ class requestCons
 		}
 	}
 
-	/* same login as for referent */
+	/* create a login for the new consultant (this is roughly the same as above) */
 	private function createLogin()
 	{
 		/* create a table of characters */
@@ -302,12 +310,12 @@ class requestCons
 	{
 		$new_array = array();
 		foreach ($this->to_keep as $dunno) {
-			array_push($new_array, $this->confirmed_refs[($dunno+1)]);
+			array_push($new_array, $this->confirmed_refs[($dunno + 1)]);
 		}
 		return $new_array;
 	}
 
-	/* writes the mail in a file under data/mail/ for now */
+	/* writes the mail in a file under data/mail/ for now (this is roughly the same as above) */
 	private function send_mail()
 	{
 		$filename = "../../data/mail/mail_cons/mail" . $this->consultant . $this->user . ".html";
@@ -322,7 +330,7 @@ class requestCons
 	}
 
 
-	/* inserts in the file and sends the mail */
+	/* inserts in the file and sends the mail (this is roughly the same as above) */
 	private function insertCons()
 	{
 		if ($this->resquestExists() == FALSE) {
