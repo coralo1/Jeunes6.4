@@ -14,7 +14,7 @@
 		<img src="../../ressources/img/LOGOS_JEUNES_6_4.svg" alt="Logo Jeunes6.4">
 		<div id="haut_page-container">
 			<span id="nom_page-container">
-				<h1>ACUEIL12345</h1> <!-- Pour l'affichage CSS : à ne pas prndre en compte car invisible ! -->
+				<h1>ACCUEIL1234</h1> <!-- Pour l'affichage CSS : à ne pas prndre en compte car invisible ! -->
 			</span>
 			<span id="texte_haut-container">
 				<p>Pour faire de l'engagement une valeur</p>

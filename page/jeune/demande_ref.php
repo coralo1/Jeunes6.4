@@ -26,8 +26,7 @@
 		<a href="../partenaires/partenaires.html" class="nav-element">PARTENAIRES</a>
 	</nav>
 	<nav id="nav-container">
-		<a href="jeune.php" class="nav-element">Mes informations</a>
-		<a href="demande_ref.php" class="nav-element">Demande de référence</a>
+		<a href="jeune.php" class="nav-element">Demande de référence</a>
 		<a href="consultation_ref.php" class="nav-element">Mes références</a>
 		<a href="demande_consultant.php" class="nav-element">Demande de consultation</a>
 	</nav>

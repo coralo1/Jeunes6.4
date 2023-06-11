@@ -17,7 +17,7 @@ $refs = new loadRefs($data);
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<link rel="stylesheet" href="../../ressources/style_jeune.css">
+	<link rel="stylesheet" href="../../ressources/qstyle_jeune.css">
 	<script src="../../js/jquery-3.7.0.min.js"></script>
 	<script src="../../js/jeune.js" async></script>
 	<title>Page jeune</title>
@@ -50,24 +50,26 @@ $refs = new loadRefs($data);
 		Références en attente :
 		<section id="informations-container">
 			<?php
+			$i = -1;
 			foreach ($_SESSION["pending"] as $pending) {
+				$i++;
 			?>
 				<fieldset>
-					<legend>1 : </legend> <br>
+					<legend><?php echo ($i + 1) ?> : </legend> <br>
 					<label for="lastname">Nom :</label>
-					<input type="text" name="lastname" id="lastname" value="<?php echo $_SESSION["pending"][0]["lastname"] ?> " readonly><br>
+					<input type="text" name="lastname" id="lastname" value="<?php echo $_SESSION["pending"][$i]["lastname"] ?> " readonly><br>
 					<label for="firstname">Prénom :</label>
-					<input type="text" name="firstname" id="firstname" value="<?php echo $_SESSION["pending"][0]["firstname"] ?>" readonly> <br>
+					<input type="text" name="firstname" id="firstname" value="<?php echo $_SESSION["pending"][$i]["firstname"] ?>" readonly> <br>
 					<label for="birthdate">Date de naissance :</label>
-					<input type="date" name="birthdate" id="birthdate" value="<?php echo $_SESSION["pending"][0]["birthdate"] ?>" readonly> <br>
+					<input type="date" name="birthdate" id="birthdate" value="<?php echo $_SESSION["pending"][$i]["birthdate"] ?>" readonly> <br>
 					<label for="mail">Mail : </label>
-					<input type="email" name="mail" id="mail" value="<?php echo $_SESSION["pending"][0]["mail"] ?>" readonly> <br>
+					<input type="email" name="mail" id="mail" value="<?php echo $_SESSION["pending"][$i]["mail"] ?>" readonly> <br>
 					<label for="type">Type d'engagement : </label>
-					<input type="text" name="type" id="type" value="<?php echo $_SESSION["pending"][0]["type"] ?>" readonly> <br>
+					<input type="text" name="type" id="type" value="<?php echo $_SESSION["pending"][$i]["type"] ?>" readonly> <br>
 					<label for="engagement">Description de l'engagement : </label>
 					<textarea name="engagement" id="engagement" cols="30" rows="10" readonly><?php echo $_SESSION["pending"][0]["engagement"] ?></textarea> <br>
 					<label for="length">Durée de l'engagement : </label>
-					<input type="text" name="length" id="length" value="<?php echo $_SESSION["pending"][0]["length"] ?>" readonly> <br>
+					<input type="text" name="length" id="length" value="<?php echo $_SESSION["pending"][$i]["length"] ?>" readonly> <br>
 					<section id="checkbox-container">
 						<table id="table-checkbox" border="1px black">
 							<legend><strong>Savoirs-être</strong></legend>
@@ -80,56 +82,56 @@ $refs = new loadRefs($data);
 								<tr>
 									<td>
 										<input type="checkbox" name="autonomie" value="1" disabled <?php
-																																								if ($_SESSION["pending"][0]["autonomie"]) {
+																																								if ($_SESSION["pending"][$i]["autonomie"]) {
 																																									echo "checked";
 																																								}; ?>>
 										Autonome <br>
 										<input type="checkbox" name="analyse" value="1" disabled <?php
-																																							if ($_SESSION["pending"][0]["analyse"]) {
+																																							if ($_SESSION["pending"][$i]["analyse"]) {
 																																								echo "checked";
 																																							} ?>>
 										Capable d'analyse et de synthèse <br>
 										<input type="checkbox" name="ecoute" value="1" disabled <?php
-																																						if ($_SESSION["pending"][0]["ecoute"]) {
+																																						if ($_SESSION["pending"][$i]["ecoute"]) {
 																																							echo "checked";
 																																						} ?>>
 										A l'écoute <br>
 										<input type="checkbox" name="organise" value="1" disabled <?php
-																																							if ($_SESSION["pending"][0]["organise"]) {
+																																							if ($_SESSION["pending"][$i]["organise"]) {
 																																								echo "checked";
 																																							} ?>>
 										Organisé <br>
 										<input type="checkbox" name="passionne" value="1" disabled <?php
-																																								if ($_SESSION["pending"][0]["passionne"]) {
+																																								if ($_SESSION["pending"][$i]["passionne"]) {
 																																									echo "checked";
 																																								} ?>>
 										Passionné <br>
 										<input type="checkbox" name="fiable" value="1" disabled <?php
-																																						if ($_SESSION["pending"][0]["fiable"]) {
+																																						if ($_SESSION["pending"][$i]["fiable"]) {
 																																							echo "checked";
 																																						} ?>>Fiable <br>
 										<input type="checkbox" name="patient" value="1" disabled <?php
-																																							if ($_SESSION["pending"][0]["patient"]) {
+																																							if ($_SESSION["pending"][$i]["patient"]) {
 																																								echo "checked";
 																																							} ?>>
 										Patient <br>
 										<input type="checkbox" name="reflechi" value="1" disabled <?php
-																																							if ($_SESSION["pending"][0]["reflechi"]) {
+																																							if ($_SESSION["pending"][$i]["reflechi"]) {
 																																								echo "checked";
 																																							} ?>>
 										Réfléchi <br>
 										<input type="checkbox" name="responsable" value="1" disabled <?php
-																																									if ($_SESSION["pending"][0]["responsable"]) {
+																																									if ($_SESSION["pending"][$i]["responsable"]) {
 																																										echo "checked";
 																																									} ?>>
 										Responable<br>
 										<input type="checkbox" name="sociable" value="1" disabled <?php
-																																							if ($_SESSION["pending"][0]["sociable"]) {
+																																							if ($_SESSION["pending"][$i]["sociable"]) {
 																																								echo "checked";
 																																							} ?>>
 										Sociable <br>
 										<input type="checkbox" name="optimiste" value="1" disabled <?php
-																																								if ($_SESSION["pending"][0]["optimiste"]) {
+																																								if ($_SESSION["pending"][$i]["optimiste"]) {
 																																									echo "checked";
 																																								} ?>>
 										Optimiste <br>
