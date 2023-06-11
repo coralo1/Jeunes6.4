@@ -6,7 +6,6 @@ session_start();
 if ($_SESSION["usertype"] != "R") {
 	header("Location:../login/login.php");
 }
-
 /* update referent information */
 if (isset($_POST["update"])) {
 	$update_data = array("mail" => $_POST["mail"], "lastname" => $_POST["lastname"], "firstname" => $_POST["firstname"], "phone" => $_POST["phone"], "birthdate" => $_POST["birthdate"], "user" => $_SESSION["user"]);
@@ -245,14 +244,17 @@ if (isset($_POST["confirm"])) {
 
 
 		<p class="error">
-			<?php echo @$baba->error ?>
+			<?php if(isset($baba->error)){
+				echo @$baba->error;
+				echo '<a href="success.php" id="forgot_password">Remerciements</a>';
+			}?>
 		</p>
 		<p class="success">
 			<?php if (isset($baba->success)) {
 				/* if reference was successful, leave the page and send a thanks message*/
 				echo '<meta http-equiv="refresh" content="0;url=success.php">';
 			}
-			?>>
+			?>
 		</p>
 
 

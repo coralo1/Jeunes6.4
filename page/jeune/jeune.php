@@ -30,7 +30,6 @@ if ($_SESSION["usertype"] != "J") {
 if (isset($_POST['update'])) {
 	$storage = "../../data/jeune.json";
 	$users = json_decode(file_get_contents($storage), true); /* loads users */
-	var_dump($_POST);
 	echo "<br><br>";
 	$i = -1;
 	foreach ($users as $user) { /* parses user array until it matches */
@@ -124,7 +123,7 @@ if (isset($_POST['update'])) {
 				$savoirs["optimiste"] = 0;
 			}
 			$user["savoirs"] = $savoirs;
-			$_SESSION["savoirs"]= $savoirs;
+			$_SESSION["savoirs"] = $savoirs;
 
 			$replacement = array($i => $user); /*creates an array with only the user in his position in the json file */
 		}
@@ -162,19 +161,19 @@ if (isset($_POST["submit"])) {
 	/* this should send a mail but smtp server is too hard to setup */
 	//$target = $_POST["ref_mail"];
 	/*
-										$mail->addAddress($_POST["ref_mail"], 'test');
-										$phpmailer->Subject = "demande de référencement de " . $_SESSION["firstname"] . " " . $_SESSION["lastname"] . " sur la plateforme Jeunes 6.4";
-										$phpmailer->isHTML(true);
+														  $mail->addAddress($_POST["ref_mail"], 'test');
+														  $phpmailer->Subject = "demande de référencement de " . $_SESSION["firstname"] . " " . $_SESSION["lastname"] . " sur la plateforme Jeunes 6.4";
+														  $phpmailer->isHTML(true);
 
-										$message = '<html><body>';
-										$message .= 'Bonjour, \n\n';
-										$message .= '<?php $_SESSION["firstname"] ?>' . ' ' . '$_SESSION["lastname"]' . ' vous a envoyé une demande de référencement sur la plateforme jeunes 6.4.\n';
-										$message .= '<a href="http://localhost:8080/page/referent/referent.php">Cliquez ici pour y accéder</a>';
-										$message .= '</body></html>';
-										$phpmailer->Body = $message;
+														  $message = '<html><body>';
+														  $message .= 'Bonjour, \n\n';
+														  $message .= '<?php $_SESSION["firstname"] ?>' . ' ' . '$_SESSION["lastname"]' . ' vous a envoyé une demande de référencement sur la plateforme jeunes 6.4.\n';
+														  $message .= '<a href="http://localhost:8080/page/referent/referent.php">Cliquez ici pour y accéder</a>';
+														  $message .= '</body></html>';
+														  $phpmailer->Body = $message;
 
-										mail($target, $subject, $message, $headers);
-										*/
+														  mail($target, $subject, $message, $headers);
+														  */
 }
 
 ?>
@@ -249,7 +248,8 @@ if (isset($_POST["submit"])) {
 					<input type="text" name="lastname" id="lastname" value="<?php echo $_SESSION["lastname"] ?>"> <br>
 
 					<label for="firstname">Prénom :</label>
-					<input type="text" name="firstname" id="firstname" value="<?php echo $_SESSION["firstname"] ?>"> <br>
+					<input type="text" name="firstname" id="firstname" value="<?php echo $_SESSION["firstname"] ?>">
+					<br>
 
 					<label for="birthdate">Date de naissance :</label>
 					<input type="date" name="birthdate" id="birthdate" value="<?php echo $_SESSION["birthdate"] ?>">
@@ -275,13 +275,20 @@ if (isset($_POST["submit"])) {
 							<legend>DEMANDE DE RÉFÉRENCE :</legend>
 
 							<label for="type">Milieu de l'engagement :</label>
-							<input type="text" name="type" id="type" value="<?php echo $_SESSION["type"] ?>"> <br>
+							<input type="text" name="type" id="type" value="<?php if (isset($_SESSION["type"])) {
+								echo $_SESSION["type"];
+							} ?>"> <br>
 
 							<label for="engagement">Mon engamement :</label>
-							<textarea name="engagement" id="engagement" cols="1" rows="3"><?php echo $_SESSION["engagement"] ?></textarea> <br>
+							<textarea name="engagement" id="engagement" cols="1" rows="3"><?php if (isset($_SESSION["engagement"])) {
+								echo $_SESSION["engagement"];
+							} ?></textarea>
+							<br>
 
 							<label for="length">Durée de l'engagement :</label>
-							<input type="text" name="length" id="length" value="<?php echo $_SESSION["length"] ?>"> <br>
+							<input type="text" name="length" id="length" value="<?php if (isset($_SESSION["length"])) {
+								echo $_SESSION["length"];
+							} ?>"> <br>
 
 							<label for="ref_lastname">Nom du référent :</label>
 							<input type="text" name="ref_lastname" id="ref_lastname"> <br>
@@ -312,49 +319,85 @@ if (isset($_POST["submit"])) {
 								<tr>
 									<td>
 										<input type="checkbox" name="autonomie" value="1" <?php
-																																							if ($_SESSION["savoirs"]["autonomie"]) {
-																																								echo "checked";
-																																							}; ?>>Autonome <br>
+										if (isset($_SESSION["savoirs"]["autonomie"])) {
+											if ($_SESSION["savoirs"]["autonomie"]) {
+												echo "checked";
+											}
+										}
+										; ?>>Autonome <br>
 										<input type="checkbox" name="analyse" value="1" <?php
-																																							if ($_SESSION["savoirs"]["analyse"]) {
-																																								echo "checked";
-																																							}; ?>>Capable d'analyse et de synthèse <br>
+										if (isset($_SESSION["savoirs"]["analyse"])) {
+											if ($_SESSION["savoirs"]["analyse"]) {
+												echo "checked";
+											}
+										}
+										; ?>>Capable
+										d'analyse
+										et de synthèse <br>
 										<input type="checkbox" name="ecoute" value="1" <?php
-																																							if ($_SESSION["savoirs"]["ecoute"]) {
-																																								echo "checked";
-																																							}; ?>>A l'écoute <br>
+										if (isset($_SESSION["savoirs"]["ecoute"])) {
+											if ($_SESSION["savoirs"]["ecoute"]) {
+												echo "checked";
+											}
+										}
+										; ?>>A l'écoute <br>
 										<input type="checkbox" name="organise" value="1" <?php
-																																							if ($_SESSION["savoirs"]["organise"]) {
-																																								echo "checked";
-																																							}; ?>>Organisé <br>
+										if (isset($_SESSION["savoirs"]["organise"])) {
+											if ($_SESSION["savoirs"]["organise"]) {
+												echo "checked";
+											}
+										}
+										; ?>>Organisé <br>
 										<input type="checkbox" name="passionne" value="1" <?php
-																																							if ($_SESSION["savoirs"]["passionne"]) {
-																																								echo "checked";
-																																							}; ?>>Passionné <br>
+										if (isset($_SESSION["savoirs"]["passionne"])) {
+											if ($_SESSION["savoirs"]["passionne"]) {
+												echo "checked";
+											}
+										}
+										; ?>>Passionné
+										<br>
 										<input type="checkbox" name="fiable" value="1" <?php
-																																							if ($_SESSION["savoirs"]["fiable"]) {
-																																								echo "checked";
-																																							}; ?>>Fiable <br>
+										if (isset($_SESSION["savoirs"]["fiable"])) {
+											if ($_SESSION["savoirs"]["fiable"]) {
+												echo "checked";
+											}
+										}
+										; ?>>Fiable <br>
 										<input type="checkbox" name="patient" value="1" <?php
-																																							if ($_SESSION["savoirs"]["patient"]) {
-																																								echo "checked";
-																																							}; ?>>Patient <br>
+										if (isset($_SESSION["savoirs"]["patient"])) {
+											if ($_SESSION["savoirs"]["patient"]) {
+												echo "checked";
+											}
+										}
+										; ?>>Patient <br>
 										<input type="checkbox" name="reflechi" value="1" <?php
-																																							if ($_SESSION["savoirs"]["reflechi"]) {
-																																								echo "checked";
-																																							}; ?>>Réfléchi <br>
+										if (isset($_SESSION["savoirs"]["reflechi"])) {
+											if ($_SESSION["savoirs"]["reflechi"]) {
+												echo "checked";
+											}
+										}
+										; ?>>Réfléchi <br>
 										<input type="checkbox" name="responsable" value="1" <?php
-																																							if ($_SESSION["savoirs"]["responsable"]) {
-																																								echo "checked";
-																																							}; ?>>Responable<br>
+										if (isset($_SESSION["savoirs"]["responsable"])) {
+											if ($_SESSION["savoirs"]["responsable"]) {
+												echo "checked";
+											}
+										}
+										; ?>>Responable<br>
 										<input type="checkbox" name="sociable" value="1" <?php
-																																							if ($_SESSION["savoirs"]["sociable"]) {
-																																								echo "checked";
-																																							}; ?>>Sociable <br>
+										if (isset($_SESSION["savoirs"]["sociable"])) {
+											if ($_SESSION["savoirs"]["sociable"]) {
+												echo "checked";
+											}
+										}
+										; ?>>Sociable <br>
 										<input type="checkbox" name="optimiste" value="1" <?php
-																																							if ($_SESSION["savoirs"]["optimiste"]) {
-																																								echo "checked";
-																																							}; ?>>Optimiste <br>
+										if (isset($_SESSION["savoirs"]["optimiste"])) {
+											if ($_SESSION["savoirs"]["optimiste"]) {
+												echo "checked";
+											}
+										}
+										; ?>>Optimiste <br>
 									</td>
 								</tr>
 							</tbody>
@@ -368,10 +411,10 @@ if (isset($_POST["submit"])) {
 
 					<!-- Messages -->
 					<p class="status">
-						<?php echo @$status; 
+						<?php echo @$status;
 						echo @$update->status;
 						?>
-						
+
 					</p>
 					<!-- Fin messages  -->
 

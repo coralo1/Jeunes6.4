@@ -2,7 +2,7 @@
 <?php
 
 session_start();
-if (!isset($_SESSION["userID"])) { /* auto redirect if user not logged in */
+if ($_SESSION["usertype"] != "J") {
 	header("Location:../login/login.php");
 }
 

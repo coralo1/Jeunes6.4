@@ -1,5 +1,6 @@
 <?php
 /*makes sure the user is Referent */
+session_start();
 if ($_SESSION["usertype"] != "R"){
 	header("Location:../login/login.php");
 }

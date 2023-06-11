@@ -1,74 +1,50 @@
 [
-  {
-    "usertype": "reference",
-    "mail": "danseur@fou.fr",
-    "firstname": "j&#039;aime les fraises",
-    "lastname": "haha",
-    "user": "test@maison.fr",
-    "phone": "0102030405",
-    "birthdate": "7654-09-08",
-    "presentation": "je danse tr\u00e8s bien",
-    "length": "pendant 6 mois",
-    "comment": "je confirme qu'il danse tr\u00e8s bien",
-    "savoirs": {
-      "ponctuel": 0,
-      "confiant": 0,
-      "serieux": 0,
-      "honnete": 0,
-      "tolerant": 5,
-      "bienveillant": 0,
-      "respect": 5,
-      "juste": 0,
-      "impartial": 0,
-      "travail": 0
+    {
+        "usertype": "reference",
+        "mail": "maitre@echec.fr",
+        "firstname": "d&#039;\u00e9checs",
+        "lastname": "maitre",
+        "user": "compte@test.fr",
+        "phone": "numeromaitreechec",
+        "birthdate": "6465-02-02",
+        "presentation": "je suis le maitre d'\u00e9checs",
+        "length": "deux derni\u00e8res ann\u00e9es",
+        "comment": "j'ai \u00e9t\u00e9 \u00e0 ses c\u00f4t\u00e9s et c'est vraiment une machine il retient tous les sc\u00e9narios",
+        "savoirs": {
+            "ponctuel": 0,
+            "confiant": 1,
+            "serieux": 1,
+            "honnete": 1,
+            "tolerant": 0,
+            "bienveillant": 0,
+            "respect": 0,
+            "juste": 0,
+            "impartial": 0,
+            "travail": 1
+        }
+    },
+    {
+        "usertype": "reference",
+        "mail": "ref4@echec.fr",
+        "firstname": "pas de vent cette fois",
+        "lastname": "ref4",
+        "user": "compte@test.fr",
+        "phone": "num\u00e9rodos",
+        "birthdate": "2023-03-31",
+        "presentation": "jsuis fort",
+        "length": "28h",
+        "comment": "zoumba",
+        "savoirs": {
+            "ponctuel": 0,
+            "confiant": 0,
+            "serieux": 0,
+            "honnete": 0,
+            "tolerant": 0,
+            "bienveillant": 0,
+            "respect": 0,
+            "juste": 1,
+            "impartial": 1,
+            "travail": 1
+        }
     }
-  },
-  {
-    "usertype": "reference",
-    "mail": "tennis@tennis.tennis",
-    "firstname": "g\u00e9rard",
-    "lastname": "pierre",
-    "user": "test@maison.fr",
-    "phone": "0101010101",
-    "birthdate": "0202-02-02",
-    "presentation": "je fais du tennis",
-    "length": "1 an",
-    "comment": "oui il fait du tennis",
-    "savoirs": {
-      "ponctuel": 1,
-      "confiant": 0,
-      "serieux": 0,
-      "honnete": 0,
-      "tolerant": 0,
-      "bienveillant": 0,
-      "respect": 0,
-      "juste": 0,
-      "impartial": 0,
-      "travail": 0
-    }
-  },
-  {
-    "usertype": "reference",
-    "mail": "ref@maj.hi",
-    "firstname": "maj_ref",
-    "lastname": "ref_maj",
-    "user": "test@maison.fr",
-    "phone": "g que un fixe",
-    "birthdate": "8080-08-08",
-    "presentation": "c'est un jeune s\u00e9rieux",
-    "length": "28h",
-    "comment": "commentaire",
-    "savoirs": {
-      "ponctuel": 1,
-      "confiant": 1,
-      "serieux": 0,
-      "honnete": 1,
-      "tolerant": 1,
-      "bienveillant": 0,
-      "respect": 0,
-      "juste": 0,
-      "impartial": 0,
-      "travail": 0
-    }
-  }
 ]
