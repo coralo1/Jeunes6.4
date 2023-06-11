@@ -29,10 +29,10 @@ $refs = new loadRefs($data);
 		<img src="../../ressources/img/LOGOS_JEUNES_6_4.svg" alt="Logo Jeunes6.4">
 		<div id="haut_page-container">
 			<span id="nom_page-container">
-		<h1>JEUNE</h1>
+				<h1>JEUNE</h1>
 			</span>
 			<span id="texte_haut-container">
-		<p>Je donne de la valeur à mon engagement</p>
+				<p>Je donne de la valeur à mon engagement</p>
 			</span>
 		</div>
 	</header>
@@ -68,102 +68,25 @@ $refs = new loadRefs($data);
 				$i++;
 			?>
 
-			<section id="vos-informations-container">
+				<section id="vos-informations-container">
 
-				<section id="infos_jeune">
+					<section id="infos_jeune">
 
-					<!-- <legend><?php echo ($i + 1) ?> :</legend> -->
-					<legend>TEST</legend>
+						<!-- <legend><?php echo ($i + 1) ?> :</legend> -->
+						<legend>TEST</legend>
 
-					<label for="lastname">Nom :</label>
-					<input type="text" name="lastname" id="lastname" value="<?php echo $_SESSION["pending"][$i]["lastname"] ?> " readonly><br>
-					<label for="firstname">Prénom :</label>
-					<input type="text" name="firstname" id="firstname" value="<?php echo $_SESSION["pending"][$i]["firstname"] ?>" readonly> <br>
-					<label for="birthdate">Date de naissance :</label>
-					<input type="date" name="birthdate" id="birthdate" value="<?php echo $_SESSION["pending"][$i]["birthdate"] ?>" readonly> <br>
-					<label for="mail">Mail : </label>
-					<input type="email" name="mail" id="mail" value="<?php echo $_SESSION["pending"][$i]["mail"] ?>" readonly> <br>
-				
-				</section>
-				
-					<section id="checkbox-container">
-
-					<table id="table-checkbox">
-
-						<legend>Mes savoirs-être</legend>
-
-							<thead>
-								<tr>
-									<td>Je suis...</td>
-								</tr>
-							</thead>
-
-							<tbody>
-								<tr>
-									<td>
-										<input type="checkbox" name="autonomie" value="1" disabled <?php
-																																								if ($_SESSION["pending"][$i]["autonomie"]) {
-																																									echo "checked";
-																																								}; ?>>
-										Autonome <br>
-										<input type="checkbox" name="analyse" value="1" disabled <?php
-																																							if ($_SESSION["pending"][$i]["analyse"]) {
-																																								echo "checked";
-																																							} ?>>
-										Capable d'analyse et de synthèse <br>
-										<input type="checkbox" name="ecoute" value="1" disabled <?php
-																																						if ($_SESSION["pending"][$i]["ecoute"]) {
-																																							echo "checked";
-																																						} ?>>
-										A l'écoute <br>
-										<input type="checkbox" name="organise" value="1" disabled <?php
-																																							if ($_SESSION["pending"][$i]["organise"]) {
-																																								echo "checked";
-																																							} ?>>
-										Organisé <br>
-										<input type="checkbox" name="passionne" value="1" disabled <?php
-																																								if ($_SESSION["pending"][$i]["passionne"]) {
-																																									echo "checked";
-																																								} ?>>
-										Passionné <br>
-										<input type="checkbox" name="fiable" value="1" disabled <?php
-																																						if ($_SESSION["pending"][$i]["fiable"]) {
-																																							echo "checked";
-																																						} ?>>Fiable <br>
-										<input type="checkbox" name="patient" value="1" disabled <?php
-																																							if ($_SESSION["pending"][$i]["patient"]) {
-																																								echo "checked";
-																																							} ?>>
-										Patient <br>
-										<input type="checkbox" name="reflechi" value="1" disabled <?php
-																																							if ($_SESSION["pending"][$i]["reflechi"]) {
-																																								echo "checked";
-																																							} ?>>
-										Réfléchi <br>
-										<input type="checkbox" name="responsable" value="1" disabled <?php
-																																									if ($_SESSION["pending"][$i]["responsable"]) {
-																																										echo "checked";
-																																									} ?>>
-										Responable<br>
-										<input type="checkbox" name="sociable" value="1" disabled <?php
-																																							if ($_SESSION["pending"][$i]["sociable"]) {
-																																								echo "checked";
-																																							} ?>>
-										Sociable <br>
-										<input type="checkbox" name="optimiste" value="1" disabled <?php
-																																								if ($_SESSION["pending"][$i]["optimiste"]) {
-																																									echo "checked";
-																																								} ?>>
-										Optimiste <br>
-									</td>
-								</tr>
-							</tbody>
-
-						</table>
+						<label for="lastname">Nom :</label>
+						<input type="text" name="lastname" id="lastname" value="<?php echo $_SESSION["pending"][$i]["lastname"] ?> " readonly><br>
+						<label for="firstname">Prénom :</label>
+						<input type="text" name="firstname" id="firstname" value="<?php echo $_SESSION["pending"][$i]["firstname"] ?>" readonly> <br>
+						<label for="birthdate">Date de naissance :</label>
+						<input type="date" name="birthdate" id="birthdate" value="<?php echo $_SESSION["pending"][$i]["birthdate"] ?>" readonly> <br>
+						<label for="mail">Mail : </label>
+						<input type="email" name="mail" id="mail" value="<?php echo $_SESSION["pending"][$i]["mail"] ?>" readonly> <br>
 
 					</section>
-
-			</section>
+					
+				</section>
 
 			<?php
 			}
