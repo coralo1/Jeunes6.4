@@ -52,6 +52,7 @@ if (isset($_POST["submit"]) && !isset($_POST["ref_select"])) { /* if you  submit
 		<a href="../login/login.php" class="nav_p-element">RÉFÉRENT</a>
 		<a href="../login/login.php" class="nav_p-element">CONSULTANT</a>
 		<a href="../partenaires/partenaires.html" class="nav_p-element">PARTENAIRES</a>
+		<a href="../accueil/accueil2.php" class="nav_p-element">ACCUEIL</a>
 	</nav>
 
 
@@ -85,8 +86,7 @@ if (isset($_POST["submit"]) && !isset($_POST["ref_select"])) { /* if you  submit
 		
 
 					
-					<!-- <legend><input type="checkbox" id="ref<?php echo ($i + 1) ?>" name="ref_select[]" value="<?php echo ($i - 1) ?>"><?php echo ($i + 1) ?>: </legend> -->
-					<legend>TEST</legend>
+					<legend><input type="checkbox" id="ref<?php echo ($i + 1) ?>" name="ref_select[]" value="<?php echo ($i - 1) ?>"><?php echo ($i + 1) ?>: </legend>
 
 							<label for="lastname">Nom :</label>
 							<input type="text" name="lastname" id="lastname" value="<?php echo $_SESSION["confirmed"][$i]["lastname"] ?>" readonly> <br>

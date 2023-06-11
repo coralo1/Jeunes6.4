@@ -25,13 +25,14 @@ class updateRef
 		/* load pre-existing referents */
 		$this->stored_refs = json_decode(file_get_contents($this->storage), true);
 
+		/*update data */
 		if ($this->checkFieldValues()) {
 			$this->updateRef();
 		}
 	}
 
 
-	/* verifies no field was left empty */
+	/* verifies no field was left empty, this is pretty straight forward */
 	private function checkFieldValues()
 	{
 		if (empty($this->firstname) || empty($this->lastname) || empty($this->phone) || empty($this->birthdate)) {
@@ -53,6 +54,7 @@ class updateRef
 		foreach ($this->stored_refs as $referent) {
 			$i++;
 			if ($this->mail == $referent["mail"] && $this->user == $referent["user"]) {
+				/*load data into $referent (array from file) and session */
 				$referent["firstname"] = $this->firstname;
 				$_SESSION["firstname"] = $this->firstname;
 				$referent["lastname"] = $this->lastname;
@@ -96,6 +98,7 @@ class confirmRef
 
 	public function __construct($data)
 	{
+		/*load data */
 		$this->mail = $data["mail"];
 		$this->lastname = $data["lastname"];
 		$this->firstname = $data["firstname"];
@@ -106,6 +109,8 @@ class confirmRef
 		$this->user = $data["user"];
 		$this->comment = $data["comment"];
 		$this->savoirs = $data["confirm_savoirs"];
+
+		/* loads already existing references from file */
 		$this->stored_refs = json_decode(file_get_contents($this->storage), true);
 
 		/* how the reference will be stored in the file */
@@ -130,7 +135,7 @@ class confirmRef
 	private function referenceExists()
 	{
 		foreach ($this->stored_refs as $reference) { /* parse references */
-			if ($this->mail == $reference["mail"] && $this->user == $reference["user"]) { /* if there's already a reference for this referent for this user */
+			if ($this->mail == $reference["mail"] && $this->user == $reference["user"]) { /* if there's already a reference for this referent & for this user */
 				$this->error = "Vous avez déjà validé une référence pour cet utilisateur."; /* give an error */
 				return true;
 			}
@@ -139,7 +144,7 @@ class confirmRef
 	private function createRef()
 	{
 		if ($this->referenceExists() == FALSE) {
-			array_push($this->stored_refs, $this->new_ref);
+			array_push($this->stored_refs, $this->new_ref); /* this works same as it does in other places */
 			if (file_put_contents($this->storage, json_encode($this->stored_refs, JSON_PRETTY_PRINT))) {
 				$this->success = "référence validée";
 				return $this->success;

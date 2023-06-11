@@ -45,6 +45,7 @@ $refs = new loadRefs($data);
 		<a href="../login/login.php" class="nav_p-element">RÉFÉRENT</a>
 		<a href="../login/login.php" class="nav_p-element">CONSULTANT</a>
 		<a href="../partenaires/partenaires.html" class="nav_p-element">PARTENAIRES</a>
+		<a href="../accueil/accueil2.php" class="nav_p-element">ACCUEIL</a>
 	</nav>
 
 
@@ -56,6 +57,8 @@ $refs = new loadRefs($data);
 	</nav>
 
 	<p id="description-page">Décrivez votre expérience et mettez en avant ce que vous en avez retiré.</p>
+	<!-- Logout button -->
+	<a href="../logout.php" id="forgot_password">Déconnexion</a>
 
 
 	<div id="elements-container">
@@ -74,8 +77,7 @@ $refs = new loadRefs($data);
 
 					<section id="infos_jeune">
 
-						<!-- <legend><?php echo ($i + 1) ?> :</legend> -->
-						<legend>TEST</legend>
+						<legend><?php echo ($i + 1) ?> :</legend>
 
 						<label for="lastname">Nom :</label>
 						<input type="text" name="lastname" id="lastname" value="<?php echo $_SESSION["pending"][$i]["lastname"] ?> " readonly><br>
@@ -114,8 +116,7 @@ $refs = new loadRefs($data);
 
 
 						<section id="demande_validee">
-							<!-- <legend><?php echo ($i + 1) ?>: </legend> -->
-							<legend>TEST</legend>
+							<legend><?php echo ($i + 1) ?>: </legend>
 
 							<label for="lastname">Nom :</label>
 							<input type="text" name="lastname" id="lastname" value="<?php echo $_SESSION["confirmed"][$i]["lastname"] ?>" readonly> <br>
@@ -224,10 +225,10 @@ $refs = new loadRefs($data);
 
 		</section>
 		
-		<!-- Logout button -->
-		<a href="../logout.php" id="forgot_password">Déconnexion</a>
+		
 
 	</div>
+	
 
 </body>
 

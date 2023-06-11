@@ -57,7 +57,7 @@ if (isset($_POST['update'])) {
 
 			$savoirs = array();
 
-			if (isset($_POST['autonomie'])) {
+			if (isset($_POST['autonomie'])) { /* for checkboxes you have to make sure it's set first, otherwise you get errors cause the computer doesn't know $_POST["//checkbox"] */
 				$savoirs["autonomie"] = 1;
 			} else {
 				$savoirs["autonomie"] = 0;
@@ -130,7 +130,7 @@ if (isset($_POST['update'])) {
 	}
 
 	$updated_users = array_replace($users, $replacement); /*replaces the array containing all users with the previous array */
-	$encoded_data = json_encode($updated_users, JSON_PRETTY_PRINT); /* puts everything back into the json */
+	$encoded_data = json_encode($updated_users, JSON_PRETTY_PRINT); /* puts the new updated array back into the json */
 	if (file_put_contents($storage, $encoded_data)) {
 		$status = "profil mis à jour";
 	} else {
@@ -141,13 +141,13 @@ if (isset($_POST['update'])) {
 
 
 
-/* referent function */
+/* referent request */
 if (isset($_POST["submit"])) {
 	//$user = new updateRef($_POST['email'], $_POST['password']); /* call for login */
 
 
 
-	$data = array("user" => $_SESSION["userID"], "type" => $_POST["type"], "engagement" => $_POST["engagement"], "length" => $_POST["length"], "user_firstname" => $_SESSION["firstname"], "user_lastname" => $_SESSION["lastname"], "firstname" => $_POST["ref_firstname"], "lastname" => $_POST["ref_lastname"], "mail" => $_POST["ref_mail"]);
+	$data = array("user" => $_SESSION["userID"], "type" => $_POST["type"], "engagement" => $_POST["engagement"], "length" => $_POST["length"], "user_firstname" => $_SESSION["firstname"], "user_lastname" => $_SESSION["lastname"], "firstname" => $_POST["ref_firstname"], "lastname" => $_POST["ref_lastname"], "mail" => $_POST["ref_mail"]); /* create an array with every needed value to be sent to the function */
 
 	$update = new createRef($data);
 
@@ -158,7 +158,7 @@ if (isset($_POST["submit"])) {
 
 
 
-	/* this should send a mail but smtp server is too hard to setup */
+	/* this should send a mail but I coudln't setup a smtp server so we just write a html page instead. Provided a correctly setup SMTP server, this code might work, or it might not.*/
 	//$target = $_POST["ref_mail"];
 	/*
 														  $mail->addAddress($_POST["ref_mail"], 'test');
@@ -205,7 +205,7 @@ if (isset($_POST["submit"])) {
 <body>
 
 	<header>
-		<img src="../../ressources/img/LOGOS_JEUNES_6_4.svg" alt="Logo Jeunes6.4">
+			<img src="../../ressources/img/LOGOS_JEUNES_6_4.svg" alt="Logo Jeunes6.4">
 		<div id="haut_page-container">
 			<span id="nom_page-container">
 				<h1>JEUNE</h1>
@@ -223,6 +223,7 @@ if (isset($_POST["submit"])) {
 		<a href="../login/login.php" class="nav_p-element">RÉFÉRENT</a>
 		<a href="../login/login.php" class="nav_p-element">CONSULTANT</a>
 		<a href="../partenaires/partenaires.html" class="nav_p-element">PARTENAIRES</a>
+		<a href="../accueil/accueil2.php" class="nav_p-element">ACCUEIL</a>
 	</nav>
 
 
@@ -319,7 +320,7 @@ if (isset($_POST["submit"])) {
 								<tr>
 									<td>
 										<input type="checkbox" name="autonomie" value="1" <?php
-										if (isset($_SESSION["savoirs"]["autonomie"])) {
+										if (isset($_SESSION["savoirs"]["autonomie"])) { /* autofills the checkbox from reading file */
 											if ($_SESSION["savoirs"]["autonomie"]) {
 												echo "checked";
 											}

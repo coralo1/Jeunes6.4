@@ -46,5 +46,17 @@
         "user": "compte@test.fr",
         "phone": "num\u00e9rodos",
         "birthdate": "2023-03-31"
+    },
+    {
+        "usertype": "R",
+        "mail": "jean@tarte.fr",
+        "login": "$2y$10$34YPIGTBfMp4JojxatG\/8uAkCziVXzVGuBJYZQctaAnDG0mvR5XvO",
+        "firstname": "tarteaa",
+        "lastname": "jeanaa",
+        "user_firstname": "\u00e9checs",
+        "user_lastname": "machine",
+        "user": "compte@test.fr",
+        "phone": "yeuzayeuiaz",
+        "birthdate": "1111-02-03"
     }
 ]

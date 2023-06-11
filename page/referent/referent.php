@@ -8,13 +8,15 @@ if ($_SESSION["usertype"] != "R") {
 }
 /* update referent information */
 if (isset($_POST["update"])) {
-	$update_data = array("mail" => $_POST["mail"], "lastname" => $_POST["lastname"], "firstname" => $_POST["firstname"], "phone" => $_POST["phone"], "birthdate" => $_POST["birthdate"], "user" => $_SESSION["user"]);
+	$update_data = array("mail" => $_POST["mail"], "lastname" => $_POST["lastname"], "firstname" => $_POST["firstname"], "phone" => $_POST["phone"], "birthdate" => $_POST["birthdate"], "user" => $_SESSION["user"]); /*data to send in the class */
 	$baba = new updateRef($update_data);
 }
 
+/* this is to confirm a reference */
 if (isset($_POST["confirm"])) {
 	$confirm_savoirs = array();
 
+	/*checkboxes */
 	if (isset($_POST['ponctuel'])) {
 		$confirm_savoirs["ponctuel"] = 1;
 	} else {
@@ -76,7 +78,7 @@ if (isset($_POST["confirm"])) {
 	}
 
 
-	$confirm_data = array("mail" => $_SESSION["mail"], "lastname" => $_SESSION["lastname"], "firstname" => $_SESSION["firstname"], "phone" => $_SESSION["phone"], "birthdate" => $_SESSION["birthdate"], "user" => $_SESSION["user"], "comment" => $_POST["comment"], "confirm_savoirs" => $confirm_savoirs, "length" => $_POST["length"], "presentation" => $_POST["presentation"]);
+	$confirm_data = array("mail" => $_SESSION["mail"], "lastname" => $_SESSION["lastname"], "firstname" => $_SESSION["firstname"], "phone" => $_SESSION["phone"], "birthdate" => $_SESSION["birthdate"], "user" => $_SESSION["user"], "comment" => $_POST["comment"], "confirm_savoirs" => $confirm_savoirs, "length" => $_POST["length"], "presentation" => $_POST["presentation"]); /*send everything to the class */
 
 
 	$baba = new confirmRef($confirm_data);
@@ -115,6 +117,7 @@ if (isset($_POST["confirm"])) {
 		<a href="../referent/referent.php" class="nav-element">RÉFÉRENT</a>
 		<a href="../consultant/consultant.php" class="nav-element">CONSULTANT</a>
 		<a href="../partenaires/partenaires.html" class="nav-element">PARTENAIRES</a>
+		<a href="../accueil/accueil2.php" class="nav-element">ACCUEIL</a>
 	</nav>
 
 	<p id="description-page">Confirmez cette expérience et ce que vous avez pu constater au contact de ce jeune.</p>

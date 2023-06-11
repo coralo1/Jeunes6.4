@@ -24,41 +24,42 @@ if (isset($_SESSION["userID"])) { /* if user is already logged in, leave the pag
 
 
 	<form action="" method="post" enctype="multipart/form-data" autocomplete="off">
-		<table id="register_table">
-			<tr>
-				<td>Se connecter à Jeunes 6.4<br> Je suis :</td>
-			</tr>
-			<tr>
-				<td>
-					<a href="login_jeunes.php" id="forgot_password">Un jeune</a>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<a href="login_referent.php" id="forgot_password">Un référent</a>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<a href="login_consultant.php" id="forgot_password">Un consultant</a>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					pas encore inscrit ? <br>
-					<a id="forgot_password" href="../register/register.php">S'inscrire</a>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<a id="forgot_password" href="forgotten_password.html">Mot de passe oublié</a>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<a id="forgot_password" href="../accueil/accueil2.php">Retour</a>
-				</td>
-			</tr>
+<table id="register_table">
+		<tr>
+			<td>
+				<h3>Se connecter à Jeunes 6.4</h3>
+				<h4>Je suis :</h4>
+				<table id="register_table">
+			</td>
+
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<a href="login_jeunes.php" id="forgot_password">Un jeune</a>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<a href="login_referent.php" id="forgot_password">Un référent</a>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<a href="login_consultant.php" id="forgot_password">Un consultant</a>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Pas encore inscrit ? <br>
+				<a id="forgot_password" href="../register/register.php">S'inscrire</a>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<a id="forgot_password" href="../accueil/accueil2.php">Retour</a>
+			</td>
+		</tr>
 		</table>
 	</form>
 </body>

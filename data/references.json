@@ -46,5 +46,29 @@
             "impartial": 1,
             "travail": 1
         }
+    },
+    {
+        "usertype": "reference",
+        "mail": "jean@tarte.fr",
+        "firstname": "tarteaa",
+        "lastname": "jeanaa",
+        "user": "compte@test.fr",
+        "phone": "yeuzayeuiaz",
+        "birthdate": "1111-02-03",
+        "presentation": "je me pr\u00e9sente",
+        "length": "dur\u00e9e",
+        "comment": "zaeaz",
+        "savoirs": {
+            "ponctuel": 1,
+            "confiant": 1,
+            "serieux": 1,
+            "honnete": 0,
+            "tolerant": 0,
+            "bienveillant": 0,
+            "respect": 0,
+            "juste": 0,
+            "impartial": 0,
+            "travail": 0
+        }
     }
 ]

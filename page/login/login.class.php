@@ -1,5 +1,4 @@
 <?php
-/*session_start();*/
 class LoginJeune
 {
 	private $mail;
@@ -13,8 +12,10 @@ class LoginJeune
 	/* constructor */
 	public function __construct($mail, $password)
 	{
+		/* loads login info input by the user */
 		$this->mail = $mail;
 		$this->password = $password;
+		/* loads every user in file*/
 		$this->stored_users = json_decode(file_get_contents($this->storage), true);
 		$this->login();
 	}
@@ -22,7 +23,7 @@ class LoginJeune
 	/* login function */
 	private function login()
 	{
-		foreach ($this->stored_users as $user) { /* repeat for every user in data.json */
+		foreach ($this->stored_users as $user) { /* parse every user */
 			if ($user['mail'] == $this->mail) { /* if the email matches */
 				if (password_verify($this->password, $user['password'])) { /* if the password matches, return success and user info for session */
 					$this->success = array(1, $user);

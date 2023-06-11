@@ -4,23 +4,23 @@
         "mail": "compte@test.fr",
         "password": "$2y$10$9lq5b7ghzDlo5V0yt1job.rAABq0b5wjodbStXXbHpDxOF9WWD.SK",
         "birthdate": "0111-11-11",
-        "firstname": "\u00e9checs",
-        "lastname": "machine",
-        "type": "c'est pour m'inscrire au club d'\u00e9chec comp\u00e9titif",
-        "engagement": "je serai le meilleur joueur, et je travaillerai tous les jours pour apprendre des strat\u00e9gies",
-        "length": "le restant de ma vie",
+        "firstname": "\u00e9checs12321",
+        "lastname": "machine321312",
+        "type": "c'est pour m'inscrire au club d'\u00e9chec comp\u00e9titif22",
+        "engagement": "je serai le meilleur joueur, et je travaillerai tous les jours pour apprendre des strat\u00e9gies222",
+        "length": "le restant de ma vie22",
         "savoirs": {
-            "autonomie": 0,
-            "analyse": 1,
+            "autonomie": 1,
+            "analyse": 0,
             "ecoute": 0,
-            "organise": 0,
-            "passionne": 1,
+            "organise": 1,
+            "passionne": 0,
             "fiable": 0,
-            "patient": 0,
-            "reflechi": 1,
+            "patient": 1,
+            "reflechi": 0,
             "responsable": 0,
-            "sociable": 0,
-            "optimiste": 1
+            "sociable": 1,
+            "optimiste": 0
         }
     },
     {
@@ -38,5 +38,13 @@
         "birthdate": "0005-05-06",
         "firstname": "compte3",
         "lastname": "teste3"
+    },
+    {
+        "usertype": "J",
+        "mail": "test@toto.fr",
+        "password": "$2y$10$4wKL872ZGv\/2LGPjFmEGte6xPPVQ90QJGtdmRcaRmxg2sutm39HwS",
+        "birthdate": "0333-11-22",
+        "firstname": "test",
+        "lastname": "toto"
     }
 ]

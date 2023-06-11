@@ -41,6 +41,7 @@ new loadCons($data);
 		<a href="../referent/referent.php" class="nav-element">RÉFÉRENT</a>
 		<a href="../consultant/consultant.php" class="nav-element">CONSULTANT</a>
 		<a href="../partenaires/partenaires.html" class="nav-element">PARTENAIRES</a>
+		<a href="../accueil/accueil2.php" class="nav-element">ACCUEIL</a>
 	</nav>
 
 	<p id="description-page">Validez cet engagement en prenant en compte sa valeur.</p>

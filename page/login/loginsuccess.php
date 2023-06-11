@@ -5,7 +5,7 @@ if (!isset($_SESSION["userID"])) {
 	header("Location:login.php");
 }
 
-switch ($_SESSION["usertype"]) {
+switch ($_SESSION["usertype"]) { /* */
 	case "J":
 		$link = "../jeune/jeune.php";
 		break;

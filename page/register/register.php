@@ -7,7 +7,6 @@ if (isset($_SESSION["userID"])) { /* if user is already logged in, leave the pag
 
 if (isset($_POST['submit'])) { /* if the user submits a register form*/
 	$user = new Register($_POST['email'], $_POST['password'], $_POST['birthdate'], $_POST['firstname'], $_POST['lastname']); /* create a new user with given credentials*/
-	var_dump($_SESSION);
 }
 
 ?>
@@ -17,6 +16,7 @@ if (isset($_POST['submit'])) { /* if the user submits a register form*/
 
 <head>
 	<link rel="stylesheet" href="../../../ressources/projet.css">
+	<link rel="stylesheet" href="../../../ressources/projet_accueil1.css">
 	<title>Jeunes 6.4 - Inscription</title>
 	<!-- this is the register page -->
 </head>
@@ -82,9 +82,8 @@ if (isset($_POST['submit'])) { /* if the user submits a register form*/
 		</p>
 		<p class="success">
 			<?php
-			if (@$user->success[0] == 1) {
-				$_SESSION = @$user->success[1];
-				$_SESSION["userID"] = @$user->success[1][1]; /* after registering, logs in the user and leaves the page */
+			if (@$user->success == 1) {
+				/* after registering, go back to login page */
 				echo '<meta http-equiv="refresh" content="0;url=../login/loginsuccess.php">';
 			}
 			?>

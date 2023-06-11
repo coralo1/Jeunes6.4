@@ -5,8 +5,8 @@ if (isset($_SESSION["userID"])) { /* if user is already logged in, leave the pag
 	echo '<meta http-equiv="refresh" content="0;url=loginsuccess.php">';
 }
 
-if (isset($_POST['submit'])) { /* on button click */
-	$user = new LoginJeune($_POST['email'], $_POST['password']); /* call for login */
+if (isset($_POST['submit'])) {
+	$user = new LoginJeune($_POST['email'], $_POST['password']); /*send login info when submitting form */
 }
 ?>
 
@@ -37,7 +37,7 @@ if (isset($_POST['submit'])) { /* on button click */
 			</tr>
 			<tr>
 				<td>
-					<label>email<br></label>
+					<label>E-mail<br></label>
 					<input type="email" name="email">
 				</td>
 			</tr>
@@ -54,7 +54,7 @@ if (isset($_POST['submit'])) { /* on button click */
 			</tr>
 			<tr>
 				<td>
-					pas encore inscrit ? <br>
+					Pas encore inscrit ? <br>
 					<a id="forgot_password" href="../register/register.php">S'inscrire</a>
 				</td>
 			</tr>
@@ -80,13 +80,11 @@ if (isset($_POST['submit'])) { /* on button click */
 		<p class="success">
 			<?php
 			if (@$user->success[0] == 1) {
-				/* if login was succesful, fill session data and leave the page*/
+				/* if login was succesful, fill session info and leave the page*/
 				$_SESSION = @$user->success[1];
 				$_SESSION["userID"] = $_SESSION["mail"];
 				echo '<meta http-equiv="refresh" content="0;url=loginsuccess.php">';
 			}
-
-			//var_dump($_SESSION)
 
 			?>
 		</p>

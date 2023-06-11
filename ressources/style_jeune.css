@@ -129,6 +129,7 @@ header > img {
     font-size: 15px;
     text-decoration: none; font-weight: bold;
     display: flex;
+		transition: 0.3s;
     align-items: center; 
     justify-content: center;
     flex: 1; /* flex: 1; flex va prendre tout l'espace disponible (pas besoin de calculer) */

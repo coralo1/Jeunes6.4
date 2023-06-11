@@ -1,7 +1,7 @@
 <?php require("login.class.php") ?>
 <?php
 session_start();
-if (isset($_SESSION["userID"])) { /* if user is already logged in, leave the page */
+if (isset($_SESSION["userID"])) { /* if user is already logged in, leave the page  <- this was how i did it in the past, i don't see a reason to change it now but may cause unforseen errors*/
 	echo '<meta http-equiv="refresh" content="0;url=loginsuccess.php">';
 }
 
@@ -42,17 +42,6 @@ if (isset($_POST['submit'])) { /* on button click */
 			<tr>
 				<td>
 					<button id="register_button" type="submit" name="submit">Connexion</button>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					pas encore inscrit ? <br>
-					<a id="forgot_password" href="../register/register.php">S'inscrire</a>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<a id="forgot_password" href="forgotten_password.html">Mot de passe oublié</a>
 				</td>
 			</tr>
 			<tr>

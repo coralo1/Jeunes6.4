@@ -18,7 +18,7 @@ class Register
 
 	public function __construct($mail, $password, $birthdate, $firstname, $lastname)
 	{
-		/* cleans email and password */
+		/* cleans email and password + loads data*/
 		$this->mail = htmlspecialchars(trim($mail));
 		$this->raw_password = htmlspecialchars(trim($password));
 		$this->birthdate = $birthdate;
@@ -26,6 +26,7 @@ class Register
 		$this->lastname = htmlspecialchars(trim($lastname));
 		/* encrypts password */
 		$this->encrypted_password = password_hash($password, PASSWORD_DEFAULT);
+		/* list of existing users */
 		$this->stored_users = json_decode(file_get_contents($this->storage), true);
 		/* creates a new user */
 		$this->new_user = [
@@ -36,7 +37,7 @@ class Register
 			"firstname" => $this->firstname,
 			"lastname" => $this->lastname
 		];
-		if ($this->checkFieldValues()) { /* je sais pas si ça va ici */
+		if ($this->checkFieldValues()) { /* make sure nothing was empty and add the user */
 			$this->insertUser($mail);
 		}
 	}
@@ -57,7 +58,7 @@ class Register
 	/* checks if the email already exists */
 	private function mailExists()
 	{
-		foreach ($this->stored_users as $user) {
+		foreach ($this->stored_users as $user) { /* parse through existing users */
 			if ($this->mail == $user['mail']) {
 				$this->error = "Cet email est déjà utilisé.";
 				return true;
@@ -68,11 +69,10 @@ class Register
 	/* adds user to the data.json file */
 	private function insertUser($mail)
 	{
-		if ($this->mailExists() == FALSE) {
-			array_push($this->stored_users, $this->new_user);
-			if (file_put_contents($this->storage, json_encode($this->stored_users, JSON_PRETTY_PRINT))) {
-				var_dump($this->new_user);
-				$this->success = array(1);
+		if ($this->mailExists() == FALSE) { /* if that user isn't already registered */
+			array_push($this->stored_users, $this->new_user); /* add him to the list of users */
+			if (file_put_contents($this->storage, json_encode($this->stored_users, JSON_PRETTY_PRINT))) { /*put the list into the file */
+				$this->success = 1;
 				return $this->success;
 
 			} else {

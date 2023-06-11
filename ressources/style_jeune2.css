@@ -188,7 +188,7 @@ header > img {
 
 
 #elements-container {
-    /* border: 10px solid black; */
+     /* border: 10px solid black;  */
     margin: auto;
     width: 75%; height: auto; margin-bottom: 2%;
     /* padding: 1%; */
@@ -243,7 +243,8 @@ header > img {
 
 #ref_validees-container {
     /* border: 10px solid red; */
-    margin: auto; margin-top: 3%; margin-bottom: 3%;
+    margin: auto;
+		/* margin-top: 3%; margin-bottom: 3%; */
     width: auto; height: 29em;
 }
 
@@ -257,7 +258,8 @@ header > img {
 #demande_ref-container {
     border: 3px solid #c8dd61;
     display: flex; padding: 1%;
-    margin: auto; margin-bottom: 5%;
+    margin: auto; 
+		/* margin-bottom: 5%; */
 }
 
 #demande_validee > legend {
