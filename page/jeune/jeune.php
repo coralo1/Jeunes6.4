@@ -1,4 +1,3 @@
-<?php require("jeune.class.php") ?>
 <?php require("jeune_update.php") ?>
 <?php
 /*
