@@ -64,12 +64,6 @@ $refs = new loadRefs($data);
 					<input type="date" name="birthdate" id="birthdate" value="<?php echo $_SESSION["pending"][$i]["birthdate"] ?>" readonly> <br>
 					<label for="mail">Mail : </label>
 					<input type="email" name="mail" id="mail" value="<?php echo $_SESSION["pending"][$i]["mail"] ?>" readonly> <br>
-					<label for="type">Type d'engagement : </label>
-					<input type="text" name="type" id="type" value="<?php echo $_SESSION["pending"][$i]["type"] ?>" readonly> <br>
-					<label for="engagement">Description de l'engagement : </label>
-					<textarea name="engagement" id="engagement" cols="30" rows="10" readonly><?php echo $_SESSION["pending"][0]["engagement"] ?></textarea> <br>
-					<label for="length">Durée de l'engagement : </label>
-					<input type="text" name="length" id="length" value="<?php echo $_SESSION["pending"][$i]["length"] ?>" readonly> <br>
 					<section id="checkbox-container">
 						<table id="table-checkbox" border="1px black">
 							<legend><strong>Savoirs-être</strong></legend>
@@ -175,12 +169,8 @@ $refs = new loadRefs($data);
 							<input type="date" name="birthdate" id="birthdate" value="<?php echo $_SESSION["confirmed"][$i]["birthdate"] ?>" readonly> <br>
 							<label for="mail">Mail : </label>
 							<input type="email" name="mail" id="mail" value="<?php echo $_SESSION["confirmed"][$i]["mail"] ?>" readonly> <br>
-							<label for="type">Type d'engagement : </label>
-							<input type="text" name="type" id="type" value="<?php echo $_SESSION["confirmed"][$i]["type"] ?>" readonly> <br>
-							<label for="engagement">Description de l'engagement : </label>
-							<textarea name="engagement" id="engagement" cols="30" rows="10" readonly><?php echo  $_SESSION["confirmed"][$i]["engagement"] ?></textarea> <br>
-							<label for="length">Durée de l'engagement : </label>
-							<input type="text" name="length" id="length" value="<?php echo $_SESSION["confirmed"][$i]["length"] ?>" readonly> <br>
+							<label for="comment">Commentaires du référent : </label>
+							<textarea name="comment" id="comment" cols="30" rows="10" readonly><?php echo  $_SESSION["confirmed"][$i]["comment"] ?></textarea> <br>
 							<section id="checkbox-container">
 								<table id="table-checkbox" border="1px black">
 									<legend><strong>Savoirs-être</strong></legend>
