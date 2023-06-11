@@ -38,17 +38,17 @@ class LoginJeune
 class LoginRef
 {
 	private $mail;
-	private $password;
+	private $login;
 	public $error;
 	public $success;
 	private $storage = "../../data/referent.json";
 	private $stored_users;
 
 	/* constructor */
-	public function __construct($password)
+	public function __construct($login)
 	{
 		$this->mail;
-		$this->password = $password;
+		$this->login = $login;
 		$this->stored_users = json_decode(file_get_contents($this->storage), true);
 		$this->login();
 	}
@@ -57,7 +57,7 @@ class LoginRef
 	private function login()
 	{
 		foreach ($this->stored_users as $user) { /* same thing as before but without checking for email as there is none */
-			if (password_verify($this->password, $user['password'])) {
+			if (password_verify($this->login, $user['login'])) {
 				$this->success = array(1, $user);
 				return $this->success;
 			}
@@ -69,17 +69,17 @@ class LoginRef
 class LoginCons
 {
 	private $mail;
-	private $password;
+	private $login;
 	public $error;
 	public $success;
 	private $storage = "../../data/consultant.json";
 	private $stored_users;
 
 	/* constructor */
-	public function __construct($password)
+	public function __construct($login)
 	{
 		$this->mail;
-		$this->password = $password;
+		$this->login = $login;
 		$this->stored_users = json_decode(file_get_contents($this->storage), true);
 		$this->login();
 	}
@@ -88,7 +88,7 @@ class LoginCons
 	private function login()
 	{
 		foreach ($this->stored_users as $user) { /* same thing as before but without checking for email as there is none */
-			if (password_verify($this->password, $user['password'])) {
+			if (password_verify($this->login, $user['login'])) {
 				$this->success = array(1, $user);
 				return $this->success;
 			}

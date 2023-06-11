@@ -23,7 +23,7 @@
 		<a href="../jeune/jeune.php" class="nav-element">JEUNE</a>
 		<a href="../login/login.php" class="nav-element">RÉFÉRENT</a>
 		<a href="../login/login.php" class="nav-element">CONSULTANT</a>
-		<a href="../partenaires/partenaires.php" class="nav-element">PARTENAIRES</a>
+		<a href="../partenaires/partenaires.html" class="nav-element">PARTENAIRES</a>
 	</nav>
 	<nav id="nav-container">
 		<a href="jeune.php" class="nav-element">Mes informations</a>

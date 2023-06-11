@@ -12,15 +12,21 @@
 
 	<header>
 		<img src="../../ressources/img/LOGOS_JEUNES_6_4.svg" alt="Logo Jeunes6.4">
-		<h1>CONSULTANT</h1>
-		<p>Je donne de la valeur à ton engagement</p>
+		<div id="haut_page-container">
+			<span id="nom_page-container">
+				<h1>CONSULTANT</h1>
+			</span>
+			<span id="texte_haut-container">
+				<p>Je donne de la valeur à ton engagement</p>
+			</span>
+		</div>
 	</header>
 
 	<nav id="nav-container">
 		<a href="../login/login.php" class="nav-element">JEUNE</a>
 		<a href="../referent/referent.php" class="nav-element">RÉFÉRENT</a>
 		<a href="../consultant/consultant.php" class="nav-element">CONSULTANT</a>
-		<a href="../partenaires/partenaires.php" class="nav-element">PARTENAIRES</a>
+		<a href="../partenaires/partenaires.html" class="nav-element">PARTENAIRES</a>
     </nav> 
 
 	<p id="description-page">Validez cet engagement en prenant en compte sa valeur.</p>
@@ -44,7 +50,7 @@
 					<input type="email" name="femail" id="femail"> <br>
 
 					<label for="freseau">Réseau social :</label>
-					<input type="text" name="freseau" id="freseau"> <br><br>
+					<input type="text" name="freseau" id="freseau"> <br>
 
 					<label for="fengagement">Mon engamement :</label>
 					<textarea name="fengagement" id="fengagement" cols="1" rows="2"></textarea> <br>

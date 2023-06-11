@@ -60,7 +60,6 @@ header {
 
 /* -------------------  ------------------- */
 
-
 header > img {
     /* border: 1px solid red; */
     width: 550px; height: auto;
@@ -87,7 +86,7 @@ header > img {
     display: flex;
     align-items: center; 
     justify-content: center;
-    flex: 1; /* flex: 1; flex va prendre tout l'espace disponible (pas besoin de calculer) */
+    flex: 1; /* flex: 1 va prendre tout l'espace disponible (pas besoin de calculer) */
 
     /* transition: all 0.5; Effet esthétique à coupler avec le ":hover"
     /* border-top: 2px solid grey; */ /* On met un border-top par défaut pour éviter de faire bouger
@@ -139,77 +138,189 @@ header > img {
 /* Voir si faire le même code couleur que pour les jeunes */
 #texte_demande {
     border: 3px solid green;
-    margin-bottom: 5px;
+    margin-left: 2.7em; margin-bottom: 5px;
     width: fit-content; height: fit-content;
     font-weight: bold; font-size: 1.15em;
 }
 
 /* --------------------- --------------------- */
 
+input:focus, textarea:focus {
+    outline: none;
+}
+
+textarea {
+    resize: none;
+}
 
 #elements-container {
-    border: 3px solid red;
-    margin: auto; margin-bottom: 1%;
-    width: 91%; height: 69em;
+    /* border: 3px solid red; */
+    margin: auto; margin-bottom: 3%;
+    width: 91%; height: 63em;
     padding: 1%; padding-bottom: 0;
     font-weight: bold; 
     color: #bfd437; font-size: 17px;
 }
 
+/* --------------------- PARTIES EN COMMUNS AUX DEUX SECTIONS --------------------- */
+
+#informations_jeune > legend, #demande_ref > legend {
+    font-size: 30px;
+    line-height: normal;
+    border: 0.5px solid #b8d433;
+    width: fit-content;
+}
+
+#informations_jeune > input, #demande_ref > input {
+    border: none;
+    border-bottom: 1px dotted #b8d433;
+    width: 50%;
+}
+
 /* --------------------- INFORMATIONS DU JEUNE --------------------- */
 
 #informations_jeune-container {
-    border: 3px solid green;
-    margin: auto;
-    width: 75%; height: 20%;
+    border: 3px solid #b8d433;
+    margin: auto; margin-bottom: 1%;
+    width: 50%; height: 28%;
     padding: 1%;
 }
 
+#informations_jeune {
+    /* border: 1px solid red; */
+    margin: auto; 
+    width: 100%; height: 17em;
+    line-height: 45px;
+
+}
+
+#informations_jeune > input[type="submit"] {
+    /* border: 1px solid red; */
+    background-color: #b8d433;
+    color: white;
+    font-size: 17px; font-weight: bold;
+    width: fit-content; height: fit-content;
+}
+
+/* --------------------- DETAILS DEMANDE DE REF --------------------- */
+
 #demande_ref-container {
-    border: 3px solid yellow;
+    border: 3px solid #b8d433;
+    margin: auto; margin-bottom: 1%;
+    width: 50%; height: 23%;
+    padding: 1%;
+}
+
+#demande_ref {
+    /* border: 1px solid red; */
+    margin: auto; 
+    width: 100%; height: 15em;
+    line-height: 45px;
+}
+
+#demande_ref > textarea {
+    border: none;
+    border-bottom: 1px dotted #b8d433;
+    width: 98%; height: auto;
+}
+
+/* --------------------- CONTAINER ELEMENTS 2EME MOITIE DE LA PAGE --------------------- */
+
+#elements_bas-container {
+    /* border: 3px solid black; */
+    margin: auto; margin-top: 2%;
+    width: auto; height: 20em;
+    display: flex;
 }
 
 /* --------------------- ZONE COMMENTAIRE REFERENT --------------------- */
 
 #comment-container {
-    border: 3px solid violet;
+    /* border: 3px solid violet; */
+    margin: auto; margin-left: 13%;
+    width: 50%; height: fit-content;
 }
 
 #comment {
-    border: 5px solid red;
+    background: linear-gradient(to left, #d0e186 0%, #e5efbe 90%);
+    border: none;
+    width: 100%; height: 100%;
+}
+
+::placeholder {
+    color: white;
+    padding: 1%;
 }
 
 /* --------------------- CHECKBOX --------------------- */
 
 #checkbox-container {
-    border: 3px solid green;
+    /* border: 3px solid green; */
+    margin: auto; margin-right: 14%;
+    width: fit-content; height: fit-content;
+    /* margin: auto; margin-top: 0;
+    width: auto; height: 98%;
+    text-align: justify; */
 }
 
 #table-checkbox {
-    border: 4px solid green;
+    border-collapse: collapse;
 }
 
 #checkbox-container > legend {
-    border: 1px solid red;
+    color: #b8d433;
+    text-align: right;
+    font-size: 25px; font-weight: bold;
 }
 
+#description-checkbox {
+    /* border: 1px solid red; */
+    margin: auto; margin-top: 2%;
+    color: #b8d433;
+    font-size: 14px;
+    text-align: center;
+} 
+
+#table-checkbox > thead {
+    background: linear-gradient(to left, #23b14a, #e1ebaf 100%);
+    color: white;
+    height: 37px;
+    text-align: right;
+    font-size: 19px; font-weight: bold;
+}
+
+#table-checkbox > tbody {
+    background-color: #e1ebaf;
+    font-size: 15px; font-weight: bold;
+    line-height: 23px;
+}
 
 /* --------------------- BOUTON CONFIRMER INFORMATIONS --------------------- */
 
 #confirm {
-    border: 1px solid red;
+    border: 1px solid #b8d433;
+    background-color: #b8d433 ; color: white;
+    font-size: 23px; font-weight: bold;
+    margin: auto; margin-top: 0; padding: 7px;
+    width: fit-content; height: fit-content;
+    display: flex;
 }
 
 
 /* --------------------- BOUTON LOG-OUT --------------------- */
 
 #forgot_password {
-    border: 5px solid green;
-    /* border: 3px solid #e7319d;
-    background-color: #e7319d;
+    border: 1px solid #b8d433;
+    background-color: #b8d433 ; color: white;
     color: white;
-    font-size: 15px; font-weight: bold;
     text-decoration: none;
+    font-size: 15px; font-weight: bold;
+    width: fit-content; height: fit-content;
+    margin: auto; margin-top: 3% ; padding: 3px;
+    display: flex;
+
+
+    /* border: 3px solid #e7319d;
     margin: auto;
     width: fit-content;
     display: flex;

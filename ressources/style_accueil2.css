@@ -24,17 +24,48 @@ header {
     display: flex;
 }
 
-/* Résoudre problème texte quand je change d'affichage */
-header > p {
-    /* border: 1px solid red; */
-    width: 50%;
-    margin: auto;
-    margin-left: 23%; margin-top: 11%;
-    position: absolute;
-    font-size: 27px;
-    letter-spacing: 5px;
-    color: white;
+/* ------------------- Résoudre problème texte quand je change d'affichage ------------------- */
+
+#haut_page-container {
+    /* border: 3px solid blue; */
+    margin: auto; margin-top: 0;
+    width: fit-content; height: fit-content;
 }
+
+
+/* Résolution du problème de changement d'écran en utilisant le même
+squelette que pour les autres pages -> texte "h1" invisible car de meme
+couleur que le header */
+
+#nom_page-container {
+    /* border: 5px solid red; */
+    color: #bdbec1;
+    font-size: 3em;
+    margin: auto;
+    width: fit-content; height: fit-content;
+}
+
+#nom_page-container > h1 {
+    /* border: 5px solid green; */
+    margin: auto; margin-top: 7%; margin-left: 23%;
+    opacity: 100%;
+}
+
+#texte_haut-container {
+    /* border: 5px solid red; */
+    color: white;
+    font-size: 1.4em; letter-spacing: 5px;
+    width: fit-content; height: fit-content;
+    margin: auto;
+    position: absolute;
+}
+
+#texte_haut-container > p {
+    /* border: 1px solid black; */
+    margin: auto;
+}
+
+/* -------------------  ------------------- */
 
 header > img {
     /* border: 1px solid red; */
@@ -57,25 +88,20 @@ header > img {
 
 .nav-element {
     /* border: 1px solid red; */
+    font-size: 20px;
     text-decoration: none;
     display: flex;
     align-items: center; 
     justify-content: center;
     flex: 1; /* flex: 1; flex va prendre tout l'espace disponible (pas besoin de calculer) */
 
-    /* transition: all 0.5; Effet esthétique à coupler avec le ":hover"
+    transition: all 0.5; /* Effet esthétique à coupler avec le ":hover" */
     /* border-top: 2px solid grey; */ /* On met un border-top par défaut pour éviter de faire bouger
                                     notre texte lorsque nous passons le curseur dessus */
 
 }
 
-/* .nav-element:hover {             ":hover" = Ajoute un effet lorsque nous passons le pointeur dessus utilisation
-                                    première page pour effet esthétique?
-    border-top: 3px solid red;
-}
-*/
 
-/* Utilisation des :nth-child() ? */
 .nav-element:nth-child(1) {
     color: #e7319d;
 }
@@ -92,26 +118,46 @@ header > img {
     color: #808183;
 }
 
-/* Ou sinon avec les #id
-EXEMPLE : 
-#bouton-jeune {
-    color: red;
-} 
+/* ------------------------ EFFET LORSQUE L'ON PASSE LE POINTEUR SUR LA NAV BARRE ------------------------ */
+
+/* .nav-element:hover {             ":hover" = Ajoute un effet lorsque nous passons le pointeur dessus utilisation
+                                    première page pour effet esthétique?
+    border-top: 3px solid red;
+}
 */
 
+.nav-element:nth-child(1):hover {
+    background-color: #e7319d;
+    color: white;
+    margin: 13px;
+}
+.nav-element:nth-child(2):hover {
+    background-color: #4bbc6c;
+    color: white;
+    margin: 13px;
+}
+.nav-element:nth-child(3):hover {
+    background-color: #46b2e0;
+    color: white;
+    margin: 13px;
+}
+.nav-element:nth-child(4):hover {
+    background-color: #808183;
+    color: white;
+    margin: 13px;
+}
+
+
+#texte_table-container {
+    /* border: 2px solid green; */
+    width: 70%;
+    margin: auto; margin-top: 20px; margin-bottom: 25px;
+}
 
 /* ------------------------ TEXTE ------------------------ */
 
-#texte_table-container {
-    border: 2px solid green;
-    width: 70%;
-    margin: auto;
-    margin-top: 30px;
-    margin-bottom: 25px;
-}
-
 #texte-container {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     width: 60%;
     margin: auto;
     padding: 5px;
@@ -119,14 +165,13 @@ EXEMPLE :
     background: transparent;
 }
 
-
 /* ------------------------ TABLEAUX ETAPES ------------------------ */
 
 #table-container {
     /* border: 2px solid blue; */
     display: flex;
-    width: auto; height: 275px;
-    margin-top: 30px;
+    margin: auto; margin-top: 20px;
+    width: auto; height: fit-content;
 }
 
 .table-etapes {

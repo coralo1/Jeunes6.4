@@ -6,7 +6,7 @@ if (isset($_SESSION["userID"])) { /* if user is already logged in, leave the pag
 }
 
 if (isset($_POST['submit'])) { /* on button click */
-	$user = new LoginCons($_POST['password']); /* call for login */
+	$user = new LoginCons($_POST['login']); /* call for login */
 }
 ?>
 
@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) { /* on button click */
 			<tr>
 				<td>
 					<label>Identifiant de connexion :<br></label>
-					<input type="password" name="password">
+					<input type="password" name="login">
 				</td>
 			</tr>
 			<tr>

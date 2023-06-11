@@ -21,7 +21,8 @@ $phpmailer->Username = '8a516fbf671d31';
 $phpmailer->Password = '3a2618cd283dce';
 */
 session_start();
-if (!isset($_SESSION["userID"])) { /* auto redirect if user not logged in */
+/*makes sure the user is Jeune */
+if ($_SESSION["usertype"] != "J"){
 	header("Location:../login/login.php");
 }
 

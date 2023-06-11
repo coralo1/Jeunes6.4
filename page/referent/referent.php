@@ -2,7 +2,8 @@
 
 <?php
 session_start();
-if (!isset($_SESSION["userID"])) { /* auto redirect if user not logged in */
+/*makes sure the user is Referent */
+if ($_SESSION["usertype"] != "R"){
 	header("Location:../login/login.php");
 }
 
@@ -117,18 +118,20 @@ if (isset($_POST["confirm"])) {
 	<nav id="nav-container">
 		<a href="../login/login.php" class="nav-element">JEUNE</a>
 		<a href="../referent/referent.php" class="nav-element">RÉFÉRENT</a>
-		<a href="../consultant/login.php" class="nav-element">CONSULTANT</a>
-		<a href="../partenaires/partenaires.php" class="nav-element">PARTENAIRES</a>
+		<a href="../consultant/consultant.php" class="nav-element">CONSULTANT</a>
+		<a href="../partenaires/partenaires.html" class="nav-element">PARTENAIRES</a>
 	</nav>
 
 	<p id="description-page">Confirmez cette expérience et ce que vous avez pu constater au contact de ce jeune.</p>
 
 
 	<div id="texte_demande">
+
 		<?php
-		echo "Originaire de la demande :".$_SESSION["user_firstname"] . " " . $_SESSION["user_lastname"] . "<br>" . $_SESSION["user"];
+			echo "Originaire de la demande :".$_SESSION["user_firstname"] . " " . $_SESSION["user_lastname"] . "<br>" . $_SESSION["user"];
 		?>
-		<br><br> <!-- A modifier dans le CSS par line-height -->
+		<br><br>
+        
 	</div>
 
 
@@ -140,7 +143,8 @@ if (isset($_POST["confirm"])) {
 			<form action="" method="post">
 
 				<section id="informations_jeune">
-					<legend>INFORMATIONS DU REFERENT :</legend>
+
+					<legend>INFORMATIONS DU RÉFÉRENT :</legend>
 
 					<label for="lastname">Nom :</label>
 					<input type="text" name="lastname" id="lastname" value="<?php echo $_SESSION["lastname"] ?>"> <br>
@@ -167,122 +171,135 @@ if (isset($_POST["confirm"])) {
 
 		<section id="demande_ref-container">
 
-			<legend>Détails de la demande de référence :</legend>
+			<form action="" method="post">
+                
+                <section id="demande_ref">
 
-			<form>
-				<label for="type">Type d'engagement :</label>
-				<input type="text" name="type" id="type" value="<?php echo $_SESSION["type"] ?>" readonly> <br><br>
+                <legend>DÉTAILS DE LA DEMANDE DE RÉFÉRENCE :</legend>
 
-				<label for="engagement">Présentation de l'engagement :</label>
-				<textarea name="engagement" id="engagement" cols="30" rows="10" readonly><?php echo $_SESSION["engagement"] ?></textarea> <br>
+                <label for="type">Type d'engagement :</label>
+                <input type="text" name="type" id="type" value="<?php echo $_SESSION["type"] ?>" readonly> <br>
 
-				<label for="length">Durée de l'engagement :</label>
-				<input type="text" name="length" id="length" value="<?php echo $_SESSION["length"] ?>" readonly>
-			</form>
+                <label for="engagement">Présentation de l'engagement :</label>
+                <textarea name="engagement" id="engagement" cols="1" rows="1" readonly><?php echo $_SESSION["engagement"] ?></textarea> <br>
+
+                <label for="length">Durée de l'engagement :</label>
+                <input type="text" name="length" id="length" value="<?php echo $_SESSION["length"] ?>" readonly>
+                
+                </section>
+            
+            </form>
 
 		</section>
 
 
-
 		<form action="" method="post">
 
-			<section id="comment-container">
-				<textarea name="comment" id="comment" cols="30" rows="10" placeholder="Ajoutez des commentaires sur <?php echo $_SESSION["user_firstname"]; ?>"></textarea>
-			</section>
-
-			<section id="checkbox-container">
-
-				<table id="table-checkbox">
-
-					<legend>Ses savoirs-être</legend>
-
-					<thead>
-						<tr>
-							<td>Je confirme qu'il est</td>
-						</tr>
-					</thead>
-
-					<tbody>
-						<tr>
-							<td>
-								<input type="checkbox" name="autonomie" value="1" <?php if ($_SESSION["autonomie"]) {
-																																		echo "checked";
-																																	} else {
-																																		echo "disabled";
-																																	}
-																																	?>>Autonome <br>
-								<input type="checkbox" name="analyse" value="1" <?php if ($_SESSION["analyse"]) {
-																																	echo "checked";
-																																} else {
-																																	echo "disabled";
-																																}
-																																?>>Capable d'analyse et de synthèse <br>
-								<input type="checkbox" name="ecoute" value="1" readonly <?php if ($_SESSION["ecoute"]) {
-																																					echo "checked";
-																																				} else {
-																																					echo "disabled";
-																																				}
-																																				?>>A l'écoute <br>
-								<input type="checkbox" name="organise" value="1" <?php if ($_SESSION["organise"]) {
-																																		echo "checked";
-																																	} else {
-																																		echo "disabled";
-																																	}
-																																	?>>Organisé <br>
-								<input type="checkbox" name="passionne" value="1" <?php if ($_SESSION["passionne"]) {
-																																		echo "checked";
-																																	} else {
-																																		echo "disabled";
-																																	}
-																																	?>>Passionné <br>
-								<input type="checkbox" name="fiable" value="1" <?php if ($_SESSION["fiable"]) {
-																																	echo "checked";
-																																} else {
-																																	echo "disabled";
-																																}
-																																?>>Fiable <br>
-								<input type="checkbox" name="patient" value="1" <?php if ($_SESSION["patient"]) {
-																																	echo "checked";
-																																} else {
-																																	echo "disabled";
-																																}
-																																?>>Patient <br>
-								<input type="checkbox" name="reflechi" value="1" <?php if ($_SESSION["reflechi"]) {
-																																		echo "checked";
-																																	} else {
-																																		echo "disabled";
-																																	}
-																																	?>>Réfléchi <br>
-								<input type="checkbox" name="responsable" value="1" <?php if ($_SESSION["responsable"]) {
-																																			echo "checked";
-																																		} else {
-																																			echo "disabled";
-																																		}
-																																		?>>Responable <br>
-								<input type="checkbox" name="sociable" value="1" <?php if ($_SESSION["sociable"]) {
-																																		echo "checked";
-																																	} else {
-																																		echo "disabled";
-																																	}
-																																	?>>Sociable <br>
-								<input type="checkbox" name="optimiste" value="1" <?php if ($_SESSION["optimiste"]) {
-																																		echo "checked";
-																																	} else {
-																																		echo "disabled";
-																																	}
-																																	?>>Optimiste <br>
-							</td>
-						</tr>
-					</tbody>
-
-				</table>
+            <section id="elements_bas-container">
 
 
-				<!-- Bouton confirmation information -->
-				<input type="submit" name="confirm" id="confirm" value="Confirmation des informations du jeune">
+                <section id="comment-container">
+                    <textarea name="comment" id="comment" cols="30" rows="15" placeholder="Ajoutez des commentaires sur <?php echo $_SESSION["user_firstname"]; ?>"></textarea>
+                </section>
 
-			</section>
-			<br>
+                <section id="checkbox-container">
+
+                    <table id="table-checkbox">
+
+                        <legend>Ses savoirs-être</legend>
+
+                        <thead>
+                            <tr>
+                                <td>Je confirme sa (son)*</td>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="autonomie" value="1" <?php if ($_SESSION["autonomie"]) {
+                                                                                                                                            echo "checked";
+                                                                                                                                        } else {
+                                                                                                                                            echo "disabled";
+                                                                                                                                        }
+                                                                                                                                        ?>>Autonome <br>
+                                    <input type="checkbox" name="analyse" value="1" <?php if ($_SESSION["analyse"]) {
+                                                                                                                                        echo "checked";
+                                                                                                                                    } else {
+                                                                                                                                        echo "disabled";
+                                                                                                                                    }
+                                                                                                                                    ?>>Capable d'analyse et de synthèse <br>
+                                    <input type="checkbox" name="ecoute" value="1" readonly <?php if ($_SESSION["ecoute"]) {
+                                                                                                                                                        echo "checked";
+                                                                                                                                                    } else {
+                                                                                                                                                        echo "disabled";
+                                                                                                                                                    }
+                                                                                                                                                    ?>>A l'écoute <br>
+                                    <input type="checkbox" name="organise" value="1" <?php if ($_SESSION["organise"]) {
+                                                                                                                                            echo "checked";
+                                                                                                                                        } else {
+                                                                                                                                            echo "disabled";
+                                                                                                                                        }
+                                                                                                                                        ?>>Organisé <br>
+                                    <input type="checkbox" name="passionne" value="1" <?php if ($_SESSION["passionne"]) {
+                                                                                                                                            echo "checked";
+                                                                                                                                        } else {
+                                                                                                                                            echo "disabled";
+                                                                                                                                        }
+                                                                                                                                        ?>>Passionné <br>
+                                    <input type="checkbox" name="fiable" value="1" <?php if ($_SESSION["fiable"]) {
+                                                                                                                                        echo "checked";
+                                                                                                                                    } else {
+                                                                                                                                        echo "disabled";
+                                                                                                                                    }
+                                                                                                                                    ?>>Fiable <br>
+                                    <input type="checkbox" name="patient" value="1" <?php if ($_SESSION["patient"]) {
+                                                                                                                                        echo "checked";
+                                                                                                                                    } else {
+                                                                                                                                        echo "disabled";
+                                                                                                                                    }
+                                                                                                                                    ?>>Patient <br>
+                                    <input type="checkbox" name="reflechi" value="1" <?php if ($_SESSION["reflechi"]) {
+                                                                                                                                            echo "checked";
+                                                                                                                                        } else {
+                                                                                                                                            echo "disabled";
+                                                                                                                                        }
+                                                                                                                                        ?>>Réfléchi <br>
+                                    <input type="checkbox" name="responsable" value="1" <?php if ($_SESSION["responsable"]) {
+                                                                                                                                                echo "checked";
+                                                                                                                                            } else {
+                                                                                                                                                echo "disabled";
+                                                                                                                                            }
+                                                                                                                                            ?>>Responable <br>
+                                    <input type="checkbox" name="sociable" value="1" <?php if ($_SESSION["sociable"]) {
+                                                                                                                                            echo "checked";
+                                                                                                                                        } else {
+                                                                                                                                            echo "disabled";
+                                                                                                                                        }
+                                                                                                                                        ?>>Sociable <br>
+                                    <input type="checkbox" name="optimiste" value="1" <?php if ($_SESSION["optimiste"]) {
+                                                                                                                                            echo "checked";
+                                                                                                                                        } else {
+                                                                                                                                            echo "disabled";
+                                                                                                                                        }
+                                                                                                                                        ?>>Optimiste <br>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                    <p id="description-checkbox">*Faire 4 choix maximum</p>
+                
+                </section>
+            
+
+            </section>
+
+            <!-- Bouton confirmation information (mis là pour faciliter CSS) -->
+            <input type="submit" name="confirm" id="confirm" value="Confirmation des informations du jeune">
+
+                                    
 			<p class="error">
 				<?php echo @$baba->error ?>
 			</p>
@@ -293,6 +310,8 @@ if (isset($_POST["confirm"])) {
 				}
 				?>>
 			</p>
+           
+
 		</form>
 
 		<!-- Logout button -->
