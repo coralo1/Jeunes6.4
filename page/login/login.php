@@ -56,7 +56,7 @@ if (isset($_SESSION["userID"])) { /* if user is already logged in, leave the pag
 			</tr>
 			<tr>
 				<td>
-					<a id="forgot_password" href="javascript:history.back()">Retour</a>
+					<a id="forgot_password" href="../accueil/accueil2.php">Retour</a>
 				</td>
 			</tr>
 		</table>

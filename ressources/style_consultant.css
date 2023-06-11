@@ -1,97 +1,111 @@
 @font-face {
-    font-family: 'square721_btroman';
-    src: url('Font/square721_bt_roman-webfont.woff2') format('woff2'),
-         url('Font/square721_bt_roman-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+  font-family: "square721_btroman";
+  src: url("Font/square721_bt_roman-webfont.woff2") format("woff2"),
+    url("Font/square721_bt_roman-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
 
 html {
-    font-family: 'square721_btroman';
+  font-family: "square721_btroman";
 }
 
 body {
-    margin: 0;
-    /* background-image: url(Images/LOGOS_JEUNES_6_4.svg);
+  margin: 0;
+  /* background-image: url(Images/LOGOS_JEUNES_6_4.svg);
     background-repeat: no-repeat; */
 }
 
 header {
-    /* border: 1px solid green; */
-    background-color: #bdbec1;
-    height: 220px; width: auto;
-    display: flex;
+  /* border: 1px solid green; */
+  background-color: #bdbec1;
+  height: 220px;
+  width: auto;
+  display: flex;
 }
 
 /* ------------------- Résoudre problème texte quand je change d'affichage ------------------- */
 
 #haut_page-container {
-    /* border: 3px solid blue; */
-    margin: auto; margin-top: 0;
-    width: fit-content; height: fit-content;
+  /* border: 3px solid blue; */
+  margin: auto;
+  margin-top: 0;
+  width: fit-content;
+  height: fit-content;
 }
 
 #nom_page-container {
-    /* border: 5px solid red; */
-    color: #46b2e0;
-    font-size: 3em;
-    margin: auto;
-    width: fit-content; height: fit-content;
+  /* border: 5px solid red; */
+  color: #46b2e0;
+  font-size: 3em;
+  margin: auto;
+  width: fit-content;
+  height: fit-content;
 }
 
 #nom_page-container > h1 {
-    /* border: 5px solid green; */
-    margin: auto; margin-top: 7%; margin-left: 13%;
+  /* border: 5px solid green; */
+  margin: auto;
+  margin-top: 7%;
+  margin-left: 13%;
 }
 
 #texte_haut-container {
-    /* border: 5px solid red; */
-    color: white;
-    font-size: 1.4em; letter-spacing: 5px;
-    width: fit-content; height: fit-content;
-    margin: auto; margin-left: 4%;
-    position: absolute;
+  /* border: 5px solid red; */
+  color: white;
+  font-size: 1.4em;
+  letter-spacing: 5px;
+  width: fit-content;
+  height: fit-content;
+  margin: auto;
+  margin-left: 4%;
+  position: absolute;
 }
 
 #texte_haut-container > p {
-    /* border: 1px solid black; */
-    margin: auto;
+  /* border: 1px solid black; */
+  margin: auto;
 }
 
 /* -------------------  ------------------- */
 
 header > img {
-    /* border: 1px solid red; */
-    width: 550px; height: auto;
-    position: relative;
-    object-position: 0px 0px;
-    object-fit: cover;
-    text-align: center;
-    /* background: radial-gradient(circle at 0%,white,#bdbec1) */
-    background: radial-gradient(white 0%,#bdbec1 70%);
+  /* border: 1px solid red; */
+  width: 550px;
+  height: auto;
+  position: relative;
+  object-position: 0px 0px;
+  object-fit: cover;
+  text-align: center;
+  /* background: radial-gradient(circle at 0%,white,#bdbec1) */
+  background: radial-gradient(white 0%, #bdbec1 70%);
 }
 
 #nav-container {
-    /* border: 1px solid red; */
-    background-image: radial-gradient(farthest-corner at 225px 30px, #e1e2e3 0%, #c5c5c6 50%);
-    width: 50%; height: 50px;
-    margin: auto;
-    display: flex;
+  /* border: 1px solid red; */
+  background-image: radial-gradient(
+    farthest-corner at 225px 30px,
+    #e1e2e3 0%,
+    #c5c5c6 50%
+  );
+  width: 50%;
+  height: 50px;
+  margin: auto;
+  display: flex;
 }
 
 .nav-element {
-    /* border: 1px solid red; */
-    font-size: 20px;
-    text-decoration: none;
-    display: flex;
-    align-items: center; 
-    justify-content: center;
-    flex: 1; /* flex: 1; flex va prendre tout l'espace disponible (pas besoin de calculer) */
+  /* border: 1px solid red; */
+  font-size: 20px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1; /* flex: 1; flex va prendre tout l'espace disponible (pas besoin de calculer) */
 
-    /* transition: all 0.5; Effet esthétique à coupler avec le ":hover"
+  /* transition: all 0.5; Effet esthétique à coupler avec le ":hover"
     /* border-top: 2px solid grey; */ /* On met un border-top par défaut pour éviter de faire bouger
                                     notre texte lorsque nous passons le curseur dessus */
-
 }
 
 /* .nav-element:hover {             ":hover" = Ajoute un effet lorsque nous passons le pointeur dessus utilisation
@@ -102,158 +116,176 @@ header > img {
 
 /* Utilisation des :nth-child() ? */
 .nav-element:nth-child(1) {
-    color: #e7319d;
+  color: #e7319d;
 }
 
 .nav-element:nth-child(2) {
-    color: #4bbc6c;
+  color: #4bbc6c;
 }
 
 .nav-element:nth-child(3) {
-    background-color: #46b2e0;
-    color: white;
-    margin: 13px;
+  background-color: #46b2e0;
+  color: white;
+  margin: 13px;
 }
 
 .nav-element:nth-child(4) {
-    color: #808183;
+  color: #808183;
 }
 
-
 #description-page {
-    /* border: 1px solid red; */
-    color: #00adee;
-    text-align: center;
-    font-size: 20px;
-    letter-spacing: 1px;
+  /* border: 1px solid red; */
+  color: #00adee;
+  text-align: center;
+  font-size: 20px;
+  letter-spacing: 1px;
 }
 
 /* ----------------------- SECTION JEUNE -----------------------  */
 
 #section_jeune-container {
-    border: 3px solid #ec028d;
-    display: flex;
-    width: 75%; height: 400px;
-    margin: auto; margin-bottom: 1%;
-    padding: 1%; line-height: 25px;
-    font-weight: bold;
+  border: 3px solid #ec028d;
+  display: flex;
+  width: 75%;
+  height: 400px;
+  margin: auto;
+  margin-bottom: 1%;
+  padding: 1%;
+  line-height: 25px;
+  font-weight: bold;
 }
 
 /* ----------------------- FORM JEUNE -----------------------  */
 
 #form_jeune-container {
-    /* border: 1px solid red; */
-    margin: auto;
-    width: 85%; height: 100%;
+  /* border: 1px solid red; */
+  margin: auto;
+  width: 85%;
+  height: 100%;
 }
 
 #form_jeune-container > legend {
-    color: #ec028d;
-    font-size: 30px;
-    margin-bottom: 1%;
+  color: #ec028d;
+  font-size: 30px;
+  margin-bottom: 1%;
 }
 
-#form_jeune-container > form > input, textarea {
-    border: none;
-    border-bottom: 1px dotted;
-    width: 95%; height: 10%; 
+#form_jeune-container > form > input,
+textarea {
+  border: none;
+  border-bottom: 1px dotted;
+  width: 95%;
+  height: 10%;
 }
 
 textarea {
-    resize: none;
+  resize: none;
 }
 
 /* ----------------------- CHECKBOX JEUNE -----------------------  */
 
 #checkbox_jeune-container {
-    /* border: 1px solid red; */
-    margin: auto;
-    width: 17%; height: 100%;
-    text-align: justify;
+  /* border: 1px solid red; */
+  margin: auto;
+  width: 17%;
+  height: 100%;
+  text-align: justify;
 }
 
 #checkbox_jeune {
-    /* border: 1px solid violet; */
-    margin: auto; 
-    border-collapse: collapse;
-    width: 100%; height: 100%;
+  /* border: 1px solid violet; */
+  margin: auto;
+  border-collapse: collapse;
+  width: 100%;
+  height: 100%;
 }
 
 #checkbox_jeune > thead {
-    background: linear-gradient(to left, #ec028d, #f496bf 100%);
-    color: white;
-    height: 40px;
-    text-align: right;
-    font-size: 23px; font-weight: bold;
+  background: linear-gradient(to left, #ec028d, #f496bf 100%);
+  color: white;
+  height: 40px;
+  text-align: right;
+  font-size: 23px;
+  font-weight: bold;
 }
 
 #checkbox_jeune > tbody {
-    background-color: #fbe2ed;
-    font-size: 20px;
-    line-height: 30px;
+  background-color: #fbe2ed;
+  font-size: 20px;
+  line-height: 30px;
 }
 
 /* ----------------------- SECTION REFERENT -----------------------  */
 
 #section_referent-container {
-    border: 3px solid #cde074;
-    display: flex;
-    width: 75%; height: 400px;
-    margin: auto; margin-bottom: 3%;
-    padding: 1%;
-    font-weight: bold;
+  border: 3px solid #cde074;
+  display: flex;
+  width: 75%;
+  height: 400px;
+  margin: auto;
+  margin-bottom: 3%;
+  padding: 1%;
+  font-weight: bold;
 }
 
 /* ----------------------- FORM REFERENT -----------------------  */
 
 #form_referent-container {
-    /* border: 1px solid red; */
-    margin: auto;
-    width: 85%; height: 100%;
+  /* border: 1px solid red; */
+  margin: auto;
+  width: 85%;
+  height: 100%;
 }
 
 #form_referent-container > legend {
-    color: #b8d433;
-    font-size: 30px; font-weight: bold;
-    margin-bottom: 1%;
+  color: #b8d433;
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 1%;
 }
 
-input:focus, textarea:focus {
-    outline: none;
+input:focus,
+textarea:focus {
+  outline: none;
 }
 
-#form_referent-container > form > input, textarea {
-    border: none;
-    border-bottom: 1px dotted;
-    width: 95%; height: 10%;
+#form_referent-container > form > input,
+textarea {
+  border: none;
+  border-bottom: 1px dotted;
+  width: 95%;
+  height: 10%;
 }
 
 /* ----------------------- CHECKBOX REFERENT -----------------------  */
 
 #checkbox_referent-container {
-    /* border: 1px solid red; */
-    margin: auto;
-    width: 17%; height: 100%;
-    text-align: justify;
+  /* border: 1px solid red; */
+  margin: auto;
+  width: 17%;
+  height: 100%;
+  text-align: justify;
 }
 
 #checkbox_referent {
-    /* border: 1px solid violet; */
-    margin: auto; 
-    border-collapse: collapse;
-    width: 100%; height: 100%;
+  /* border: 3px solid violet; */
+  margin: auto;
+  border-collapse: collapse;
+  width: 100%;
+  height: 100%;
 }
 
 #checkbox_referent > thead {
-    background: linear-gradient(to left, #23b14a, #e1ebaf 100%);
-    color: white;
-    height: 50px;
-    text-align: right;
-    font-size: 25px; font-weight: bold;
+  background: linear-gradient(to left, #23b14a, #e1ebaf 100%);
+  color: white;
+  height: 58px;
+  text-align: right;
+  font-size: 25px;
+  font-weight: bold;
 }
 
 #checkbox_referent > tbody {
-    background-color: #e1ebaf;
-    font-size: 20px;
-    line-height: 34px;
+  background-color: #e1ebaf;
+  font-size: 20px;
+  line-height: 34px;
 }

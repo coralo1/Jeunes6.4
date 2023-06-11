@@ -21,7 +21,6 @@ $phpmailer->Username = '8a516fbf671d31';
 $phpmailer->Password = '3a2618cd283dce';
 */
 session_start();
-var_dump($_SESSION);
 /*makes sure the user is Jeune */
 if ($_SESSION["usertype"] != "J") {
 	header("Location:../login/login.php");
@@ -57,6 +56,75 @@ if (isset($_POST['update'])) {
 			$user["length"] = $_POST['length'];
 			$_SESSION["length"] = $_POST['length'];
 
+			$savoirs = array();
+
+			if (isset($_POST['autonomie'])) {
+				$savoirs["autonomie"] = 1;
+			} else {
+				$savoirs["autonomie"] = 0;
+			}
+
+			if (isset($_POST['analyse'])) {
+				$savoirs["analyse"] = 1;
+			} else {
+				$savoirs["analyse"] = 0;
+			}
+
+			if (isset($_POST['ecoute'])) {
+				$savoirs["ecoute"] = 1;
+			} else {
+				$savoirs["ecoute"] = 0;
+			}
+
+			if (isset($_POST['organise'])) {
+				$savoirs["organise"] = 1;
+			} else {
+				$savoirs["organise"] = 0;
+			}
+
+			if (isset($_POST['passionne'])) {
+				$savoirs["passionne"] = 1;
+			} else {
+				$savoirs["passionne"] = 0;
+			}
+
+			if (isset($_POST['fiable'])) {
+				$savoirs["fiable"] = 1;
+			} else {
+				$savoirs["fiable"] = 0;
+			}
+
+			if (isset($_POST['patient'])) {
+				$savoirs["patient"] = 1;
+			} else {
+				$savoirs["patient"] = 0;
+			}
+
+			if (isset($_POST['reflechi'])) {
+				$savoirs["reflechi"] = 1;
+			} else {
+				$savoirs["reflechi"] = 0;
+			}
+
+			if (isset($_POST['responsable'])) {
+				$savoirs["responsable"] = 1;
+			} else {
+				$savoirs["responsable"] = 0;
+			}
+
+			if (isset($_POST['sociable'])) {
+				$savoirs["sociable"] = 1;
+			} else {
+				$savoirs["sociable"] = 0;
+			}
+
+			if (isset($_POST['optimiste'])) {
+				$savoirs["optimiste"] = 1;
+			} else {
+				$savoirs["optimiste"] = 0;
+			}
+			$user["savoirs"];
+
 			$replacement = array($i => $user); /*creates an array with only the user in his position in the json file */
 		}
 	}
@@ -77,73 +145,7 @@ if (isset($_POST['update'])) {
 if (isset($_POST["submit"])) {
 	//$user = new updateRef($_POST['email'], $_POST['password']); /* call for login */
 
-	$savoirs = array();
 
-	if (isset($_POST['autonomie'])) {
-		$savoirs["autonomie"] = 1;
-	} else {
-		$savoirs["autonomie"] = 0;
-	}
-
-	if (isset($_POST['analyse'])) {
-		$savoirs["analyse"] = 1;
-	} else {
-		$savoirs["analyse"] = 0;
-	}
-
-	if (isset($_POST['ecoute'])) {
-		$savoirs["ecoute"] = 1;
-	} else {
-		$savoirs["ecoute"] = 0;
-	}
-
-	if (isset($_POST['organise'])) {
-		$savoirs["organise"] = 1;
-	} else {
-		$savoirs["organise"] = 0;
-	}
-
-	if (isset($_POST['passionne'])) {
-		$savoirs["passionne"] = 1;
-	} else {
-		$savoirs["passionne"] = 0;
-	}
-
-	if (isset($_POST['fiable'])) {
-		$savoirs["fiable"] = 1;
-	} else {
-		$savoirs["fiable"] = 0;
-	}
-
-	if (isset($_POST['patient'])) {
-		$savoirs["patient"] = 1;
-	} else {
-		$savoirs["patient"] = 0;
-	}
-
-	if (isset($_POST['reflechi'])) {
-		$savoirs["reflechi"] = 1;
-	} else {
-		$savoirs["reflechi"] = 0;
-	}
-
-	if (isset($_POST['responsable'])) {
-		$savoirs["responsable"] = 1;
-	} else {
-		$savoirs["responsable"] = 0;
-	}
-
-	if (isset($_POST['sociable'])) {
-		$savoirs["sociable"] = 1;
-	} else {
-		$savoirs["sociable"] = 0;
-	}
-
-	if (isset($_POST['optimiste'])) {
-		$savoirs["optimiste"] = 1;
-	} else {
-		$savoirs["optimiste"] = 0;
-	}
 
 	$data = array("user" => $_SESSION["userID"], "type" => $_POST["type"], "engagement" => $_POST["engagement"], "length" => $_POST["length"], "user_firstname" => $_SESSION["firstname"], "user_lastname" => $_SESSION["lastname"], "firstname" => $_POST["ref_firstname"], "lastname" => $_POST["ref_lastname"], "mail" => $_POST["ref_mail"], "savoirs" => $savoirs);
 
@@ -272,13 +274,13 @@ if (isset($_POST["submit"])) {
 							<legend>DEMANDE DE RÉFÉRENCE :</legend>
 
 							<label for="type">Milieu de l'engagement :</label>
-							<input type="text" name="type" id="type" value="<?php echo $_SESSION["type"]?>"> <br>
+							<input type="text" name="type" id="type" value="<?php echo $_SESSION["type"] ?>"> <br>
 
 							<label for="engagement">Mon engamement :</label>
-							<textarea name="engagement" id="engagement" cols="1" rows="3"><?php echo $_SESSION["engagement"]?></textarea> <br>
+							<textarea name="engagement" id="engagement" cols="1" rows="3"><?php echo $_SESSION["engagement"] ?></textarea> <br>
 
 							<label for="length">Durée de l'engagement :</label>
-							<input type="text" name="length" id="length" value="<?php echo $_SESSION["length"]?>"> <br>
+							<input type="text" name="length" id="length" value="<?php echo $_SESSION["length"] ?>"> <br>
 
 							<label for="ref_lastname">Nom du référent :</label>
 							<input type="text" name="ref_lastname" id="ref_lastname"> <br>

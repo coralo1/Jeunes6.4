@@ -53,25 +53,25 @@ new loadCons($data);
 
 			<form action="page.php" method="post">
 				<label for="fnom">Nom :</label>
-				<input type="text" name="fnom" id="fnom"> <br>
+				<input type="text" name="fnom" id="fnom" readonly value="<?php echo $_SESSION["Jeune"]["lastname"] ?>"> <br>
 
 				<label for="fprenom">Prénom :</label>
-				<input type="text" name="fprenom" id="fprenom"> <br>
+				<input type="text" name="fprenom" id="fprenom" readonly value="<?php echo $_SESSION["Jeune"]["firstname"] ?>"> <br>
 
 				<label for="fdate">Date de naissance :</label>
-				<input type="date" name="fdate" id="fdate"> <br>
+				<input type="date" name="fdate" id="fdate" readonly value="<?php echo $_SESSION["Jeune"]["birthdate"] ?>"> <br>
 
 				<label for="fmail">Mail : </label>
-				<input type="email" name="femail" id="femail"> <br>
+				<input type="email" name="femail" id="femail" readonly value="<?php echo $_SESSION["Jeune"]["mail"] ?>"> <br>
 
-				<label for="freseau">Réseau social :</label>
-				<input type="text" name="freseau" id="freseau"> <br>
+				<label for="freseau">Type d'engagemenet :</label>
+				<input type="text" name="freseau" id="freseau" readonly value="<?php echo $_SESSION["Jeune"]["type"] ?>"> <br>
 
 				<label for="fengagement">Mon engamement :</label>
-				<textarea name="fengagement" id="fengagement" cols="1" rows="2"></textarea> <br>
+				<textarea name="fengagement" id="fengagement" cols="1" rows="2" readonly><?php echo $_SESSION["Jeune"]["engagement"] ?></textarea> <br>
 
 				<label for="fduree">Durée :</label>
-				<input type="text" name="fduree" id="fduree">
+				<input type="text" name="fduree" id="fduree" readonly value="<?php echo $_SESSION["Jeune"]["length"] ?>">
 			</form>
 
 		</section>
@@ -87,18 +87,51 @@ new loadCons($data);
 					<tr>
 						<td>
 							<form action="page.php" method="post">
-								<input type="checkbox" name="etre" value="autonome">Autonome <br>
-								<input type="checkbox" name="etre" value="capable">Capable d'analyse
+								<input type="checkbox" name="etre" value="autonome" disabled <?php
+																																							if ($_SESSION["Jeune"]["autonomie"]) {
+																																								echo "checked";
+																																							}; ?>>Autonome <br>
+								<input type="checkbox" name="etre" value="capable" disabled <?php
+																																						if ($_SESSION["Jeune"]["analyse"]) {
+																																							echo "checked";
+																																						}; ?>>Capable d'analyse
 								et de synthèse <br>
-								<input type="checkbox" name="etre" value="ecoute">A l'écoute <br>
-								<input type="checkbox" name="etre" value="organise">Organisé <br>
-								<input type="checkbox" name="etre" value="passionne">Passionné <br>
-								<input type="checkbox" name="etre" value="fiable">Fiable <br>
-								<input type="checkbox" name="etre" value="patient">Patient <br>
-								<input type="checkbox" name="etre" value="reflechi">Réfléchi <br>
-								<input type="checkbox" name="etre" value="responsable">Responable <br>
-								<input type="checkbox" name="etre" value="sociable">Sociable <br>
-								<input type="checkbox" name="etre" value="optimiste">Optimiste <br>
+								<input type="checkbox" name="etre" value="ecoute" disabled <?php
+																																						if ($_SESSION["Jeune"]["autonomie"]) {
+																																							echo "checked";
+																																						}; ?>>A l'écoute <br>
+								<input type="checkbox" name="etre" value="organise" disabled <?php
+																																							if ($_SESSION["Jeune"]["autonomie"]) {
+																																								echo "checked";
+																																							}; ?>>Organisé <br>
+								<input type="checkbox" name="etre" value="passionne" disabled <?php
+																																							if ($_SESSION["Jeune"]["autonomie"]) {
+																																								echo "checked";
+																																							}; ?>>Passionné <br>
+								<input type="checkbox" name="etre" value="fiable" disabled <?php
+																																						if ($_SESSION["Jeune"]["autonomie"]) {
+																																							echo "checked";
+																																						}; ?>>Fiable <br>
+								<input type="checkbox" name="etre" value="patient" disabled <?php
+																																						if ($_SESSION["Jeune"]["autonomie"]) {
+																																							echo "checked";
+																																						}; ?>>Patient <br>
+								<input type="checkbox" name="etre" value="reflechi" disabled <?php
+																																							if ($_SESSION["Jeune"]["autonomie"]) {
+																																								echo "checked";
+																																							}; ?>>Réfléchi <br>
+								<input type="checkbox" name="etre" value="responsable" disabled <?php
+																																								if ($_SESSION["Jeune"]["autonomie"]) {
+																																									echo "checked";
+																																								}; ?>>Responable <br>
+								<input type="checkbox" name="etre" value="sociable" disabled <?php
+																																							if ($_SESSION["Jeune"]["autonomie"]) {
+																																								echo "checked";
+																																							}; ?>>Sociable <br>
+								<input type="checkbox" name="etre" value="optimiste" disabled <?php
+																																							if ($_SESSION["Jeune"]["autonomie"]) {
+																																								echo "checked";
+																																							}; ?>>Optimiste <br>
 							</form>
 						</td>
 					</tr>
@@ -110,14 +143,13 @@ new loadCons($data);
 
 
 	<br>
+	<?php
+	$i = -1;
+	foreach ($_SESSION["refs"] as $refs) {
+		$i++; ?>
 
-	<div id="section_referent-container">
-		<!-- <fieldset> -->
-
-		<?php
-		$i = -1;
-		foreach ($_SESSION["refs"] as $refs) {
-			$i++; ?>
+		<div id="section_referent-container">
+			<!-- <fieldset> -->
 			<section id="form_referent-container">
 				<legend>RÉFÉRENT</legend>
 
@@ -207,11 +239,11 @@ new loadCons($data);
 
 				</table>
 			</section>
-		<?php } ?>
 
-		<!-- </fieldset> -->
-	</div>
 
+			<!-- </fieldset> -->
+		</div>
+	<?php } ?>
 </body>
 
 </html>

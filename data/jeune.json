@@ -48,11 +48,11 @@
         "mail": "test@maison.fr",
         "password": "$2y$10$Pe7sspxn6Fb5KnEQLOeJ4O4kaVbc8TvTUi1Dt8oSXVAaZAD0kY3HG",
         "birthdate": "0333-11-22",
-        "firstname": "maison2",
-        "lastname": "test2",
+        "firstname": "truc",
+        "lastname": "blabla",
         "network": "herbe",
-        "engagement": "avec marie",
-        "length": "pour toujours",
+        "engagement": "piscineavec marie",
+        "length": "2jours",
         "autonomie": 1,
         "analyse": 1,
         "ecoute": 1,
@@ -64,7 +64,7 @@
         "responsable": 0,
         "sociable": 0,
         "optimiste": 0,
-        "type": "vers la droite"
+        "type": "piscine"
     },
     {
         "usertype": "J",

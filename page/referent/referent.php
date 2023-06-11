@@ -128,7 +128,7 @@ if (isset($_POST["confirm"])) {
 	<div id="texte_demande">
 
 		<?php
-			echo "Originaire de la demande :".$_SESSION["user_firstname"] . " " . $_SESSION["user_lastname"] . "<br>" . $_SESSION["user"];
+			echo "Originaire de la demande :<br>".$_SESSION["user_firstname"] . " " . $_SESSION["user_lastname"] . "<br>" . $_SESSION["user"];
 		?>
 		<br><br>
         

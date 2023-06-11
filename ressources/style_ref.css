@@ -137,7 +137,7 @@ header > img {
 
 /* Voir si faire le même code couleur que pour les jeunes */
 #texte_demande {
-    border: 3px solid green;
+    /* border: 3px solid green; */
     margin-left: 2.7em; margin-bottom: 5px;
     width: fit-content; height: fit-content;
     font-weight: bold; font-size: 1.15em;
@@ -237,7 +237,7 @@ textarea {
 
 #comment-container {
     /* border: 3px solid violet; */
-    margin: auto; margin-left: 13%;
+    margin: auto; margin-left: 13%; margin-right: 1%;
     width: 50%; height: fit-content;
 }
 

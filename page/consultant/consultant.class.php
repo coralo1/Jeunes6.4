@@ -3,11 +3,11 @@ class loadCons
 {
 	private $user;
 	private $mail;
-	private $storage1 = "../../data/referent.json";
+	private $storage1 = "../../data/jeune.json";
 	private $storage2 = "../../data/references.json";
-	private $load_pending_refs;
+	private $load_jeunes;
 	private $load_confirmed_refs;
-	private $pending_refs;
+	private $jeune;
 	private $confirmed_refs;
 
 
@@ -16,46 +16,27 @@ class loadCons
 
 		$this->mail=$data["refs"][0]["mail"]; /* this is the email of the first selected reference */
 		$this->user = $data["user"]; /* Jeune who sent the request */
-		$this->load_pending_refs = json_decode(file_get_contents($this->storage1), true); /* loads pending refs to load */
+		$this->load_jeunes = json_decode(file_get_contents($this->storage1), true); /* loads pending refs to load */
 		$this->load_confirmed_refs = json_decode(file_get_contents($this->storage2), true);
 		/* assign default values */
 		
 
-		$this->pending_refs = $this->searchRefs($this->load_pending_refs);
+		$this->jeune = $this->searchJeune($this->load_jeunes);
 
-		$this->confirmed_refs = $this->searchRefs($this->load_confirmed_refs);
-
-		$this->removedoubles();
-
-		$_SESSION["pending"] = $this->pending_refs;
-		$_SESSION["confirmed"] = $this->confirmed_refs;
+		$_SESSION["Jeune"] = $this->jeune;
 	}
 
 
-	/* select the reference sent by the first */
-	private function searchRefs($list)
+	/* select the wanted Jeune */
+	private function searchJeune($list)
 	{
-		foreach ($list as $reference) { /* parse every confirmed reference */
-			if ($reference["user"] == $this->user && $this->mail == $reference["mail"]) { /* if the reference has been sent by the user */
-				$ref = $reference; /*add it to the list of refs */
+		foreach ($list as $jeune) { /* parse every confirmed reference */
+			if ($jeune["mail"] == $this->user) { /* if the reference has been sent by the user */
+				$target = $jeune; /*add it to the list of refs */
 			}
 		}
-		return $ref;
+		return $target;
 	}
 
-	/* removes references that have been validated from the pending reference list */
-	private function removedoubles()
-	{
-		foreach ($this->confirmed_refs as $confirmed) {
-			$i = -1; /* $i is the current position on the pending_refs list */
-			foreach ($this->pending_refs as $pending) {
-				$i++;
-				if ($confirmed["mail"] == $pending["mail"]) { /* compare every validated reference to every pending reference */
-
-					array_splice($this->pending_refs, $i, 1);
-					/* remove the pending reference from the list */
-				}
-			}
-		}
-	}
+	
 }
