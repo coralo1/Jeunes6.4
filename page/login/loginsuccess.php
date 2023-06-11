@@ -7,12 +7,15 @@ if (!isset($_SESSION["userID"])) {
 
 switch ($_SESSION["usertype"]) { /* */
 	case "J":
+		header("Location:../jeune/jeune.php");
 		$link = "../jeune/jeune.php";
 		break;
 	case "R":
+		header("Location:../referent/referent.php");
 		$link = "../referent/referent.php";
 		break;
 	case "C";
+	header("Location:../consultant/consultant.php");
 		$link = "../consultant/consultant.php";
 		break;
 }
