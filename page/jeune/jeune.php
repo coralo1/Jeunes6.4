@@ -21,6 +21,7 @@ $phpmailer->Username = '8a516fbf671d31';
 $phpmailer->Password = '3a2618cd283dce';
 */
 session_start();
+var_dump($_SESSION);
 /*makes sure the user is Jeune */
 if ($_SESSION["usertype"] != "J") {
 	header("Location:../login/login.php");
@@ -56,94 +57,6 @@ if (isset($_POST['update'])) {
 			$user["length"] = $_POST['length'];
 			$_SESSION["length"] = $_POST['length'];
 
-			if (isset($_POST['autonomie'])) {
-				$user["autonomie"] = 1;
-				$_SESSION['autonomie'] = 1;
-			} else {
-				$user["autonomie"] = 0;
-				$_SESSION['autonomie'] = 0;
-			}
-
-			if (isset($_POST['analyse'])) {
-				$_SESSION['analyse'] = 1;
-				$user["analyse"] = 1;
-			} else {
-				$user["analyse"] = 0;
-				$_SESSION["analyse"] = 0;
-			}
-
-			if (isset($_POST['ecoute'])) {
-				$_SESSION['ecoute'] = 1;
-				$user["ecoute"] = 1;
-			} else {
-				$user["ecoute"] = 0;
-				$_SESSION["ecoute"] = 0;
-			}
-
-			if (isset($_POST['organise'])) {
-				$_SESSION['organise'] = 1;
-				$user["organise"] = 1;
-			} else {
-				$user["organise"] = 0;
-				$_SESSION['organise'] = 0;
-			}
-
-			if (isset($_POST['passionne'])) {
-				$_SESSION['passionne'] = 1;
-				$user["passionne"] = 1;
-			} else {
-				$user["passionne"] = 0;
-				$_SESSION['passionne'] = 0;
-			}
-
-			if (isset($_POST['fiable'])) {
-				$_SESSION['fiable'] = 1;
-				$user["fiable"] = 1;
-			} else {
-				$user["fiable"] = 0;
-				$_SESSION['fiable'] = 0;
-			}
-
-			if (isset($_POST['patient'])) {
-				$_SESSION['patient'] = 1;
-				$user["patient"] = 1;
-			} else {
-				$user["patient"] = 0;
-				$_SESSION['patient'] = 0;
-			}
-
-			if (isset($_POST['reflechi'])) {
-				$_SESSION['reflechi'] = 1;
-				$user["reflechi"] = 1;
-			} else {
-				$user["reflechi"] = 0;
-				$_SESSION['reflechi'] = 0;
-			}
-
-			if (isset($_POST['responsable'])) {
-				$_SESSION['responsable'] = 1;
-				$user["responsable"] = 1;
-			} else {
-				$user["responsable"] = 0;
-				$_SESSION['responsable'] = 0;
-			}
-
-			if (isset($_POST['sociable'])) {
-				$_SESSION['sociable'] = 1;
-				$user["sociable"] = 1;
-			} else {
-				$user["sociable"] = 0;
-				$_SESSION['sociable'] = 0;
-			}
-
-			if (isset($_POST['optimiste'])) {
-				$_SESSION['optimiste'] = 1;
-				$user["optimiste"] = 1;
-			} else {
-				$user["optimiste"] = 0;
-				$_SESSION['optimiste'] = 0;
-			}
-
 			$replacement = array($i => $user); /*creates an array with only the user in his position in the json file */
 		}
 	}
@@ -152,7 +65,6 @@ if (isset($_POST['update'])) {
 	$encoded_data = json_encode($updated_users, JSON_PRETTY_PRINT); /* puts everything back into the json */
 	if (file_put_contents($storage, $encoded_data)) {
 		$status = "profil mis à jour";
-
 	} else {
 		$status = "Une erreur est survenue, veuillez rééssayer";
 	}
@@ -294,11 +206,11 @@ if (isset($_POST["submit"])) {
 		<img src="../../ressources/img/LOGOS_JEUNES_6_4.svg" alt="Logo Jeunes6.4">
 		<div id="haut_page-container">
 			<span id="nom_page-container">
-		<h1>JEUNE</h1>
-		</span>
+				<h1>JEUNE</h1>
+			</span>
 			<span id="texte_haut-container">
-		<p>Je donne de la valeur à mon engagement</p>
-		</span>
+				<p>Je donne de la valeur à mon engagement</p>
+			</span>
 		</div>
 	</header>
 
@@ -323,120 +235,120 @@ if (isset($_POST["submit"])) {
 
 
 	<div id="elements-container">
+		<form action="" method="post">
+			<section id="informations-container">
 
-	<section id="informations-container">
+				<section id="vos_informations">
 
-			<section id="vos_informations">	
+					<legend>VOS INFORMATIONS : </legend>
 
-				<legend>VOS INFORMATIONS : </legend>
+					<label for="lastname">Nom :</label>
+					<input type="text" name="lastname" id="lastname" value="<?php echo $_SESSION["lastname"] ?>"> <br>
 
-				<label for="lastname">Nom :</label>
-				<input type="text" name="lastname" id="lastname" value="<?php echo $_SESSION["lastname"] ?>" > <br>
+					<label for="firstname">Prénom :</label>
+					<input type="text" name="firstname" id="firstname" value="<?php echo $_SESSION["firstname"] ?>"> <br>
 
-				<label for="firstname">Prénom :</label>
-				<input type="text" name="firstname" id="firstname" value="<?php echo $_SESSION["firstname"] ?>" > <br>
+					<label for="birthdate">Date de naissance :</label>
+					<input type="date" name="birthdate" id="birthdate" value="<?php echo $_SESSION["birthdate"] ?>">
+					<br>
 
-				<label for="birthdate">Date de naissance :</label>
-				<input type="date" name="birthdate" id="birthdate" value="<?php echo $_SESSION["birthdate"] ?>" >
-				<br>
-
-				<label for="mail">Mail : </label>
-				<input type="email" name="mail" id="mail" value="<?php echo $_SESSION["mail"] ?>" readonly> <br>
-
-		</section>
-
-		</section>
-
-
-		<section id="demande_formulaire">
-
-			<form action="" method="post">
-
-
-				<section id="demande_ref-container">
-
-				<section id="demande_ref">
-
-						<legend>DEMANDE DE RÉFÉRENCE :</legend>
-
-						<label for="type">Milieu de l'engagement :</label>
-						<input type="text" name="type" id="type"> <br>
-
-						<label for="engagement">Mon engamement :</label>
-						<textarea name="engagement" id="engagement" cols="1" rows="3"></textarea> <br>
-
-						<label for="length">Durée de l'engagement :</label>
-						<input type="text" name="length" id="length"> <br>
-
-						<label for="ref_lastname">Nom du référent :</label>
-						<input type="text" name="ref_lastname" id="ref_lastname"> <br>
-
-						<label for="ref_firstname">Prénom du référent :</label>
-						<input type="text" name="ref_firstname" id="ref_firstname"> <br>
-
-						<label for="ref_mail">E-mail du référent :</label>
-						<input type="email" name="ref_mail" id="ref_mail"> <br>
+					<label for="mail">Mail : </label>
+					<input type="email" name="mail" id="mail" value="<?php echo $_SESSION["mail"] ?>" readonly> <br>
 
 				</section>
 
-				</section>
+			</section>
 
 
-				<section id="checkbox-container">
-					<table id="table-checkbox">
+			<section id="demande_formulaire">
 
-						<legend>Mes savoirs-être</legend>
-
-						<thead>
-							<tr>
-								<td>Je suis*</td>
-							</tr>
-						</thead>
-
-						<tbody>
-							<tr>
-								<td>
-									<input type="checkbox" name="autonomie" value="1">Autonome <br>
-									<input type="checkbox" name="analyse" value="1">Capable d'analyse et de synthèse <br>
-									<input type="checkbox" name="ecoute" value="1">A l'écoute <br>
-									<input type="checkbox" name="organise" value="1">Organisé <br>
-									<input type="checkbox" name="passionne" value="1">Passionné <br>
-									<input type="checkbox" name="fiable" value="1">Fiable <br>
-									<input type="checkbox" name="patient" value="1">Patient <br>
-									<input type="checkbox" name="reflechi" value="1">Réfléchi <br>
-									<input type="checkbox" name="responsable" value="1">Responable<br>
-									<input type="checkbox" name="sociable" value="1">Sociable <br>
-									<input type="checkbox" name="optimiste" value="1">Optimiste <br>
-								</td>
-							</tr>
-						</tbody>
-
-					</table>
-
-					<p id="description-checkbox">*Faire 4 choix maximum</p>
-
-				</section>
+				<form action="" method="post">
 
 
-				<!-- Messages -->
-				<p class="error">
-					<?php echo @$status; ?>
-				</p>
+					<section id="demande_ref-container">
 
-				<p class="success">
-					<?php echo @$status; ?>
-				</p>
-				<!-- Fin messages  -->
+						<section id="demande_ref">
 
-				<!-- Bouton "envoyer une demande" -->
-				<input type="submit" name="update" id="send_form" value="Mettre à jour mes informations"> <br>
-				<input type="submit" name="submit" id="send_form" value="Envoyer une demande"> <br>
+							<legend>DEMANDE DE RÉFÉRENCE :</legend>
 
-			</form>
-			<!-- </fieldset> -->
+							<label for="type">Milieu de l'engagement :</label>
+							<input type="text" name="type" id="type" value="<?php echo $_SESSION["type"]?>"> <br>
 
-		</section>
+							<label for="engagement">Mon engamement :</label>
+							<textarea name="engagement" id="engagement" cols="1" rows="3"><?php echo $_SESSION["engagement"]?></textarea> <br>
 
+							<label for="length">Durée de l'engagement :</label>
+							<input type="text" name="length" id="length" value="<?php echo $_SESSION["length"]?>"> <br>
+
+							<label for="ref_lastname">Nom du référent :</label>
+							<input type="text" name="ref_lastname" id="ref_lastname"> <br>
+
+							<label for="ref_firstname">Prénom du référent :</label>
+							<input type="text" name="ref_firstname" id="ref_firstname"> <br>
+
+							<label for="ref_mail">E-mail du référent :</label>
+							<input type="email" name="ref_mail" id="ref_mail"> <br>
+
+						</section>
+
+					</section>
+
+
+					<section id="checkbox-container">
+						<table id="table-checkbox">
+
+							<legend>Mes savoirs-être</legend>
+
+							<thead>
+								<tr>
+									<td>Je suis*</td>
+								</tr>
+							</thead>
+
+							<tbody>
+								<tr>
+									<td>
+										<input type="checkbox" name="autonomie" value="1">Autonome <br>
+										<input type="checkbox" name="analyse" value="1">Capable d'analyse et de synthèse <br>
+										<input type="checkbox" name="ecoute" value="1">A l'écoute <br>
+										<input type="checkbox" name="organise" value="1">Organisé <br>
+										<input type="checkbox" name="passionne" value="1">Passionné <br>
+										<input type="checkbox" name="fiable" value="1">Fiable <br>
+										<input type="checkbox" name="patient" value="1">Patient <br>
+										<input type="checkbox" name="reflechi" value="1">Réfléchi <br>
+										<input type="checkbox" name="responsable" value="1">Responable<br>
+										<input type="checkbox" name="sociable" value="1">Sociable <br>
+										<input type="checkbox" name="optimiste" value="1">Optimiste <br>
+									</td>
+								</tr>
+							</tbody>
+
+						</table>
+
+						<p id="description-checkbox">*Faire 4 choix maximum</p>
+
+					</section>
+
+
+					<!-- Messages -->
+					<p class="error">
+						<?php echo @$status; ?>
+					</p>
+
+					<p class="success">
+						<?php echo @$status; ?>
+					</p>
+					<!-- Fin messages  -->
+
+					<!-- Bouton "envoyer une demande" -->
+					<input type="submit" name="update" id="send_form" value="Mettre à jour mes informations"> <br>
+					<input type="submit" name="submit" id="send_form" value="Envoyer une demande"> <br>
+
+				</form>
+				<!-- </fieldset> -->
+
+			</section>
+		</form>
 		<!-- Logout button -->
 		<a href="../logout.php" id="forgot_password">Déconnexion</a>
 
