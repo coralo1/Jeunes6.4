@@ -1,4 +1,4 @@
-<?php require("jeune_update.php") ?>
+<?php require("jeune.class.php") ?>
 <?php
 /*
 require('../../PHPMailer/src/Exception.php');
